@@ -1,0 +1,26 @@
+{
+  "name": "harrison-landing",
+  "version": "1.0.0",
+  "description": "landing page for Harrison studio",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "keywords": [
+    "scrolltrigger",
+    "animated",
+    "components",
+    "SEO"
+  ],
+  "author": "JohnF",
+  "license": "ISC",
+  "dependencies": {
+    "@studio-freight/lenis": "^1.0.29",
+    "gsap": "^3.12.3",
+    "sass": "^1.69.5"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.6"
+  }
+}
