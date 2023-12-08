@@ -21,53 +21,53 @@ requestAnimationFrame(raf);
 
 /* Gsap instantiation */
 
-let tl = gsap.timeline();
-
-tl.from(".text-1", {
-  y: 50,
-  opacity: 0,
+let tl = gsap.timeline({
   scrollTrigger: {
-    trigger: ".text-1",
-    start: "-200% center",
-    end: "-100% center",
+    trigger: "#section-1",
+    start: "25% top",
+    end: "bottom bottom",
     scrub: true,
-    pinSpacing: false,
   },
 });
 
-tl.from(".text-2", {
-  y: 50,
+// Fade in animation for the newly added p elements
+tl.staggerFrom("#section-1 .info", 1, {
   opacity: 0,
-  scrollTrigger: {
-    trigger: ".text-2",
-    start: "-200% center",
-    end: "-100% center",
-    scrub: true,
-    pinSpacing: false,
-  },
-});
+  x: -50, // Move from left to right
+}, 0.5); // Stagger the fade-in with a delay of 0.5 seconds between each paragraph
 
-tl.from(".text-3", {
-  y: 50,
-  opacity: 0,
-  scrollTrigger: {
-    trigger: ".text-3",
-    start: "-200% center",
-    end: "-150% center",
-    scrub: true,
-    markers: true,
-    pinSpacing: false,
-  },
-});
-
+// Define the zoom-in animation for the image
 tl.to("#section-1 img", {
   scale: 1.5, // Adjust the scale factor for zooming
   transformOrigin: "bottom left", // Zoom to the bottom left corner
-  scrollTrigger: {
-    trigger: "#section-1",
-    start: "50% top",
-    end: "bottom bottom",
-    scrub: true,
-    markers: true
-  },
 });
+
+// Fade in animation for the p elements with stagger
+tl.staggerFrom(
+  "#section-1 .container p",
+  0.5,
+  {
+    opacity: 0,
+    brightness: 100,
+    y: 20, // Adjust the distance the elements move
+  },
+  0.2,
+  "-=0.5"
+); // Start the fade-in slightly before the zoom-in animation
+
+// Create an overlay div for background darkening effect
+const overlay = document.createElement("div");
+overlay.classList.add("overlay");
+document.getElementById("section-1").appendChild(overlay);
+
+// Darken background effect
+tl.to(
+  overlay,
+  {
+    start: '25% top',
+    end: 'bottom bottom',
+    y: -50,
+    opacity: 0.3, // Adjust the darkness (0.5 is 50% opacity)
+  },
+  "-=0.5"
+); // Start the background darkening slightly before the zoom-in animation

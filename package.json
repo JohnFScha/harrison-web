@@ -5,7 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/index.js --bundle --minify --sourcemap --outfile=bundle.js"
+    "build": "esbuild src/index.js --bundle --minify --sourcemap --outfile=bundle.js",
+    "watch": "sass -w ./src/sass/styles.scss:./src/index.css",
+    "push": "git add . >> git commit -m \"$1\" >> git push -u origin main"
   },
   "keywords": [
     "scrolltrigger",
@@ -17,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@studio-freight/lenis": "^1.0.29",
+    "animated-cursor": "^1.2.0",
     "gsap": "^3.12.3",
     "sass": "^1.69.5"
   },
