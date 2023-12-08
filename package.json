@@ -7,7 +7,8 @@
   "scripts": {
     "build": "esbuild src/index.js --bundle --minify --sourcemap --outfile=bundle.js",
     "watch": "sass -w ./src/sass/styles.scss:./src/index.css",
-    "push": "git add . >> git commit -m \"$1\" >> git push -u origin main"
+    "push": "myscript.sh"
+    
   },
   "keywords": [
     "scrolltrigger",
