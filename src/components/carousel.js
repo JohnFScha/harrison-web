@@ -30,7 +30,8 @@ circles.forEach(function (circle, index) {
   circle.x = 0;
   circle.y = 0;
   //circle.style.backgroundColor = colors[index % colors.length];
-  circle.style.backgroundColor = "rgba(203, 219, 67, 1)";
+  circle.style.background = "radial-gradient(circle, rgba(203,219,67,1) 0%, rgba(203,219,67,0) 100%)";
+  
 });
 
 window.addEventListener("mousemove", function (e) {
@@ -46,20 +47,20 @@ function animateCircles() {
   let lastY = 0;
 
   circles.forEach(function (circle, index) {
-    circle.style.left = x - 12 + "px";
-    circle.style.top = y - 12 + "px";
+    circle.style.left = x - 8 + "px";
+    circle.style.top = y - 8 + "px";
 
     if (lastX !== x || lastY !== y) {
       circle.style.opacity = index > 0 ? (circles.length - index) / (circles.length) : 0; 
-      circle.style.filter = 'blur(20px)';
-      circle.style.animate = 'opacity(0) 3s ease-out';
+      circle.style.filter = 'blur(6px)';
+      circle.style.animate = 'opacity(0) 2s ease-in-out';
      
       // Update last position
       lastX = x;
       lastY = y;
   } else {
       // If no change, gradually reduce opacity
-      circle.style.opacity = 0; // You can adjust the rate of fading
+      circle.style.opacity *= 0.02; // You can adjust the rate of fading
   }
 
     circle.x = x;
@@ -75,6 +76,3 @@ function animateCircles() {
 
 animateCircles();
 
-window.addEventListener("mou", function (e) {
-  circles.forEach((circle) => circle.remove());
-});
