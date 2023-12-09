@@ -1,5 +1,7 @@
 #!/git/bash
 
+args=("$@")
+
 git add .
-git commit -m "$1"
+git commit -m "$args"
 git push -u origin main
