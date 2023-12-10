@@ -12,7 +12,8 @@ body {
  
 .carousel {
   padding: 20px;
-  perspective: 1000px;
+  perspective: 2500px;
+  perspective-origin: 50% -160%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,12 +24,12 @@ body {
 }
 .carousel figure {
   margin: 0;
-  height: 400px;
+  height: 250px;
   width: 400px;
   transform-style: preserve-3d;
   transition: transform 0.5s;
   transform-origin: 50% 50% -400px;
-  animation: rotateAnim 30s infinite;
+  animation: rotateAnim 30s infinite forwards;
 }
 .carousel figure img {
   width: 100%;
@@ -63,10 +64,9 @@ body {
 }
 
 .circle {
-  height: 25px;
-  width: 25px;
+  height: 48px;
+  width: 48px;
   border-radius: 24px;
-  background-color: black;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,7 +76,7 @@ body {
 }
 
 @keyframes rotateAnim {
-  0%, 100% {
+  0% {
     transform: rotateY(0deg);
   }
   7.1% {
@@ -118,6 +118,10 @@ body {
   92.3% {
     transform: rotateY(-308.5714285714deg);
   }
-}
-
-/*# sourceMappingURL=carousel.css.map */
+  98.7% {
+    transform: rotateY(-308.5714285714deg);
+  }
+  100% {
+    transform: rotateY(-359.99deg);
+  }
+}/*# sourceMappingURL=carousel.css.map */

@@ -13,9 +13,9 @@ body {
 // Carousel configuration parameters
 $n: 7; // Number of images
 $item-width: 400px; // Width of an image. In the Js version this value can be a percentage
-$item-height: 400px;
+$item-height: 250px;
 $item-separation: 200px; // The space between the images. This will decrease the effective item width
-$viewer-distance: 1000px;
+$viewer-distance: 2500px;
 
 // Derived variables
 $theta: calc(2 * 3.141592653589793 / $n);
@@ -25,6 +25,7 @@ $apothem: 400px; // == $item-width / (2 * tan(PI / $n))
   padding: 20px;
 
   perspective: $viewer-distance;
+  perspective-origin: 50% -160%;
 
   display: flex;
   flex-direction: column;
@@ -41,7 +42,7 @@ $apothem: 400px; // == $item-width / (2 * tan(PI / $n))
     transform-style: preserve-3d;
     transition: transform 0.5s;
     transform-origin: 50% 50% (-$apothem);
-    animation: rotateAnim 30s infinite;
+    animation: rotateAnim 30s infinite forwards;
     
     img {
       width: 100%;
@@ -69,10 +70,9 @@ $apothem: 400px; // == $item-width / (2 * tan(PI / $n))
 }
  
 .circle {
-  height: 25px;
-  width: 25px;
+  height: 48px;
+  width: 48px;
   border-radius: 24px;
-  background-color: black;
   position: fixed; 
   top: 0;
   left: 0;
@@ -83,8 +83,7 @@ $apothem: 400px; // == $item-width / (2 * tan(PI / $n))
 
 @keyframes rotateAnim {
 
-  0%,
-  100% {
+  0% {
     transform: rotateY(0deg);
   }
 
@@ -138,5 +137,11 @@ $apothem: 400px; // == $item-width / (2 * tan(PI / $n))
 
   92.3% {
     transform: rotateY(-308.5714285714286deg);
+  }
+  98.7% {
+    transform: rotateY(-308.5714285714286deg);
+  }
+  100% {
+    transform: rotateY(-359.99deg);
   }
 }
