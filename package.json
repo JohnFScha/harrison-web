@@ -7,7 +7,7 @@
   "scripts": {
     "build": "esbuild src/index.js --bundle --minify --sourcemap --outfile=bundle.js",
     "watch": "sass -w ./src/sass/styles.scss:./src/index.css",
-    "push": "myscript.sh"
+    "push": "git-push.sh"
     
   },
   "keywords": [
