@@ -84,10 +84,10 @@ nav button svg {
 }
 
 .carousel {
-  padding: 20px;
-  margin: 15rem;
+  position: relative;
   perspective: 2500px;
-  perspective-origin: 50% -160%;
+  perspective-origin: 50% -50%;
+  transform: scale(80%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,43 +98,66 @@ nav button svg {
 }
 .carousel figure {
   margin: 0;
-  height: 250px;
-  width: 400px;
+  height: 300px;
+  width: 180px;
   transform-style: preserve-3d;
   transition: transform 0.5s;
   transform-origin: 50% 50% -400px;
   animation: rotateAnim 30s infinite forwards;
 }
-.carousel figure img {
-  width: 100%;
+.carousel figure .card-ctn {
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+  width: 100%;
   box-sizing: border-box;
-  padding: 0 100px;
   opacity: 0.9;
+  border-radius: 6%;
+  overflow: hidden;
+  transform: translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:not(:first-of-type) {
+.carousel figure .card-ctn:not(:first-of-type) {
   position: absolute;
   left: 0;
   top: 0;
   transform-origin: 50% 50% -400px;
 }
-.carousel figure img:nth-child(2) {
-  transform: rotateY(0.897597901rad);
+.carousel figure .card-ctn:nth-child(2) {
+  transform: rotateY(0.897597901rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:nth-child(3) {
-  transform: rotateY(1.7951958021rad);
+.carousel figure .card-ctn:nth-child(3) {
+  transform: rotateY(1.7951958021rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:nth-child(4) {
-  transform: rotateY(2.6927937031rad);
+.carousel figure .card-ctn:nth-child(4) {
+  transform: rotateY(2.6927937031rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:nth-child(5) {
-  transform: rotateY(3.5903916041rad);
+.carousel figure .card-ctn:nth-child(5) {
+  transform: rotateY(3.5903916041rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:nth-child(6) {
-  transform: rotateY(4.4879895051rad);
+.carousel figure .card-ctn:nth-child(6) {
+  transform: rotateY(4.4879895051rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
-.carousel figure img:nth-child(7) {
-  transform: rotateY(5.3855874062rad);
+.carousel figure .card-ctn:nth-child(7) {
+  transform: rotateY(5.3855874062rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.030, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+}
+
+.carousel figure .card-ctn img {
+  position: relative;
+  width: 100px;
+  height: 100%;
+  object-fit: scale-down;
+  z-index: 1;
+}
+
+.carousel figure .card-ctn video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .circle {
