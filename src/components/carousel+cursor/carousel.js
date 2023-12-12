@@ -45,11 +45,14 @@ collapse.addEventListener("click", () => {
 
   circles.forEach(function (circle) {
     if (body.className.includes("close")) {
-      circle.style.background =
-        "radial-gradient(circle, rgba(203,219,67,1) 0%, rgba(203,219,67,0) 100%)";
+      setTimeout(() => {
+        circle.style.background =
+          "radial-gradient(circle, rgba(203,219,67,1) 0%, rgba(203,219,67,0) 100%)";
+      }, 1500);
     } else if (body.className.includes("open")) {
-      circle.style.background =
-        "radial-gradient(circle, rgba(29, 62, 78, 1) 0%, rgba(29, 62, 78, 1) 100%)";
+      setTimeout(() => {
+        circle.style.background = "radial-gradient(circle, rgba(29, 62, 78, 1) 0%, rgba(29, 62, 78, 1) 100%)";
+      }, 1500);
     }
   });
 
@@ -61,31 +64,6 @@ collapse.addEventListener("click", () => {
     tl.paused(true);
   }
 });
-
-const colors = [
-  "#ffb56b",
-  "#fdaf69",
-  "#f89d63",
-  "#f59761",
-  "#ef865e",
-  "#ec805d",
-  "#e36e5c",
-  "#df685c",
-  "#d5585c",
-  "#d1525c",
-  "#c5415d",
-  "#c03b5d",
-  "#b22c5e",
-  "#ac265e",
-  "#9c155f",
-  "#950f5f",
-  "#830060",
-  "#7c0060",
-  "#680060",
-  "#60005f",
-  "#48005f",
-  "#3d005e",
-];
 
 circles.forEach(function (circle) {
   circle.x = 0;

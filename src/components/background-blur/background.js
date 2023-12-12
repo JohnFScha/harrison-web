@@ -1,23 +1,49 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const interBubble = document.querySelector('.interactive');
-  let curX = 0;
-  let curY = 0;
-  let tgX = 0;
-  let tgY = 0;
+const circles = document.querySelectorAll(".interactive");
+const coords = { x: 0, y: 0 };
 
-  function move() {
-      curX += (tgX - curX) / 20;
-      curY += (tgY - curY) / 20;
-      interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
-      requestAnimationFrame(() => {
-          move();
-      });
-  }
+circles.forEach(function (circle) {
+  circle.x = 0;
+  circle.y = 0;
+});
 
-  window.addEventListener('mousemove', (event) => {
-      tgX = event.clientX + 200;
-      tgY = event.clientY + 200;
+window.addEventListener("mousemove", function (e) {
+  coords.x = e.clientX;
+  coords.y = e.clientY;
+});
+
+function animateCircles() {
+  let x = coords.x;
+  let y = coords.y;
+
+  let lastX = 0;
+  let lastY = 0;
+
+  circles.forEach(function (circle, index) {
+    circle.style.left = x - 8 + "px";
+    circle.style.top = y - 8 + "px";
+
+    if (lastX !== x || lastY !== y) {
+      circle.style.opacity = index > 0 ? (circles.length - index) / circles.length : 0;
+      circle.style.animate = "opacity(0) 2s ease-in-out";
+      circle.style.transform = `rotateZ(${y / 5}deg)`;
+
+      // Update last position
+      lastX = x;
+      lastY = y;
+    } else {
+      // If no change, gradually reduce opacity
+      circle.style.opacity *= 0.02; // You can adjust the rate of fading
+    }
+
+    circle.x = x;
+    circle.y = y;
+
+    const nextCircle = circles[index + 1] || circles[0];
+    x += (nextCircle.x - x) * 0.5;
+    y += (nextCircle.y - y) * 0.5;
   });
 
-  move();
-});
+  requestAnimationFrame(animateCircles);
+}
+
+animateCircles();
