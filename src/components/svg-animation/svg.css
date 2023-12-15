@@ -2,14 +2,24 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: black;
+  height: auto;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
   height: 100vh;
+  width: 100vw;
   background-image: url('../../assets/Layer_1.png');
   background-size: 100px;
-  backdrop-filter: brightness(40%);
+  backdrop-filter: brightness(40%) !important;
+  position: fixed;
 }
 
 body .container svg {

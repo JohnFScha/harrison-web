@@ -32,13 +32,19 @@ bubbles:after {
 @keyframes colorgen {
   0% {
     opacity: 1;
-    filter: blur(10px) hue-rotate(0);
+    filter: blur(5px) hue-rotate(0);
     transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    filter: blur(10px) hue-rotate(120deg);
+    transform: translate(-75%, -75%) scale(0.5);
   }
 
   100% {
     opacity: 0;
     filter: blur(20px) hue-rotate(250deg);
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-100%, -100%) scale(0);
   }
 }

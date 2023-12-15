@@ -18,6 +18,7 @@ function animateCircles() {
   let lastX = 0;
   let lastY = 0;
 
+
   circles.forEach(function (circle, index) {
     circle.style.left = x - 8 + "px";
     circle.style.top = y - 8 + "px";
@@ -25,7 +26,7 @@ function animateCircles() {
     if (lastX !== x || lastY !== y) {
       circle.style.opacity = index > 0 ? (circles.length - index) / circles.length : 0;
       circle.style.animate = "opacity(0) 2s ease-in-out";
-      circle.style.transform = `rotateZ(${y / 5}deg)`;
+      circle.style.transform = ``;
 
       // Update last position
       lastX = x;

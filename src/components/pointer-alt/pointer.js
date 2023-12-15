@@ -5,8 +5,8 @@ document.addEventListener('mousemove', e=> {
   let y = e.pageY;
   let size = Math.random() * 100;
 
-  bubbles.style.left = x + 10 + "px";
-  bubbles.style.top = y + 10 + "px";
+  bubbles.style.left = x  + "px";
+  bubbles.style.top = y + "px";
   bubbles.style.width = "100px";
   bubbles.style.height = "100px";
  /*  bubbles.style.transform = `` */
@@ -14,5 +14,5 @@ document.addEventListener('mousemove', e=> {
   document.body.appendChild(bubbles);
   setTimeout(function() {
     bubbles.remove();
-  }, 950);
+  }, 900);
 });
