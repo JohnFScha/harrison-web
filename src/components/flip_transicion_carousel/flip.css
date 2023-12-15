@@ -1,0 +1,100 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot");
+  /* IE9 Compat Modes */
+  src: url("../../assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("../../assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("../../assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("../../assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("../../assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
+  /* Legacy iOS */
+  font-weight: 900;
+  font-style: normal;
+}
+:root {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.cardFlipCtn {
+  perspective: 500px;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+.cardFlipCtn .video-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.cardFlipCtn .video-container .flipFrom video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.cardFlipCtn .video-container .flipFrom .flipFrom,
+.cardFlipCtn .video-container .flipFrom .flipTo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  line-height: 300px;
+  color: #03446a;
+  text-align: center;
+  font-size: 60px;
+  border-radius: 5px;
+  backface-visibility: hidden;
+}
+.cardFlipCtn .video-container .flipFrom .flipTo {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.txt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+.txt-container p {
+  padding: 1rem;
+  width: fit-content;
+  font-family: "Montserraty", sans-serif;
+  font-weight: 1000;
+  font-size: 3.8rem;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+  text-transform: uppercase;
+}
+
+.carousel-container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-container span {
+  width: fit-content;
+  font-family: "Montserraty", sans-serif;
+  font-weight: 1000;
+  font-size: 3.8rem;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=flip.css.map */
