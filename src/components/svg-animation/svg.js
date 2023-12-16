@@ -4,7 +4,7 @@ import { ScrollTrigger } from "../../../node_modules/gsap/ScrollTrigger.js";
 
 const logoCtn = document.getElementById("init");
 const scrollCtn = document.getElementById("scrollea");
-const canvas = document.getElementById('image-sequence');
+const canvas = document.getElementById("image-sequence");
 
 setTimeout(() => {
   logoCtn.style.display = "none";
@@ -43,35 +43,6 @@ paths.forEach((path) => {
   path.style.strokeDashoffset = "0";
 });
 
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#scrollea",
-    start: "top top", // Change this according to your needs
-    end: "bottom+=5% bottom",
-    markers: true,
-    scrub: true,
-  }
-});
-
-tl.to("#scrollea", {
-  opacity: 0,
-  x: -100,
-  onComplete: () => {
-    gsap.to(canvas, {
-      opacity: 1,
-      scrollTrigger: {
-        trigger: canvas,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-      },
-      onComplete: () => {
-        // Start your image sequence or any other animations here
-      },
-    });
-  },
-});
-
 function imageSequence(config) {
   let playhead = { frame: 0 },
     canvas =
@@ -105,6 +76,43 @@ function imageSequence(config) {
     scrollTrigger: config.scrollTrigger,
   });
 }
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#scrollea",
+    start: "1% top", // Change this according to your needs
+    end: "bottom+=5% bottom",
+    markers: true,
+    scrub: true,
+    toggleActions: "replay complete reverse complete",
+  },
+});
+
+tl.fromTo(
+  "#scrollea",
+  {
+    opacity: 1,
+    x: 0,
+  },
+  {
+    opacity: 0,
+    x: -100,
+    onComplete: () => {
+      gsap.to(canvas, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: canvas,
+          start: "top top",
+          end: "bottom+=200% bottom",
+          scrub: 2,
+        },
+        onComplete: () => {
+          // Start your image sequence or any other animations here
+        },
+      });
+    },
+  }
+);
 
 // First video section with 87 frames
 let urls1 = new Array(141)
