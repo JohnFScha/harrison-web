@@ -2,6 +2,8 @@ import Lenis from "../../../node_modules/@studio-freight/lenis/dist/lenis.mjs";
 import gsap from "../../../node_modules/gsap/index.js";
 import { ScrollTrigger } from "../../../node_modules/gsap/ScrollTrigger.js";
 
+/* Lenis config */
+
 const lenis = new Lenis();
 
 function raf(time) {
@@ -14,34 +16,60 @@ requestAnimationFrame(raf);
 /* gsap config */
 gsap.registerPlugin(ScrollTrigger);
 
-const coolVideo = document.querySelector("video");
+function imageSequence(config) {
+  const timeline = gsap.timeline({
+    autoRemoveChildren: true,
+  });
+  let playhead = { frame: 0 },
+    canvas =
+      gsap.utils.toArray(config.canvas)[0] ||
+      console.warn("canvas not defined"),
+    ctx = canvas.getContext("2d"),
+    curFrame = -1,
+    onUpdate = config.onUpdate,
+    images,
+    updateImage = function () {
+      let frame = Math.round(playhead.frame);
+      if (frame !== curFrame) {
+        config.clear && ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(images[Math.round(playhead.frame)], 0, 0);
+        curFrame = frame;
+        onUpdate && onUpdate.call(this, frame, images[frame]);
+      }
+    };
+  images = config.urls.map((url, i) => {
+    let img = new Image();
+    img.src = url;
+    i || (img.onload = updateImage);
+    return img;
+  });
+  gsap.to(playhead, {
+    frame: images.length - 1,
+    ease: "none",
+    onUpdate: updateImage,
+    duration: images.length / (config.fps || 30),
+    paused: !!config.paused,
+    scrollTrigger: config.scrollTrigger,
+  });
+}
 
-let tl = gsap.timeline({
+// First video section with 87 frames
+let urls1 = new Array(141)
+  .fill()
+  .map(
+    (_, i) =>
+      `../../assets/camara-frames/ezgif-frame-${(i + 1)
+        .toString()
+        .padStart(3, "0")}.jpg`
+  );
+imageSequence({
+  urls: urls1,
+  canvas: "#image-sequence",
   scrollTrigger: {
-    trigger: "video",
     start: "top top",
-    end: "bottom+=15% bottom",
+    end: "bottom+=200% bottom",
     scrub: true,
     markers: true,
-    pin: true
-  }
+    pin: true,
+  },
 });
-
-// wait until video metadata is loaded, so we can grab the proper duration before adding the onscroll animation. Might need to add a loader for loonng videos
-coolVideo.onloadedmetadata = function () {
-  tl.to(coolVideo, { currentTime: coolVideo.duration });
-};
-
-// Dealing with devices
-function isTouchDevice() {
-  return (
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0
-  );
-}
-if (isTouchDevice()) {
-  coolVideo.play();
-  coolVideo.pause();
-}
-
