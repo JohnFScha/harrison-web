@@ -44,6 +44,7 @@ function imageSequence(config) {
     return img;
   });
   gsap.to(playhead, {
+    opacity: 1,
     frame: images.length - 1,
     ease: "none",
     onUpdate: updateImage,
@@ -70,6 +71,5 @@ imageSequence({
     end: "bottom+=200% bottom",
     scrub: true,
     markers: true,
-    pin: true,
   },
 });
