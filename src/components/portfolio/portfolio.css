@@ -61,10 +61,14 @@
 
   section.portfolio ol li h2 {
     position: relative;
+    width: fit-content;
     font-weight: 1000;
     font-size: 3.8rem;
+    line-height: 4.2rem;
     color: transparent;
     -webkit-text-stroke: 2px rgb(203, 219, 67);
+    z-index: 5;
+    cursor: none;
   }
 
   p, bold {
@@ -79,6 +83,18 @@
 
   bold {
     font-weight: 700;
+  }
+
+  .hand-cursor {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-image: url('./../../assets/cursor-mano.svg');
+    background-size: cover;
+    pointer-events: none; /* Ensure the custom cursor doesn't interfere with mouse events on the container */
+    transform: translate(-50%, -50%); /* Center the cursor on the mouse pointer */
+    z-index: 100;
+    display: none;
   }
 
   ol {
@@ -96,10 +112,11 @@
     display: flex;
     opacity: 0;
     transform: translateY(-100px);
+    margin: 0;
   }
 
   section.portfolio ol li hr.ctn-line {
-    margin: 10px 0;
+    margin: -12px 0;
     height: 3px;
     background-color: #fff;
   }
