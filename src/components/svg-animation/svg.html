@@ -9,7 +9,7 @@
 </head>
 
 <body id="body">
-  <section class="container">
+  <section class="container" id="init">
     <svg width="120" height="143" viewBox="0 0 120 143" fill="none" xmlns="http://www.w3.org/2000/svg" class="reveal">
       <g id="Layer_1" clip-path="url(#clip0_771_407)">
         <path class="path" d="M68.1133 65.198L69.9473 63.5947L68.1133 65.198Z" />
@@ -25,7 +25,7 @@
       </defs>
     </svg>
   </section>
-  <section class="container">
+  <section class="container" id="scrollea">
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
       y="0px" viewBox="0 0 253 325" style="enable-background:new 0 0 253 325;" xml:space="preserve">
       <style type="text/css">
@@ -36,9 +36,9 @@
       <path class="st0"
         d="M126.5,253C56.7,253,0,196.3,0,126.5C0,56.7,56.7,0,126.5,0C196.3,0,253,56.7,253,126.5
 	C253,196.3,196.3,253,126.5,253z M126.5,10C62.3,10,10,62.3,10,126.5S62.3,243,126.5,243S243,190.7,243,126.5S190.7,10,126.5,10z" />
-      <path class="st0" d="M125,130.3c-2.4,0-4.7-0.9-6.4-2.6L83.5,92.5c-2-2-2-5.1,0-7.1c2-2,5.1-2,7.1,0l34.5,34.5l34.5-34.5
+      <path class="st1" d="M125,130.3c-2.4,0-4.7-0.9-6.4-2.6L83.5,92.5c-2-2-2-5.1,0-7.1c2-2,5.1-2,7.1,0l34.5,34.5l34.5-34.5
 	c2-2,5.1-2,7.1,0c2,2,2,5.1,0,7.1l-35.2,35.2C129.7,129.4,127.4,130.3,125,130.3z" />
-      <path class="st0" d="M125,175.3c-2.4,0-4.7-0.9-6.4-2.6l-35.2-35.2c-2-2-2-5.1,0-7.1c2-2,5.1-2,7.1,0l34.5,34.5l34.5-34.5
+      <path class="st1" d="M125,175.3c-2.4,0-4.7-0.9-6.4-2.6l-35.2-35.2c-2-2-2-5.1,0-7.1c2-2,5.1-2,7.1,0l34.5,34.5l34.5-34.5
 	c2-2,5.1-2,7.1,0c2,2,2,5.1,0,7.1l-35.2,35.2C129.7,174.4,127.4,175.3,125,175.3z" />
       <g>
         <path class="st0"
@@ -75,10 +75,12 @@
       </g>
     </svg>
   </section>
-  <section class="container">
-    <video class="video" playsinline="true" webkit-playsinline="true" preload="auto" muted="muted">
-      <source src="../../assets/Camara inicio.mp4" type="video/mp4" />
-    </video>
+  <section id="video">
+    <canvas id="image-sequence" width="1900" height="1000" role="slider"></canvas>
+    <article id="texto">
+      <p>TODO EMPIEZA</p> 
+      <p>POR UNA IDEA</p>
+    </article>
   </section>
   <script src="svg.js" type="module"></script>
 </body>
