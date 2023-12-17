@@ -82,9 +82,40 @@ const tl = gsap.timeline({
     trigger: "#scrollea",
     start: "1% top", // Change this according to your needs
     end: "bottom+=5% bottom",
-    markers: true,
     scrub: true,
     toggleActions: "replay complete reverse complete",
+  },
+});
+
+// First video section with 87 frames
+let urls1 = new Array(141)
+  .fill()
+  .map(
+    (_, i) =>
+      `../../assets/camara-frames/ezgif-frame-${(i + 1)
+        .toString()
+        .padStart(3, "0")}.jpg`
+  );
+imageSequence({
+  urls: urls1,
+  canvas: "#image-sequence",
+  scrollTrigger: {
+    start: "top top",
+    end: "bottom+=500% bottom",
+    scrub: true,
+    markers: true,
+    pin: true,
+  },
+});
+
+const textAnimation = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#body",
+    id: 'texto',
+    start: "bottom+=300% center", // Change this according to your needs
+    end: "bottom+=500% center", // Adjust the end position based on your needs
+    markers: true,
+    scrub: true,
   },
 });
 
@@ -102,35 +133,25 @@ tl.fromTo(
         opacity: 1,
         scrollTrigger: {
           trigger: canvas,
-          start: "top top",
-          end: "bottom+=200% bottom",
-          scrub: 2,
+          start: "50% top",
+          end: "bottom bottom",
+          scrub: true,
         },
-        onComplete: () => {
-          // Start your image sequence or any other animations here
-        },
+        onStart: () => {},
       });
     },
   }
 );
 
-// First video section with 87 frames
-let urls1 = new Array(141)
-  .fill()
-  .map(
-    (_, i) =>
-      `../../assets/camara-frames/ezgif-frame-${(i + 1)
-        .toString()
-        .padStart(3, "0")}.jpg`
-  );
-imageSequence({
-  urls: urls1,
-  canvas: "#image-sequence",
-  scrollTrigger: {
-    start: "50% top",
-    end: "bottom+=500% bottom",
-    scrub: true,
-    markers: true,
-    pin: true,
+textAnimation.fromTo(
+  "#texto",
+  {
+    scale: 0,
+    opacity: 0
   },
-});
+  {
+    scale: 1,
+    opacity: 1,
+    duration: 2
+  }
+);
