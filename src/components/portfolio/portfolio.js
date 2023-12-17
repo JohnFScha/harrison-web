@@ -3,7 +3,10 @@ import gsap from "../../../node_modules/gsap/index.js";
 
 let titleCtn = document.querySelectorAll("section.portfolio h2");
 let descCtn = document.querySelectorAll(".desc-ctn");
-let hr = document.querySelectorAll("hr.ctn-line");
+let ctnHr = document.querySelectorAll("hr.ctn-line");
+let previewVideos = document.querySelectorAll(".preview-video");
+let logoPortfolio = document.querySelector('.logo-box');
+let videoOverlay = document.querySelector('.vid-overlay');
 const customCursor = document.createElement('div');
 customCursor.className = 'hand-cursor';
 
@@ -22,7 +25,7 @@ titleCtn.forEach((element, index) => {
 });
 
 function hover(event, index) {
-  gsap.to(hr[index], 0.5, {
+  gsap.to(ctnHr[index], 0.5, {
     margin: '20 0 10 0'
   });
   gsap.to(descCtn[index], 0.3, {
@@ -33,11 +36,20 @@ function hover(event, index) {
   gsap.to(titleCtn[index], 0.3, {
     color: 'rgb(203, 219, 67)'
   });
+  gsap.to(previewVideos[index], 0.4, {
+    opacity: 1
+  });
+  gsap.to(videoOverlay, 0.4, {
+    opacity: 0.4
+  });
+  gsap.to(logoPortfolio, 0.4, {
+    opacity: 0
+  });
   customCursor.style.display = 'block';
 }
 
 function out(event, index) {
-  gsap.to(hr[index], 0.5, {
+  gsap.to(ctnHr[index], 0.5, {
     margin: '-12 0'
   });
   gsap.to(descCtn[index], 0.3, {
@@ -47,6 +59,15 @@ function out(event, index) {
   });
   gsap.to(titleCtn[index], 0.3, {
     color: 'transparent'
+  });
+  gsap.to(previewVideos[index], 0.4, {
+    opacity: 0
+  });
+  gsap.to(videoOverlay, 0.4, {
+    opacity: 1
+  });
+  gsap.to(logoPortfolio, 0.4, {
+    opacity: 0.4
   });
   customCursor.style.display = 'none';
 }
