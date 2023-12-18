@@ -19,9 +19,9 @@ body {
   font-family: 'Montserrat';
 }
 
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
-} */
+}
 
 body #init {
   position: fixed;
