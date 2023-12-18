@@ -37,6 +37,26 @@ paths.forEach((path) => {
   path.style.strokeDashoffset = "0";
 });
 
+// First video section with 87 frames
+let urls = new Array(141)
+  .fill()
+  .map(
+    (_, i) =>
+      `../../assets/camara-frames/ezgif-frame-${(i + 1)
+        .toString()
+        .padStart(3, "0")}.jpg`
+  );
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#body",
+    start: "top top",
+    end: "top+=5% top+=5%",
+    scrub: true,
+    toggleActions: "play complete reverse complete",
+  },
+});
+
 function imageSequence(config) {
   let playhead = { frame: 0 },
     canvas =
@@ -61,53 +81,16 @@ function imageSequence(config) {
     i || (img.onload = updateImage);
     return img;
   });
-  gsap.to(playhead, {
+  return gsap.to(playhead, {
     frame: images.length - 1,
     ease: "none",
     onUpdate: updateImage,
     duration: images.length / (config.fps || 30),
     paused: !!config.paused,
+    opacity: 1,
     scrollTrigger: config.scrollTrigger,
   });
 }
-
-const tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#scrollea",
-    start: "top+=10% top",
-    end: "bottom+=5% bottom",
-    scrub: true,
-    toggleActions: "replay complete reverse complete",
-  },
-});
-
-// First video section with 87 frames
-let urls1 = new Array(141)
-  .fill()
-  .map(
-    (_, i) =>
-      `../../assets/camara-frames/ezgif-frame-${(i + 1)
-        .toString()
-        .padStart(3, "0")}.jpg`
-  );
-imageSequence({
-  urls: urls1,
-  canvas: "#image-sequence",
-  scrollTrigger: {
-    start: "top+=5% top",
-    end: "bottom+=20% bottom",
-    scrub: true,
-  },
-});
-
-const textAnimation = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#body",
-    start: "center+=35% center", 
-    end: "bottom bottom",
-    scrub: true,
-  },
-});
 
 tl.fromTo(
   "#scrollea",
@@ -119,21 +102,28 @@ tl.fromTo(
     opacity: 0,
     x: -100,
     onComplete: () => {
-      gsap.to(canvas, {
-        opacity: 1,
+      imageSequence({
+        urls: urls,
+        canvas: canvas,
         scrollTrigger: {
-          trigger: canvas,
-          start: "top top",
-          end: "bottom bottom",
           scrub: true,
         },
-        onStart: () => {},
       });
-    },
+    }
   }
 );
 
-textAnimation.fromTo(
+const tl2 = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#body",
+    start: "center+=15% center",
+    end: "bottom bottom",
+    scrub: true,
+    toggleActions: 'play complete reverse restart'
+  },
+});
+
+tl2.fromTo(
   "#texto",
   {
     scale: 0,
@@ -145,26 +135,11 @@ textAnimation.fromTo(
   }
 );
 
-textAnimation.to(".fill", {
-  color: '#D1D821',
+tl2.to(".fill", {
+  color: "#D1D821",
   stagger: 0.5,
-  scrollTrigger: {
-    target: '#texto',
-    start: 'bottom bottom',
-    end: 'bottom+=20% bottom',
-    scrub: true,
-  },
-  
 });
 
-textAnimation.fromTo("#texto", {
-  y: 0
-}, {
+tl2.to("#texto", {
   y: -1000,
-  scrollTrigger: {
-    target: '#texto',
-    start: 'bottom+=25% bottom',
-    end: 'bottom+=50% bottom',
-    scrub: true,
-  },
 });
