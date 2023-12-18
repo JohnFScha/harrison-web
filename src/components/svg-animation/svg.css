@@ -11,8 +11,9 @@
 body {
   margin: 0;
   padding: 0;
+  display: block;
   box-sizing: border-box;
-  height: 100vh;
+  height: 1000vh;
   width: 100vw;
   background-color: black;
   font-family: 'Montserrat';
@@ -26,28 +27,25 @@ body #init {
   position: fixed;
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-image: url('../../assets/Layer_1.png');
   background-size: 150px;
   backdrop-filter: opacity(10%);
   animation: fadeOutAnimation 1s;
   animation-delay: 2.5s;
+  z-index: 100;
 }
 
 body #scrollea {
   position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100%;
-  background-color: black;
   display: none;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
 }
 
-body .container svg {
+body #init svg {
   width: 30vw;
   height: 30vh;
   fill-opacity: 0;
@@ -56,47 +54,51 @@ body .container svg {
   stroke-dasharray: 1500px;
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
-  max-width: percentage(1 / 3);
   animation-name: draw, fill1, fill2;
   animation-duration: 0.5s, 1s, 1.5s;
   animation-delay: 0s, 1s, 1.5s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
   animation-timing-function: linear;
+  margin: auto;
 }
 
 body #scrollea svg {
   width: 15vw;
   height: 15vh;
+  margin: auto;
 }
 
 body #scrollea svg path.st1 {
   fill: white;
-  animation: scroll 1s infinite;
+  animation: scroll 0.8s infinite;
 }
 
 body #video {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-self: center;
   width: 100vw;
   height: 100vh;
 }
 
 body #video canvas {
-  margin: 0;
-  padding: 0;
-  position: fixed;
   transition: opacity 1s ease; 
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
+  opacity: 0;
+  position: fixed;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 body #video #texto {
   position: fixed;
   opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
 }
 
 body #video #texto p {
@@ -134,8 +136,13 @@ body #video #texto p {
 
 
 @keyframes scroll {
-  to {
+  from {
     opacity: 0;
+    transform: translateY(-70px);
+  }
+
+  to {
+    opacity: 1;
     transform: translateY(50px);
   }
 }

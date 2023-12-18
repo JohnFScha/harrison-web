@@ -28,18 +28,12 @@ var paths = document.querySelectorAll(".path");
 
 paths.forEach((path) => {
   var length = path.getTotalLength();
-  // Clear any previous transition
   path.style.transition = path.style.WebkitTransition = "none";
-  // Set up the starting positions
   path.style.strokeDasharray = length + " " + length;
   path.style.strokeDashoffset = length;
-  // Trigger a layout so styles are calculated & the browser
-  // picks up the starting position before animating
   path.getBoundingClientRect();
-  // Define our transition
   path.style.transition = path.style.WebkitTransition =
     "stroke-dashoffset 2s ease-in-out";
-  // Go!
   path.style.strokeDashoffset = "0";
 });
 
@@ -80,7 +74,7 @@ function imageSequence(config) {
 const tl = gsap.timeline({
   scrollTrigger: {
     trigger: "#scrollea",
-    start: "1% top", // Change this according to your needs
+    start: "top+=10% top",
     end: "bottom+=5% bottom",
     scrub: true,
     toggleActions: "replay complete reverse complete",
@@ -100,21 +94,17 @@ imageSequence({
   urls: urls1,
   canvas: "#image-sequence",
   scrollTrigger: {
-    start: "top top",
-    end: "bottom+=500% bottom",
+    start: "top+=5% top",
+    end: "bottom+=20% bottom",
     scrub: true,
-    markers: true,
-    pin: true,
   },
 });
 
 const textAnimation = gsap.timeline({
   scrollTrigger: {
     trigger: "#body",
-    id: 'texto',
-    start: "bottom+=300% center", // Change this according to your needs
-    end: "bottom+=500% center", // Adjust the end position based on your needs
-    markers: true,
+    start: "center+=35% center", 
+    end: "bottom bottom",
     scrub: true,
   },
 });
@@ -133,7 +123,7 @@ tl.fromTo(
         opacity: 1,
         scrollTrigger: {
           trigger: canvas,
-          start: "50% top",
+          start: "top top",
           end: "bottom bottom",
           scrub: true,
         },
@@ -147,11 +137,36 @@ textAnimation.fromTo(
   "#texto",
   {
     scale: 0,
-    opacity: 0
+    opacity: 0,
   },
   {
     scale: 1,
     opacity: 1,
-    duration: 2
   }
 );
+
+textAnimation.to(".fill", {
+  color: '#D1D821',
+  stagger: 0.2,
+  scrollTrigger: {
+    target: '#texto',
+    start: 'bottom bottom',
+    end: 'bottom+=20% bottom',
+    scrub: true,
+    markers: true
+  },
+  
+});
+
+textAnimation.fromTo("#texto", {
+  y: 0
+}, {
+  y: -1000,
+  scrollTrigger: {
+    target: '#texto',
+    start: 'bottom+=25% bottom',
+    end: 'bottom+=50% bottom',
+    scrub: true,
+    markers: true
+  },
+});
