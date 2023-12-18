@@ -147,13 +147,12 @@ textAnimation.fromTo(
 
 textAnimation.to(".fill", {
   color: '#D1D821',
-  stagger: 0.2,
+  stagger: 0.5,
   scrollTrigger: {
     target: '#texto',
     start: 'bottom bottom',
     end: 'bottom+=20% bottom',
     scrub: true,
-    markers: true
   },
   
 });
@@ -167,6 +166,5 @@ textAnimation.fromTo("#texto", {
     start: 'bottom+=25% bottom',
     end: 'bottom+=50% bottom',
     scrub: true,
-    markers: true
   },
 });
