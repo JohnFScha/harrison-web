@@ -87,7 +87,6 @@ function imageSequence(config) {
     onUpdate: updateImage,
     duration: images.length / (config.fps || 30),
     paused: !!config.paused,
-    opacity: 1,
     scrollTrigger: config.scrollTrigger,
   });
 }
@@ -128,18 +127,22 @@ tl2.fromTo(
   {
     scale: 0,
     opacity: 0,
+    duration: 10
   },
   {
     scale: 1,
     opacity: 1,
+    duration: 10
   }
 );
 
 tl2.to(".fill", {
   color: "#D1D821",
-  stagger: 0.5,
+  stagger: 5,
+  duration: 5
 });
 
 tl2.to("#texto", {
-  y: -1000,
+  y: -500,
+  duration: 10
 });
