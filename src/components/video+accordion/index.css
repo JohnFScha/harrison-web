@@ -22,11 +22,10 @@
 
 :root {
   font-size: 20px;
-  font-family: "Montserrat", sans-serif;
 }
 
 body {
-  height: 1000vh;
+  height: 600vh;
   background: #000;
   font-family: 'Montserrat';
 }
@@ -38,6 +37,7 @@ canvas {
   transform: translate(-50%, -50%);
   max-width: 100vw;
   max-height: 100vh;
+  z-index: -1;
 }
 
 #text-container {
@@ -48,6 +48,13 @@ canvas {
   align-items: center;
   height: 100vh;
   width: 100vw;
+  z-index: 1;
+}
+
+#text-container hr {
+  width: 150%;
+  margin: 5%;
+  z-index: -100;
 }
 
 #text-container p {
@@ -226,7 +233,7 @@ h2 {
   height: 100vh;
   position: fixed;
   object-fit: cover;
-  z-index: -1;
+  z-index: -2;
   filter: hue-rotate(300deg);
   opacity: 0.2;
 }

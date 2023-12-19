@@ -160,7 +160,6 @@ const tl = gsap.timeline({
     trigger: "body",
     start: "center center",
     end: "bottom bottom",
-    markers: true,
     scrub: true,
     toggleActions: "play complete reverse restart",
   },
@@ -189,13 +188,20 @@ tl.to("#text-container", {
   duration: 2,
 });
 
+tl.fromTo('.white', {
+  x: 2000,
+}, {
+  x: 0,
+  duration: 2
+})
+
 const tl2 = gsap.timeline({
   scrollTrigger: {
     trigger: "body",
     start: "bottom-=5% bottom-=5%",
     end: "bottom+=20% bottom+=20%",
     scrub: true,
-    markers: true,
+    toggleActions: "play complete reverse restart",
   },
 });
 
@@ -206,7 +212,6 @@ tl2.fromTo(
   },
   {
     x: 0,
-    duration: 2,
   }
 );
 
@@ -218,6 +223,5 @@ tl2.to(
     rotationZ: '0deg',
     transformOrigin: 'center',
     perspective: 0,
-    duration: 2,
   }
 );
