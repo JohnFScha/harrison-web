@@ -22,7 +22,7 @@ setTimeout(() => {
   svgFlip.style.visibility = "hidden";
   textFlip.style.visibility = "visible";
   textFlip.style.animation = "text-flip-animate 0.5s";
-}, 2896);
+}, 5000);
 
 const outroAnim = gsap.timeline({
   scrollTrigger: {
@@ -36,6 +36,12 @@ const outroAnim = gsap.timeline({
   stagger: 2,
 });
 
+outroAnim.fromTo('#init', {
+  y: -1000
+}, {
+  y: 0, duration: 10
+})
+
 outroAnim.staggerTo(
   [".charSpan"],
   1,
@@ -46,6 +52,7 @@ outroAnim.staggerTo(
   },
   2
 );
+
 outroAnim.staggerTo(
   [textFlip],
   3,

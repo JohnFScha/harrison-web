@@ -21,51 +21,165 @@
   overflow: hidden;
 }
 
-#section-1 {
-  display: flex;
-  flex-direction: column;
-  width: 1900px;
-  height: 3100px;
-}
-#section-1 p.info {
-  position: absolute;
-  top: 0;
-  font-size: 5rem;
-  text-align: center;
-  color: transparent;
-  -webkit-text-stroke: 2px rgb(203, 219, 67);
-}
-#section-1 div.container {
-  position: absolute;
-  bottom: -220vh;
-}
-#section-1 div.container p {
-  font-size: 5rem;
-  text-align: center;
-  color: transparent;
-  -webkit-text-stroke: 2px rgb(203, 219, 67);
-  z-index: 10;
-  transition: all ease-in 200ms;
-  padding: 1rem;
-  margin-left: 1rem;
-}
-#section-1 div.container p:nth-child(1) {
-  border-bottom: 2px solid rgb(203, 219, 67);
-}
-#section-1 div.container p:nth-child(2) {
-  border-bottom: 2px solid rgb(203, 219, 67);
-}
-#section-1 div.container p:hover {
-  color: rgb(203, 219, 67);
-}
-#section-1 div.overlay {
-  position: absolute;
-  bottom: -232vh;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  background: #000;
-  z-index: 1000;
+a {
+  text-decoration: none;
+  color: inherit
 }
 
-/*# sourceMappingURL=index.css.map */
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100vw;
+  background-color: black;
+  font-family: 'Montserrat';
+}
+
+/* ============= INTRO ============= */
+
+body #intro {
+  width: 100vw;
+  height: 500vh;
+}
+
+body #intro #init {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('./assets/Layer_1.png');
+  background-size: 150px;
+  backdrop-filter: opacity(10%);
+  animation: fadeOutAnimation 1s;
+  animation-delay: 2.5s;
+  z-index: 100;
+}
+
+body #intro #scrollea {
+  position: fixed;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+}
+
+body #intro #init svg {
+  width: 30vw;
+  height: 30vh;
+  fill-opacity: 0;
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 1500px;
+  stroke-dashoffset: 1500px;
+  mix-blend-mode: lighten;
+  animation-name: draw, fill1, fill2;
+  animation-duration: 0.5s, 1s, 1.5s;
+  animation-delay: 0s, 1s, 1.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  margin: auto;
+}
+
+body #intro #scrollea svg {
+  width: 15vw;
+  height: 15vh;
+  margin: auto;
+}
+
+body #intro #scrollea svg path.st1 {
+  fill: white;
+  animation: scroll 0.8s infinite;
+}
+
+body #intro #video {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+body #intro #video canvas {
+  transition: opacity 1s ease; 
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+body #intro #video #texto {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+}
+
+body #intro #video #texto p {
+  font-size: 5rem;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+/* ============== END INTRO ============= */
+
+
+/* ======================== Keyframes =========================*/
+
+@keyframes fill1 {
+  from {
+    fill-opacity: 0;
+  }
+
+  to {
+    fill-opacity: 1;
+    fill: white;
+  }
+}
+
+@keyframes fill2 {
+  to {
+    fill-opacity: 1;
+    fill: #D1D821;
+    stroke: #D1D821;
+  }
+}
+
+
+@keyframes scroll {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

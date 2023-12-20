@@ -206,6 +206,7 @@ tl.fromTo(
   },
   {
     x: 0,
+    duration: 10
   }
 );
 
@@ -213,6 +214,7 @@ tl.to(".accordion", {
   rotateX: -90,
   transformOrigin: "center",
   perspective: 0,
+  duration: 10
 });
 
 

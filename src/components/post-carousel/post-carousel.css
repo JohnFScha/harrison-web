@@ -148,6 +148,7 @@ svg.svgInner {
   transform-style: preverse-3d;
   perspective: 10em;
   animation: svg-flip-animate 3s ease-out;
+  animation-delay: 2s;
 }
 
 @keyframes svg-flip-animate {

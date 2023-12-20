@@ -37,7 +37,6 @@ paths.forEach((path) => {
   path.style.strokeDashoffset = "0";
 });
 
-// First video section with 87 frames
 let urls = new Array(141)
   .fill()
   .map(
