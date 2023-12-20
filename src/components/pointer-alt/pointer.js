@@ -1,18 +1,16 @@
-document.addEventListener('mousemove', e=> {
-
-  let bubbles = document.createElement('bubbles');
+document.addEventListener("mousemove", (e) => {
+  let bubbles = document.createElement("bubbles");
   let x = e.pageX;
   let y = e.pageY;
-  let size = Math.random() * 100;
 
-  bubbles.style.left = x  + "px";
+  bubbles.style.left = x + "px";
   bubbles.style.top = y + "px";
-  bubbles.style.width = "100px";
-  bubbles.style.height = "100px";
- /*  bubbles.style.transform = `` */
-  
+  bubbles.style.width = 100 + "px";
+  bubbles.style.height = 100 + "px";
+
   document.body.appendChild(bubbles);
-  setTimeout(function() {
+
+  setTimeout(function () {
     bubbles.remove();
-  }, 900);
+  }, 200);
 });

@@ -3,9 +3,9 @@ import gsap from "../../../node_modules/gsap/index.js";
 import { ScrollTrigger } from "../../../node_modules/gsap/ScrollTrigger.js";
 
 const svgFlip = document.getElementById("init");
-const textFlip = document.getElementById("p1_postC");
-const chars = textFlip.innerHTML.substring(17, 32).split("");
-
+const textFlip = document.getElementById("textAllCtn");
+const socialEndCtn = document.getElementById("subTextContainer");
+const svgArr = gsap.utils.toArray("svgSocial");
 /* gsap config */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,23 +24,57 @@ setTimeout(() => {
   textFlip.style.animation = "text-flip-animate 0.5s";
 }, 2896);
 
-const textFill = gsap.timeline({
+const outroAnim = gsap.timeline({
   scrollTrigger: {
     trigger: "body",
-    start: "top top",
-    end: "center center",
-    scrub: true,
+    start: "center center",
+    end: "bottom+=100% center+=100%",
     markers: true,
+    scrub: true,
     toggleActions: "play complete reverse restart",
   },
+  stagger: 2,
 });
 
-textFill.staggerTo(
-  chars,
+outroAnim.staggerTo(
+  [".charSpan"],
   1,
   {
     color: "#D1D821",
-    duration: 5,
+    stagger: 1,
+    duration: 2,
+  },
+  2
+);
+outroAnim.staggerTo(
+  [textFlip],
+  3,
+  {
+    scale: 0.6,
+    y: -200,
+  },
+  1
+);
+
+outroAnim.to(socialEndCtn, {
+  visibility: "visible",
+});
+outroAnim.fromTo(
+  ".svgSocial",
+  { scale: 0, duration: 5 },
+  { scale: 1, duration: 5 }
+);
+
+outroAnim.staggerTo(
+  [".charSpan2"],
+  3,
+  {
+    color: "#D1D821",
+    opacity: 1,
+    duration: 2,
   },
   0.5
 );
+// svgArr.forEach((svg) => {
+//   outroAnim.fromTo(svg, { scale: 0 }, { scale: 1 });
+// });

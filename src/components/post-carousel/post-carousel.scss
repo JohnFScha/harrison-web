@@ -31,7 +31,7 @@
 }
 body {
   background-color: black;
-  height: 1000vh;
+  height: 200vh;
 
   //overflow: hidden;
 }
@@ -42,9 +42,8 @@ body::-webkit-scrollbar {
 /* svg */
 
 section.outroContainer {
-  display: flex;
-
   position: fixed;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -73,42 +72,94 @@ section.outroContainer {
   // animation-timing-function: linear;
 }
 
-#p1_postC {
+div#textAllCtn {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   font-size: 110px;
   position: absolute;
   visibility: hidden;
-
   transform-style: preserve-3d;
-}
+  p.textPostC {
+    text-align: center;
+    width: fit-content;
+    font-family: "Montserraty", sans-serif;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(203, 219, 67);
+  }
+  .letter-container {
+    display: flex;
+    font-size: 0;
+    margin: 0;
 
-p.textPostC {
-  padding: 3rem;
-  margin-bottom: 3rem;
-  text-align: center;
-  width: fit-content;
-  font-family: "Montserraty", sans-serif;
-  font-weight: 900;
-  font-size: 2.5rem;
-  color: transparent;
-  -webkit-text-stroke: 1px rgb(203, 219, 67);
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 2px rgb(203, 219, 67);
+    .charSpan {
+      font-size: 110px;
+      margin: 0;
+      padding: 0;
+      color: transparent;
+      -webkit-text-stroke: 2px rgb(203, 219, 67);
+    }
+    .spacerSpan {
+      font-size: 2rem;
+      visibility: hidden;
+    }
+  }
 }
 
 .subTextContainer {
-  display: none;
+  visibility: hidden;
+  display: flex;
+  position: absolute;
+  top: 12.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 #p2_postC {
   color: rgba(203, 219, 67, 1);
   font-size: 1.8rem;
+  margin: 7rem;
 }
 .socialContainer {
   display: flex;
   flex-direction: row;
   gap: 2rem;
   min-height: 100px;
+}
+
+svg.svgInner {
+  width: 100px;
+  height: 100px;
+}
+
+.textEndCtn {
+  display: flex;
+  font-size: 0;
+  margin: 0;
+  margin-top: 5rem;
+  text-align: center;
+  color: transparent;
+  .charSpan2 {
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+    color: transparent;
+    opacity: 0;
+  }
+  .spacerSpan2 {
+    font-size: 0.5rem;
+    visibility: hidden;
+  }
 }
 
 /*svg rotate*/
