@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
 @font-face {
-  font-family: "Montserrat";
+  font-family: "Montserraty";
   src: url("./assets/Montserrat-black/Montserrat-Black.eot");
   /* IE9 Compat Modes */
   src: url("./assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("./assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("./assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("./assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("./assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
@@ -12,7 +12,7 @@
 
 :root {
   font-size: 20px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserraty", sans-serif;
 }
 
 * {
@@ -35,7 +35,7 @@ body {
   box-sizing: border-box;
   width: 100vw;
   background-color: black;
-  font-family: 'Montserrat';
+  font-family: 'Montserraty';
 }
 
 /* body::-webkit-scrollbar {
@@ -385,7 +385,6 @@ section.portfolio .modal {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Modal Content */
 section.portfolio .modal-content {
   display: flex;
   align-items: center;
@@ -394,7 +393,6 @@ section.portfolio .modal-content {
   height: 100%;
 }
 
-/* Close button */
 section.portfolio .close {
   position: absolute;
   z-index: 50000;
@@ -405,7 +403,6 @@ section.portfolio .close {
   filter: invert(1);
 }
 
-/* Video styling */
 #modalVideo {
   width: 80%;
   position: relative;

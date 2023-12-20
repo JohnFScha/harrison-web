@@ -229,35 +229,56 @@ let urls1 = new Array(141)
 
 /* ********* Timelines ********* */
 
-const introTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#intro",
-    start: "top top",
-    end: "top+=5% top+=5%",
-    scrub: true,
-    toggleActions: "play complete reverse complete",
-  },
+const introTimeline = gsap.timeline({ 
+  defaults: { 
+    // opacity: 0 
+  } 
+}).from('#intro', { 
+  y: -50 
 });
 
-const introTextTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#intro",
-    start: "center+=15% center",
-    end: "bottom bottom",
-    scrub: true,
-    toggleActions: "play complete reverse restart",
-  },
+const introTextTimeline = gsap.timeline({ 
+  defaults: { 
+    // opacity: 0 
+  } 
+}).from('#scrollea', { 
+  y: -50 
 });
 
-let portfolioTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.portfolio',
-    start: "top-=2800% top",
-    end: "bottom+=2800% bottom",
-    scrub: true,
-    markers: true,
-    pin: true,
-  },
+const portfolioTl = gsap.timeline({ 
+  defaults: { 
+    // opacity: 0 
+  } 
+}).from('.portfolio', { 
+  y: -50 
+});
+
+scrollTrigger.create({
+  trigger: "#intro",
+  start: "top top",
+  end: "top+=5% top+=5%",
+  scrub: true,
+  pin: true,
+  animation: introTimeline,
+});
+
+scrollTrigger.create({
+  trigger: "#intro",
+  start: "center+=15% center",
+  end: "bottom bottom",
+  scrub: true,
+  pin: true,
+  animation: introTextTimeline,
+});
+
+scrollTrigger.create({
+  trigger: '.portfolio',
+  start: "top top",
+  end: "bottom+=2800% bottom",
+  scrub: true,
+  markers: true,
+  pin: true,
+  animation: portfolioTl,
 });
 
 /* *********** INTRO SCROLLING ********** */
