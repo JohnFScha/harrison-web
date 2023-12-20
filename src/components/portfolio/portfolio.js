@@ -32,24 +32,9 @@ requestAnimationFrame(raf);
 
 let portfolioTl = gsap.timeline({
   scrollTrigger: {
-<<<<<<< HEAD
     trigger: '.portfolio',
     start: "top top",
     end: "bottom+=2800% bottom",
-=======
-  trigger: ".sup-rodaje",
-  start: "top top",
-  end: "bottom bottom",
-  scrub: true,
-  },
-});
-
-gsap.to(".txt-ctn-1", {
-  scrollTrigger: {
-    trigger: ".txt-ctn-1",
-    start: "top center",
-    end: "bottom+=100% bottom",
->>>>>>> 951e876724a98323073f03a70ec2e4dcf043717c
     scrub: true,
     markers: true,
     pin: true,
