@@ -49,6 +49,7 @@
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background-color: hsl(0, 0%, 0%);
   }
 
   .bg-rodaje, .sup-rodaje {
