@@ -30,64 +30,157 @@ requestAnimationFrame(raf);
 
 /* Gsap instantiation */
 
-// let tl = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: txtCtn,
-//     start: "top+=10% center",
-//     end: "bottom+=200% bottom",
-//     scrub: true,
-//     markers: true,
-//     pin: true,
-//     onUpdate: ({ progress, direction, isActive }) => {
-//       // Perform actions based on the scrubbed timeline progress
-//     },
-//   },
-// });
-
-gsap.to(".sup-rodaje", {
+let portfolioTl = gsap.timeline({
   scrollTrigger: {
-  trigger: ".sup-rodaje",
-  start: "top top",
-  end: "bottom bottom",
-  scrub: true,
-  },
-});
-
-gsap.to(".txt-ctn-1", {
-  scrollTrigger: {
-    trigger: ".txt-ctn-1",
-    start: "top center",
-    end: "bottom+=100% bottom",
+    trigger: '.portfolio',
+    start: "top top",
+    end: "bottom+=2800% bottom",
     scrub: true,
     markers: true,
+    pin: true,
   },
 });
 
-gsap.to(".sup-rodaje", {
-  top: 0
+// Define the zoom-in animation for the image
+portfolioTl.to(".bg-rodaje", {
+  yPercent: -66,
+  duration: 15,
+  opacity: 0.8,
+  scrollTrigger: ".sup-rodaje"
 });
 
-gsap.to(".txt-row:nth-child(1)", {
+portfolioTl.to(".sup-rodaje", {
+  delay: 3,
+  duration: 12,
+  yPercent: -66,
+});
+
+portfolioTl.to(".txt-ctn-1 .txt-row h2", {
   opacity: 1,
-  // duration: 5,
+  duration: 5,
 });
 
-gsap.to(".txt-row:nth-child(2)", {
+portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
   opacity: 1,
+  stagger: 1,
+  duration: 3,
+  scrollTrigger: '.dup-ctn span'
+});
+
+portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
+  color: "#D1D821",
+  stagger: 1,
+  duration: 3,
+  delay: 5,
+});
+
+portfolioTl.to(".sup-rodaje.zoomed", {
+  duration: 3,
+  opacity: 1,
+  delay: 10,
 });
 
 
-// // Fade in animation for the newly added p elements
-// tl.staggerFrom(".bg-rodaje", 1, {
-//   opacity: 0,
-//   // x: -50, // Move from left to right
-// }, 0.5); // Stagger the fade-in with a delay of 0.5 seconds between each paragraph
+portfolioTl.to(".txt-ctn-1", {
+  duration: 5,
+  opacity: 0,
+});
 
-// // Define the zoom-in animation for the image
-// tl.to(".sup-rodaje", {
-//   // scale: 1.5, // Adjust the scale factor for zooming
-//   // transformOrigin: "bottom left", // Zoom to the bottom left corner
-// });
+portfolioTl.to(".sup-rodaje", {
+  duration: 10,
+  scale: 2.5,
+  transformOrigin: "32% bottom",
+  scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
+});
+
+portfolioTl.to(".bg-overlay", {
+  duration: 5,
+  opacity: 0.3,
+});
+
+portfolioTl.to(".txt-ctn-2 .txt-row h2", {
+  opacity: 1,
+  duration: 4,
+});
+
+portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
+  opacity: 1,
+  stagger: 1,
+  duration: 2,
+  scrollTrigger: '.dup-ctn span'
+});
+
+portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
+  color: "#D1D821",
+  stagger: 1,
+  duration: 2,
+  delay: 4,
+});
+
+portfolioTl.to(".txt-ctn-2", {
+  opacity: 0,
+  duration: 4,
+  delay: 4,
+});
+
+portfolioTl.to(".pf-accordion-outer", {
+  opacity: 1,
+  duration: 1,
+  scrollTrigger: '.bg-overlay',
+  zIndex: 20,
+});
+
+portfolioTl.to(".bg-overlay", {
+  duration: 3,
+  opacity: 0.5,
+  scrollTrigger: '.pf-accordion-outer ol li h2',
+});
+
+portfolioTl.to(".pf-accordion-outer ol li h2", {
+  y: 0,
+  opacity: 1,
+  stagger: 1,
+  duration: 2,
+  delay: 1,
+});
+
+portfolioTl.to(".pf-accordion", {
+  delay: 3,
+  opacity: 0,
+  duration: 4,
+  scrollTrigger: ".pf-accordion",
+});
+
+portfolioTl.to(".pf-accordion-outer ol li h2", {
+  y: 30,
+  opacity: 0,
+  stagger: 1,
+  delay: 2,
+  duration: 4,
+});
+
+portfolioTl.to(".sup-rodaje", {
+  delay: -4,
+  duration: 5,
+  width: '450%',
+  left: '-290%',
+  top: '-200%',
+  scrollTrigger: '.box-ctn',
+});
+
+portfolioTl.to(".box-ctn", {
+  delay: -4,
+  duration: 3.5,
+  scale: 4.2,
+  xPercent: -100,
+});
+
+portfolioTl.to(".portfolio", {
+  opacity: 0,
+  duration: 3,
+});
+
+
 
 // Append customCursor to the body
 document.body.appendChild(customCursor);
