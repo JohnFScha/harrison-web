@@ -12,13 +12,14 @@ body {
 
 bubbles {
   position: absolute;
-  border-radius: 100%;
   pointer-events: none;
+  border-radius: 50%;
   background: #D1D821;
   box-shadow: 10px 10px 30px #D1D821,
-             -10px -10px 30px #D1D821;
-  transform: translate(-50%, -50%);
-  animation: colorgen 1s infinite;
+    -10px -10px 30px #D1D821;
+  animation: colorgen;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
 }
 
 bubbles:before {
@@ -32,19 +33,26 @@ bubbles:after {
 @keyframes colorgen {
   0% {
     opacity: 1;
-    filter: blur(5px) hue-rotate(0);
-    transform: translate(-50%, -50%) scale(1);
+    filter: blur(0px);
+  }
+
+  25% {
+    opacity: 0.75;
+    filter: blur(10px);
   }
 
   50% {
     opacity: 0.5;
-    filter: blur(10px) hue-rotate(120deg);
-    transform: translate(-75%, -75%) scale(0.5);
+    filter: blur(15px);
+  }
+
+  75% {
+    opacity: 0.25;
+    filter: blur(20px);
   }
 
   100% {
     opacity: 0;
-    filter: blur(20px) hue-rotate(250deg);
-    transform: translate(-100%, -100%) scale(0);
+    filter: blur(30px);
   }
 }

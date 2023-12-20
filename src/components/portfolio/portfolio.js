@@ -50,7 +50,6 @@ gsap.to(".sup-rodaje", {
   start: "top top",
   end: "bottom bottom",
   scrub: true,
-  pin: txtCtn,
   },
 });
 
@@ -60,7 +59,6 @@ gsap.to(".txt-ctn-1", {
     start: "top center",
     end: "bottom+=100% bottom",
     scrub: true,
-    pin: txtCtn,
     markers: true,
   },
 });

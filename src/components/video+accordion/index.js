@@ -15,7 +15,7 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 // First video section with 87 frames
-let urls = new Array(102)
+let urls1 = new Array(102)
   .fill()
   .map(
     (_, i) =>
@@ -146,7 +146,7 @@ function out(event, index) {
 // }
 
 imageSequence({
-  urls: urls,
+  urls: urls1,
   canvas: "#image-sequence",
   scrollTrigger: {
     start: "top top",
@@ -188,24 +188,18 @@ tl.to("#text-container", {
   duration: 2,
 });
 
-tl.fromTo('.white', {
-  x: 2000,
-}, {
-  x: 0,
-  duration: 2
-})
-
-const tl2 = gsap.timeline({
-  scrollTrigger: {
-    trigger: "body",
-    start: "bottom-=5% bottom-=5%",
-    end: "bottom+=20% bottom+=20%",
-    scrub: true,
-    toggleActions: "play complete reverse restart",
+tl.fromTo(
+  ".white",
+  {
+    x: 2000,
   },
-});
+  {
+    x: 0,
+    duration: 2,
+  }
+);
 
-tl2.fromTo(
+tl.fromTo(
   ".accordion",
   {
     x: 2000,
@@ -215,13 +209,10 @@ tl2.fromTo(
   }
 );
 
-tl2.to(
-  ".accordion",
-  {
-    rotationX: '90deg',
-    rotationY: '0deg',
-    rotationZ: '0deg',
-    transformOrigin: 'center',
-    perspective: 0,
-  }
-);
+tl.to(".accordion", {
+  rotateX: -90,
+  transformOrigin: "center",
+  perspective: 0,
+});
+
+
