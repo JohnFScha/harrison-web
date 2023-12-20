@@ -20,7 +20,6 @@
   margin: 0;
   box-sizing: border-box;
   scroll-snap-type: none;
-  overflow: hidden;
 }
 
 a {
@@ -31,7 +30,6 @@ a {
 body {
   margin: 0;
   padding: 0;
-  display: block;
   box-sizing: border-box;
   width: 100vw;
   background-color: black;
@@ -46,11 +44,10 @@ body {
 
 body #intro {
   width: 100vw;
-  height: 500vh;
+  height: 100vh;
 }
 
-body #intro #init {
-  position: fixed;
+#intro #init {
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -110,7 +107,6 @@ body #intro #video {
 
 body #intro #video canvas {
   transition: opacity 1s ease;
-  position: fixed;
   width: 100vw;
   height: 100vh;
 }
@@ -140,9 +136,8 @@ body #intro #video #texto p {
 section.portfolio {
   position: relative;
   width: 100vw;
-  height: 1000vh;
-  overflow: hidden;
   background-color: hsl(0, 0%, 0%);
+  opacity: 0;
 }
 
 section.portfolio .bg-rodaje,
@@ -155,7 +150,6 @@ section.portfolio .sup-rodaje {
 }
 
 section.portfolio .sup-rodaje {
-
   z-index: 2;
 }
 
