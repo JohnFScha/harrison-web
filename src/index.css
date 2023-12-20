@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
 
 @font-face {
-  font-family: "Montserrat";
+  font-family: "Montserraty";
   src: url("./assets/Montserrat-black/Montserrat-Black.eot");
   /* IE9 Compat Modes */
   src: url("./assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"), url("./assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"), url("./assets/Montserrat-black/Montserrat-Black.woff") format("woff"), url("./assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"), url("./assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
@@ -20,7 +20,6 @@
   margin: 0;
   box-sizing: border-box;
   scroll-snap-type: none;
-  overflow: hidden;
 }
 
 a {
@@ -31,11 +30,10 @@ a {
 body {
   margin: 0;
   padding: 0;
-  display: block;
   box-sizing: border-box;
   width: 100vw;
   background-color: black;
-  font-family: 'Montserrat';
+  font-family: 'Montserraty';
 }
 
 /* body::-webkit-scrollbar {
@@ -46,11 +44,10 @@ body {
 
 body #intro {
   width: 100vw;
-  height: 500vh;
+  height: 100vh;
 }
 
-body #intro #init {
-  position: fixed;
+#intro #init {
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -110,7 +107,6 @@ body #intro #video {
 
 body #intro #video canvas {
   transition: opacity 1s ease;
-  position: fixed;
   width: 100vw;
   height: 100vh;
 }
@@ -140,9 +136,8 @@ body #intro #video #texto p {
 section.portfolio {
   position: relative;
   width: 100vw;
-  height: 1000vh;
-  overflow: hidden;
   background-color: hsl(0, 0%, 0%);
+  opacity: 0;
 }
 
 section.portfolio .bg-rodaje,
@@ -155,7 +150,6 @@ section.portfolio .sup-rodaje {
 }
 
 section.portfolio .sup-rodaje {
-
   z-index: 2;
 }
 
@@ -385,7 +379,6 @@ section.portfolio .modal {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Modal Content */
 section.portfolio .modal-content {
   display: flex;
   align-items: center;
@@ -394,7 +387,6 @@ section.portfolio .modal-content {
   height: 100%;
 }
 
-/* Close button */
 section.portfolio .close {
   position: absolute;
   z-index: 50000;
@@ -405,7 +397,6 @@ section.portfolio .close {
   filter: invert(1);
 }
 
-/* Video styling */
 #modalVideo {
   width: 80%;
   position: relative;

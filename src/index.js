@@ -27,6 +27,12 @@ const logoCtn = document.getElementById("init");
 const scrollCtn = document.getElementById("scrollea");
 const canvas = document.getElementById("image-sequence-1");
 
+setTimeout(() => {
+  logoCtn.style.display = "none";
+  scrollCtn.style.display = "flex";
+  scrollCtn.style.animation = "fadeInAnimation 1s";
+}, 3000);
+
 /* ****************** end intro dom ****************** */
 
 /* ****************** Portfolio dom ****************** */
@@ -83,7 +89,6 @@ function hover(event, index) {
   gsap.to(descCtn[index], 0.3, {
     y: 0,
     opacity: 1,
-    // margin: '10 0 50 0'
   });
   gsap.to(titleCtn[index], 0.3, {
     color: 'rgb(203, 219, 67)',
@@ -111,7 +116,6 @@ function out(event, index) {
   gsap.to(descCtn[index], 0.3, {
     y: -100,
     opacity: 0,
-    // margin: 0
   });
   gsap.to(titleCtn[index], 0.3, {
     color: 'transparent',
@@ -159,12 +163,6 @@ closeModal.addEventListener("click", () => {
 
 /* ****************** end Portfolio dom ****************** */
 
-setTimeout(() => {
-  logoCtn.style.display = "none";
-  scrollCtn.style.display = "flex";
-  scrollCtn.style.animation = "fadeInAnimation 1s";
-}, 3000);
-
 /* ******* Init svg animation ******* */
 
 var paths = document.querySelectorAll(".path");
@@ -182,7 +180,7 @@ paths.forEach((path) => {
 
 /* ********** Frame animation function ********** */
 
-function imageSequence(config) {
+function imageSequence(config, tl) {
   let playhead = { frame: 0 },
     canvas =
       gsap.utils.toArray(config.canvas)[0] ||
@@ -206,7 +204,7 @@ function imageSequence(config) {
     img.onload = updateImage;
     return img;
   });
-  return gsap.to(playhead, {
+  return tl.to(playhead, {
     frame: images.length - 1,
     ease: "none",
     onUpdate: updateImage,
@@ -232,33 +230,24 @@ let urls1 = new Array(141)
 const introTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#intro",
-    start: "top top",
-    end: "top+=5% top+=5%",
+    start: "top+=1% top",
+    end: "bottom+=1500% bottom",
     scrub: true,
-    toggleActions: "play complete reverse complete",
-  },
-});
-
-const introTextTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#intro",
-    start: "center+=15% center",
-    end: "bottom bottom",
-    scrub: true,
-    toggleActions: "play complete reverse restart",
+    pin: true
   },
 });
 
 let portfolioTl = gsap.timeline({
   scrollTrigger: {
-    trigger: '.portfolio',
-    start: "top-=2800% top",
-    end: "bottom+=2800% bottom",
+    trigger: '#portfolio',
+    start: "top top",
+    end: "bottom+=200% bottom",
     scrub: true,
-    markers: true,
-    pin: true,
+    pin: true
   },
 });
+
+/* *********** END TIMELINE SEQUENCE ********** */
 
 /* *********** INTRO SCROLLING ********** */
 
@@ -271,51 +260,56 @@ introTimeline.fromTo(
   {
     opacity: 0,
     x: -100,
-    onComplete: () => {
-      imageSequence({
-        urls: urls1,
-        canvas: canvas,
-        scrollTrigger: {
-          scrub: true,
-        },
-      });
-    },
   }
 );
 
-introTextTimeline.fromTo(
+imageSequence({
+  urls: urls1,
+  canvas: canvas,
+  scrollTrigger: {
+    scrub: 0.05,
+  },
+}, introTimeline);
+
+introTimeline.fromTo(
   "#texto",
   {
     scale: 0,
     opacity: 0,
-    duration: 10,
   },
   {
     scale: 1,
     opacity: 1,
-    duration: 10,
+    duration: 100,
+    delay: 2000,
   }
 );
 
-introTextTimeline.to(".fill", {
+introTimeline.to(".fill", {
   color: "#D1D821",
-  stagger: 5,
-  duration: 5,
+  stagger: 100,
 });
 
-introTextTimeline.to("#texto", {
-  y: -500,
-  duration: 10,
+introTimeline.to("#texto", {
+  y: -1000,
+  duration: 100
 });
 
-introTextTimeline.to('#intro', {
-  opacity: 0
+introTimeline.to('#intro', {
+  opacity: 0,
+  duration: 10
 })
 
 /* *********** END INTRO SCROLLING ********** */
 
 
 /* *********** PORTFOLIO SCROLLING ********** */
+
+portfolioTl.to(".portfolio", {
+  opacity: 1,
+  delay: -1,
+  duration: 10
+});
 
 portfolioTl.to(".bg-rodaje", {
   yPercent: -66,
