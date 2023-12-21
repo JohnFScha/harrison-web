@@ -34,6 +34,7 @@ body {
   width: 100vw;
   background-color: black;
   font-family: 'Montserraty';
+  overflow-x: hidden;
 }
 
 /* body::-webkit-scrollbar {
@@ -58,6 +59,7 @@ body #intro {
   animation: fadeOutAnimation 1s;
   animation-delay: 2.5s;
   z-index: 100;
+
 }
 
 body #intro #scrollea {
@@ -105,10 +107,17 @@ body #intro #video {
   height: 100vh;
 }
 
-body #intro #video canvas {
-  transition: opacity 1s ease;
+body #intro #video #video-camara{
+  position: relative;
   width: 100vw;
   height: 100vh;
+}
+body #intro #video #video-camara img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
 }
 
 body #intro #video #texto {
@@ -411,6 +420,227 @@ section.portfolio .hidden {
 section.portfolio .shown {
   display: block;
 }
+
+/* ======================== End middle =========================*/
+
+#middle {
+  height: 100vh;
+  width: 100vw;
+}
+
+body #middle #middleVidCtn {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+body #middle #middleVidCtn img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  position: absolute;
+}
+
+#text-container hr {
+  width: 100%;
+  margin: 5%;
+  z-index: -100;
+}
+
+#text-container p {
+  font-size: 4rem;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+#text-container #letter-ctn {
+  display: flex;
+  font-size: 0;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+#text-container #letter-ctn .spacer {
+  font-size: 2rem;
+  visibility: hidden;
+}
+
+#text-container #letter-ctn span {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  margin-top: -70px;
+  font-size: 6.8rem;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+h2 {
+  font-size: 1.9rem;
+  color: rgb(203, 219, 67);
+  text-transform: uppercase;
+}
+
+.accordion {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateX;
+  transform-style: preserve-3d;
+  perspective: 1000;
+  position: absolute;
+}
+
+#parent {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100vw;
+  height: 450px;
+  padding: 0px;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.child {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 33.3%;
+  height: 100%;
+  font-family: arial;
+  text-align: center;
+  overflow: hidden;
+  padding: 50px 0 50px 80px;
+  text-align: left;
+}
+
+/* .child:nth-child(1) {
+  left: 0;
+  float: left;
+} */
+
+.child:nth-child(2) {
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+
+/* .child:nth-child(3) {
+  right: 0;
+  float: right;
+} */
+
+.title-ctn,
+.text-ctn {
+  width: 100%;
+  pointer-events: none;
+}
+
+.title-ctn {
+  transition: 0.8s ease left;
+  left: 50%;
+}
+
+.text-ctn {
+  position: absolute;
+  left: 0;
+}
+
+.child:nth-child(1) .text-ctn {
+  margin: 0 0 0 420px;
+}
+
+.child:nth-child(2) .text-ctn {
+  margin: 0 0 0 360px;
+}
+
+.child:nth-child(3) .text-ctn {
+  margin: 0 0 0 420px;
+}
+
+.text-ctn::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 350px;
+  top: 0;
+}
+
+.text-ctn p,
+.text-ctn ol li {
+  width: 300px;
+  font-weight: 100;
+  text-wrap: wrap;
+  font-size: 0.8rem;
+  letter-spacing: -0.5px;
+  color: #FFF;
+  line-height: 1.4rem;
+}
+
+.text-ctn p,
+.text-ctn ol {
+  display: inline-block;
+  width: object-fit;
+  transition: 0.8s ease clip-path;
+  clip-path: inset(0 100% 0 0);
+}
+
+.child:hover .text-ctn p,
+.child:hover .text-ctn ol {
+  clip-path: inset(0 0 0 0%);
+}
+
+.child:hover .title-ctn {
+  left: 0;
+}
+
+.child:nth-child(2) ol:nth-child(1) {
+  clip-path: inset(0 0 0 100%);
+}
+
+.child:nth-child(2):hover ol:nth-child(1) {
+  clip-path: inset(0 0 0 0);
+}
+
+.bg-video {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  object-fit: cover;
+  z-index: -2;
+  filter: hue-rotate(300deg);
+  opacity: 0.2;
+}
+
+/* ======================== End middle =========================*/
+
 
 /* ======================== Keyframes =========================*/
 

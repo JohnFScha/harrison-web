@@ -2,6 +2,8 @@ import Lenis from "../../../node_modules/@studio-freight/lenis/dist/lenis.mjs";
 import gsap from "../../../node_modules/gsap/index.js";
 import { ScrollTrigger } from "../../../node_modules/gsap/ScrollTrigger.js";
 
+const observedSection = document.getElementById('image-section-2')
+
 /* gsap config */
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,24 +138,23 @@ function out(event, index) {
     });
   }
 }
-// function out() {
-//     ctn.forEach(element => {
-//         gsap.to(element, 0.7, {
-//             width: 100 / ctn.length + '%',
-//             ease: 'out(1)' // Back.easeOut is now 'back.out'
-//         });
-//     });
-// }
+const observer = new IntersectionObserver(entries =>{
+  entries.forEach(entry =>{
+    if(entry.isIntersecting){
+      imageSequence({
+        urls: urls1,
+        canvas: "#image-sequence",
+        scrollTrigger: {
+          start: "top top",
+          end: "center center",
+          scrub: true,
+        },
+      });
+    }
+  })
+})
+observer.observe(observedSection)
 
-imageSequence({
-  urls: urls1,
-  canvas: "#image-sequence",
-  scrollTrigger: {
-    start: "top top",
-    end: "center center",
-    scrub: true,
-  },
-});
 
 const tl = gsap.timeline({
   scrollTrigger: {

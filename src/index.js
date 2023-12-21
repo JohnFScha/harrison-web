@@ -25,7 +25,8 @@ requestAnimationFrame(raf);
 
 const logoCtn = document.getElementById("init");
 const scrollCtn = document.getElementById("scrollea");
-const canvas = document.getElementById("image-sequence-1");
+const videoCamara = document.getElementById("video-camara");
+const middleVideo = document.getElementById("middleVidCtn");
 
 setTimeout(() => {
   logoCtn.style.display = "none";
@@ -65,72 +66,157 @@ const videos = [
 ];
 let currentVideo = null;
 
-/* ******************  dom manipulation ****************** */
+/* ****************** end Portfolio dom ****************** */
 
+/* ****************** Middle dom ****************** */
+
+let ctn = document.querySelectorAll(".child");
+
+ctn.forEach((element, index) => {
+  element.addEventListener("mouseover", (event) => hoverAcc(event, index));
+  element.addEventListener("mouseout", (event) => outAcc(event, index));
+});
+
+function hoverAcc(event, index) {
+  // Calculate the original width dynamically
+  let originalWidth = getComputedStyle(event.currentTarget).width;
+
+  gsap.to(event.currentTarget, 0.7, {
+    width: "2000px",
+  });
+
+  // Use forEach to iterate over siblings
+  event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+    if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+      gsap.to(sibling, 0.7, {
+        width: "1000px",
+      });
+    }
+  });
+
+  // Check if the hovered element is the second or third
+  if (index === 1 || index === 2) {
+    gsap.to(ctn[0], 0.7, {
+      marginLeft: "-100px",
+    });
+  }
+
+  if (index === 1) {
+    gsap.to(ctn[1], 0.7, {
+      width: "3000px",
+    });
+
+    gsap.to(ctn[0], 0.7, {
+      marginLeft: "-200px",
+    });
+  }
+}
+
+function outAcc(event, index) {
+  // Retrieve the dynamically calculated original width
+  let originalWidth = getComputedStyle(event.currentTarget).width;
+
+  gsap.to(event.currentTarget, 0.7, {
+    width: originalWidth,
+  });
+
+  // Use forEach to iterate over siblings
+  event.currentTarget.parentNode.childNodes.forEach((sibling) => {
+    if (sibling !== event.currentTarget && sibling.nodeType === 1) {
+      gsap.to(sibling, 0.7, {
+        width: originalWidth,
+      });
+    }
+  });
+
+  // Check if the hovered element is the second or third
+  if (index === 1 || index === 2) {
+    gsap.to(ctn[0], 0.7, {
+      marginLeft: "0",
+    });
+  }
+
+  if (index === 1) {
+    gsap.to(ctn[1], 0.7, {
+      width: originalWidth,
+    });
+  }
+}
+// function out() {
+//     ctn.forEach(element => {
+//         gsap.to(element, 0.7, {
+//             width: 100 / ctn.length + '%',
+//             ease: 'out(1)' // Back.easeOut is now 'back.out'
+//         });
+//     });
+// }
+
+/* ****************** End Middle dom ****************** */
+
+/* ******************  dom manipulation ****************** */
 
 // Append customCursor to the body
 document.body.appendChild(customCursor);
 
 titleCtn.forEach((element, index) => {
-
-  element.addEventListener('mouseover', (event) => hover(event, index));
-  element.addEventListener('mouseout', (event) => out(event, index));
-  element.addEventListener('mousemove', (event) => {
+  element.addEventListener("mouseover", (event) => hover(event, index));
+  element.addEventListener("mouseout", (event) => out(event, index));
+  element.addEventListener("mousemove", (event) => {
     // Update the position of the custom cursor based on the mouse pointer
-    customCursor.style.left = event.pageX + 'px';
-    customCursor.style.top = event.pageY + 'px';
+    customCursor.style.left = event.pageX + "px";
+    customCursor.style.top = event.pageY + "px";
   });
 });
 
 function hover(event, index) {
   gsap.to(ctnHr[index], 0.5, {
-    margin: '20 0 10 0'
+    margin: "20 0 10 0",
   });
   gsap.to(descCtn[index], 0.3, {
     y: 0,
     opacity: 1,
   });
   gsap.to(titleCtn[index], 0.3, {
-    color: 'rgb(203, 219, 67)',
-    height: 100
+    color: "rgb(203, 219, 67)",
+    height: 100,
   });
   gsap.to(titleCtn[1], 0.7, {
-    height: 190
+    height: 190,
   });
   gsap.to(previewVideos[index], 0.4, {
-    opacity: 1
+    opacity: 1,
   });
   gsap.to(videoOverlay, 0.4, {
-    opacity: 0.4
+    opacity: 0.4,
   });
   gsap.to(logoPortfolio, 0.4, {
-    opacity: 0
+    opacity: 0,
   });
-  customCursor.style.display = 'block';
+  customCursor.style.display = "block";
 }
 
 function out(event, index) {
   gsap.to(ctnHr[index], 0.5, {
-    margin: '-12 0'
+    margin: "-12 0",
   });
   gsap.to(descCtn[index], 0.3, {
     y: -100,
     opacity: 0,
   });
   gsap.to(titleCtn[index], 0.3, {
-    color: 'transparent',
-    height: 'auto'
+    color: "transparent",
+    height: "auto",
   });
   gsap.to(previewVideos[index], 0.4, {
-    opacity: 0
+    opacity: 0,
   });
   gsap.to(videoOverlay, 0.4, {
-    opacity: 1
+    opacity: 1,
   });
   gsap.to(logoPortfolio, 0.4, {
-    opacity: 0.4
+    opacity: 0.4,
   });
-  customCursor.style.display = 'none';
+  customCursor.style.display = "none";
 }
 
 liElements.forEach((liElement, index) =>
@@ -180,40 +266,6 @@ paths.forEach((path) => {
 
 /* ********** Frame animation function ********** */
 
-function imageSequence(config, tl) {
-  let playhead = { frame: 0 },
-    canvas =
-      gsap.utils.toArray(config.canvas)[0] ||
-      console.warn("canvas not defined"),
-    ctx = canvas.getContext("2d"),
-    curFrame = -1,
-    onUpdate = config.onUpdate,
-    images,
-    updateImage = function () {
-      let frame = Math.round(playhead.frame);
-      if (frame !== curFrame) {
-        config.clear && ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(images[Math.round(playhead.frame)], 0, 0);
-        curFrame = frame;
-        onUpdate && onUpdate.call(this, frame, images[frame]);
-      }
-    };
-  images = config.urls.map((url) => {
-    let img = new Image();
-    img.src = url;
-    img.onload = updateImage;
-    return img;
-  });
-  return tl.to(playhead, {
-    frame: images.length - 1,
-    ease: "none",
-    onUpdate: updateImage,
-    duration: images.length / (config.fps || 30),
-    paused: !!config.paused,
-    scrollTrigger: config.scrollTrigger,
-  });
-}
-
 /* ******** Video frames ******** */
 
 let urls1 = new Array(141)
@@ -225,34 +277,82 @@ let urls1 = new Array(141)
         .padStart(3, "0")}.jpg`
   );
 
+urls1.forEach((url) => {
+  let img = new Image();
+  img.src = url;
+  img.class = "camara";
+  videoCamara.appendChild(img);
+});
+
+let urls2 = new Array(102)
+  .fill()
+  .map(
+    (_, i) =>
+      `../src/assets/middle-frames/ezgif-frame-${(i + 1)
+        .toString()
+        .padStart(3, "0")}.jpg`
+  );
+urls2.forEach((url) => {
+  let img = new Image();
+  img.src = url;
+  img.class = "middleVid";
+
+  middleVideo.appendChild(img);
+});
+
+const vidCamara = document.getElementsByClassName(".camara");
+const vidMiddle = document.getElementsByClassName(".middleVid");
+
+//  const vidMiddleTL = gsap.timeline({
+//   scrollTrigger:{
+//     trigger:"#video-camara",
+//     start: "top top",
+//     end: "bottom+=1000% bottom",
+//     scrub:true,
+//     pin:true
+//   }
+//  })
+
 /* ********* Timelines ********* */
 
-
-const introTimeline = gsap.timeline({
+const vidCamaraTL = gsap.timeline({
   scrollTrigger: {
     trigger: "#intro",
-    start: "top+=1% top",
-    end: "bottom+=1500% bottom",
+    start: "top top",
+    end: "bottom+=800% bottom-=100%",
     scrub: true,
-    pin: true
+    pin: true,
   },
 });
 
 let portfolioTl = gsap.timeline({
   scrollTrigger: {
-    trigger: '#portfolio',
-    start: "top top",
-    end: "bottom+=200% bottom",
+    trigger: "#portfolio",
+    start: "top+=400% top+=400%",
+    end: "bottom+=1500% bottom",
     scrub: true,
-    pin: true
+    pin: true,
+  },
+});
+
+const middleTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#middle",
+    start: "top top",
+    end: "bottom+=500% bottom",
+    scrub: true,
+    markers: true,
+    pin: true,
   },
 });
 
 /* *********** END TIMELINE SEQUENCE ********** */
 
+//introTimeline.add(portfolioTl).add(middleTimeline)
+
 /* *********** INTRO SCROLLING ********** */
 
-introTimeline.fromTo(
+vidCamaraTL.fromTo(
   "#scrollea",
   {
     opacity: 1,
@@ -264,59 +364,66 @@ introTimeline.fromTo(
   }
 );
 
-imageSequence({
-  urls: urls1,
-  canvas: canvas,
-  scrollTrigger: {
-    scrub: 0.05,
+vidCamaraTL.fromTo(
+  "#video-camara img",
+  {
+    opacity: 0,
   },
-}, introTimeline);
+  {
+    opacity: 1,
+    stagger: 0.5,
+    duration: 0,
+  }
+);
 
-introTimeline.fromTo(
+vidCamaraTL.fromTo(
   "#texto",
   {
     scale: 0,
     opacity: 0,
+    duration: 5,
+    delay: -10,
   },
   {
     scale: 1,
     opacity: 1,
-    duration: 100,
-    delay: 2000,
+    duration: 5,
+    delay: -10,
   }
 );
 
-introTimeline.to(".fill", {
+vidCamaraTL.to(".fill", {
   color: "#D1D821",
-  stagger: 100,
+  stagger: 3,
+  duration: 5,
 });
 
-introTimeline.to("#texto", {
+vidCamaraTL.to("#texto", {
   y: -1000,
-  duration: 100
+  duration: 30,
 });
 
-introTimeline.to('#intro', {
+vidCamaraTL.to("#intro", {
   opacity: 0,
-  duration: 10
-})
+  duration: 10,
+  // delay: -2,
+});
 
 /* *********** END INTRO SCROLLING ********** */
-
 
 /* *********** PORTFOLIO SCROLLING ********** */
 
 portfolioTl.to(".portfolio", {
   opacity: 1,
   delay: -1,
-  duration: 10
+  duration: 10,
 });
 
 portfolioTl.to(".bg-rodaje", {
   yPercent: -66,
   duration: 15,
   opacity: 0.8,
-  scrollTrigger: ".sup-rodaje"
+  scrollTrigger: ".sup-rodaje",
 });
 
 portfolioTl.to(".sup-rodaje", {
@@ -334,7 +441,7 @@ portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
   opacity: 1,
   stagger: 1,
   duration: 3,
-  scrollTrigger: '.dup-ctn span'
+  scrollTrigger: ".dup-ctn span",
 });
 
 portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
@@ -349,7 +456,6 @@ portfolioTl.to(".sup-rodaje.zoomed", {
   opacity: 1,
   delay: 10,
 });
-
 
 portfolioTl.to(".txt-ctn-1", {
   duration: 5,
@@ -377,7 +483,7 @@ portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
   opacity: 1,
   stagger: 1,
   duration: 2,
-  scrollTrigger: '.dup-ctn span'
+  scrollTrigger: ".dup-ctn span",
 });
 
 portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
@@ -396,14 +502,14 @@ portfolioTl.to(".txt-ctn-2", {
 portfolioTl.to(".pf-accordion-outer", {
   opacity: 1,
   duration: 1,
-  scrollTrigger: '.bg-overlay',
+  scrollTrigger: ".bg-overlay",
   zIndex: 20,
 });
 
 portfolioTl.to(".bg-overlay", {
   duration: 3,
   opacity: 0.5,
-  scrollTrigger: '.pf-accordion-outer ol li h2',
+  scrollTrigger: ".pf-accordion-outer ol li h2",
 });
 
 portfolioTl.to(".pf-accordion-outer ol li h2", {
@@ -431,18 +537,19 @@ portfolioTl.to(".pf-accordion-outer ol li h2", {
 
 portfolioTl.to(".sup-rodaje", {
   delay: -4,
-  duration: 5,
-  width: '450%',
-  left: '-290%',
-  top: '-200%',
-  scrollTrigger: '.box-ctn',
+  duration: 10,
+  width: "450%",
+  left: "-290%",
+  top: "-200%",
+  scrollTrigger: ".box-ctn",
 });
 
 portfolioTl.to(".box-ctn", {
   delay: -4,
-  duration: 3.5,
-  scale: 4.2,
+  duration: 7.5,
+  transform: "scale(4.1)",
   xPercent: -100,
+  top: "30%",
 });
 
 portfolioTl.to(".portfolio", {
@@ -451,3 +558,69 @@ portfolioTl.to(".portfolio", {
 });
 
 /* *********** END PORTFOLIO SCROLLING ********** */
+
+/* *********** MIDDLE SCROLLING ********** */
+
+middleTimeline.fromTo(
+  "#middleVidCtn img",
+  {
+    opacity: 0,
+  },
+  {
+    opacity: 1,
+    stagger: 0.5,
+    duration: 0,
+  }
+);
+
+middleTimeline.fromTo(
+  ".text",
+  {
+    y: 500,
+  },
+  {
+    y: 0,
+    stagger: 1,
+    duration: 5,
+  }
+);
+
+middleTimeline.to(".letter", {
+  color: "#D1D821",
+  stagger: 1,
+  duration: 2,
+});
+
+middleTimeline.to("#text-container", {
+  x: -2000,
+  duration: 2,
+});
+
+middleTimeline.fromTo(
+  ".white",
+  {
+    x: 2000,
+  },
+  {
+    x: 0,
+    duration: 2,
+  }
+);
+
+middleTimeline.fromTo(
+  ".accordion",
+  {
+    x: 2000,
+  },
+  {
+    x: 0,
+    duration: 10,
+  }
+);
+
+middleTimeline.to(".accordion", {
+  rotateX: -90,
+  transformOrigin: "center",
+  perspective: 0,
+  duration: 10,
+});
