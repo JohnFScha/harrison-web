@@ -58,6 +58,8 @@ const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
 const videoEl = document.getElementById("modalVideo");
 const closeModal = document.getElementById("closeModal");
+const middleVidSection = document.getElementById('middleVidCtn')
+const portfolio = document.getElementById('portfolio')
 
 const videos = [
   "../../assets/casos/eugenie-comp.mp4",
@@ -300,19 +302,6 @@ urls2.forEach((url) => {
   middleVideo.appendChild(img);
 });
 
-const vidCamara = document.getElementsByClassName(".camara");
-const vidMiddle = document.getElementsByClassName(".middleVid");
-
-//  const vidMiddleTL = gsap.timeline({
-//   scrollTrigger:{
-//     trigger:"#video-camara",
-//     start: "top top",
-//     end: "bottom+=1000% bottom",
-//     scrub:true,
-//     pin:true
-//   }
-//  })
-
 /* ********* Timelines ********* */
 
 const vidCamaraTL = gsap.timeline({
@@ -332,23 +321,24 @@ let portfolioTl = gsap.timeline({
     end: "bottom+=1500% bottom",
     scrub: true,
     pin: true,
+    //markers: true
   },
 });
 
 const middleTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#middle",
-    start: "top top",
+    start: "top-=80% top",
     end: "bottom+=500% bottom",
     scrub: true,
     markers: true,
-    pin: true,
+    //pin: true
   },
 });
 
 /* *********** END TIMELINE SEQUENCE ********** */
 
-//introTimeline.add(portfolioTl).add(middleTimeline)
+vidCamaraTL.add(portfolioTl).add(middleTimeline)
 
 /* *********** INTRO SCROLLING ********** */
 
@@ -561,22 +551,35 @@ portfolioTl.to(".portfolio", {
 
 /* *********** MIDDLE SCROLLING ********** */
 
-middleTimeline.fromTo(
-  "#middleVidCtn img",
-  {
-    opacity: 0,
-  },
+middleTimeline.to(
+  "#middleVidCtn",
   {
     opacity: 1,
-    stagger: 0.5,
-    duration: 0,
   }
 );
+
+middleTimeline.to(
+  "#middleVidCtn img",
+  {
+    opacity: 1,
+    zIndex: 100,
+    stagger: 0.5,
+    duration: 0,
+    y: 0
+  }
+);
+
+middleTimeline.fromTo('.bg-video', {
+  opacity: 0
+}, {
+  opacity: 0.2,
+  duration: 3
+})
 
 middleTimeline.fromTo(
   ".text",
   {
-    y: 500,
+    y: 1000,
   },
   {
     y: 0,
@@ -593,17 +596,16 @@ middleTimeline.to(".letter", {
 
 middleTimeline.to("#text-container", {
   x: -2000,
-  duration: 2,
+  duration: 30,
 });
 
-middleTimeline.fromTo(
-  ".white",
-  {
-    x: 2000,
-  },
-  {
+middleTimeline.to(
+  ".acc-borders", {
+    opacity: 1,
     x: 0,
-    duration: 2,
+    duration: 20,
+    width: '400vw',
+    delay: -30
   }
 );
 
@@ -611,10 +613,15 @@ middleTimeline.fromTo(
   ".accordion",
   {
     x: 2000,
+    delay: -20,
+    duration: 20,
+    opacity: 0,
   },
   {
     x: 0,
-    duration: 10,
+    delay: -20,
+    duration: 20,
+    opacity: 1,
   }
 );
 
@@ -623,4 +630,5 @@ middleTimeline.to(".accordion", {
   transformOrigin: "center",
   perspective: 0,
   duration: 10,
+  delay: 30
 });

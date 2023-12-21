@@ -429,9 +429,12 @@ section.portfolio .shown {
 }
 
 body #middle #middleVidCtn {
-  position: relative;
+  position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -1;
+  opacity: 0;
 }
 
 body #middle #middleVidCtn img {
@@ -448,13 +451,14 @@ body #middle #middleVidCtn img {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  z-index: 1;
-  position: absolute;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
 }
 
 #text-container hr {
   width: 100%;
-  margin: 5%;
+  margin: 4.07%;
   z-index: -100;
 }
 
@@ -515,18 +519,31 @@ h2 {
   transform: rotateX;
   transform-style: preserve-3d;
   perspective: 1000;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  opacity: 0;
 }
 
 #parent {
+  position: relative;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
   white-space: nowrap;
   width: 100vw;
   height: 450px;
   padding: 0px;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;
+}
+
+.acc-borders {
+  position: absolute;
+  width: 140vw;
+  height: 450px;
+  right: -50%;
+  border-top: 2px solid #FFF;
+  border-bottom: 2px solid #FFF;
+  z-index: -4;
 }
 
 .child {
@@ -633,10 +650,11 @@ h2 {
   width: 100vw;
   height: 100vh;
   position: fixed;
+  top: 0;
   object-fit: cover;
-  z-index: -2;
+  z-index: -1;
   filter: hue-rotate(300deg);
-  opacity: 0.2;
+  opacity: 0;
 }
 
 /* ======================== End middle =========================*/
