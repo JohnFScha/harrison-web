@@ -86,12 +86,26 @@ body #intro #init svg {
   animation-iteration-count: 1;
   animation-timing-function: linear;
   margin: auto;
+  z-index: 1500;
 }
 
 body #intro #scrollea svg {
   width: 15vw;
   height: 15vh;
   margin: auto;
+  stroke: white;
+  fill: white !important;
+  padding: 1rem;
+}
+
+body #intro #scrollea svg path {
+  stroke: white;
+  fill: white !important;
+}
+
+body #intro #scrollea svg polygon {
+  stroke: white;
+  fill: white !important;
 }
 
 body #intro #scrollea svg path.st1 {
@@ -421,7 +435,9 @@ section.portfolio .shown {
   display: block;
 }
 
-/* ======================== End middle =========================*/
+/* ======================== End PORTFOLIO =========================*/
+
+/* ======================== MIDDLE =========================*/
 
 #middle {
   height: 100vh;
@@ -522,6 +538,7 @@ h2 {
   position: fixed;
   top: 0;
   opacity: 0;
+  z-index: 0;
 }
 
 #parent {
@@ -657,8 +674,88 @@ h2 {
   opacity: 0;
 }
 
-/* ======================== End middle =========================*/
+/* ======================== End MIDDLE =========================*/
 
+/* ======================== TIEMPO =========================*/
+
+body #video-tiempo {
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+  animation: flipCard 1s ease-in-out 1;
+  position: fixed;
+  z-index: 2;
+}
+
+body #video-tiempo  #video-tiempo-ctn {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+body #video-tiempo #video-tiempo-ctn img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body #video-tiempo  svg {
+  position: absolute;
+  transform: translate(0, -5%);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1500;
+}
+
+body #video-tiempo #text-container-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1501;
+}
+
+/* #text-container-2 hr {
+  width: 150%;
+  margin: 5%;
+  z-index: -100;
+} */
+
+body #video-tiempo #text-container-2 #text-2 {
+  font-size: 4rem;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+body #video-tiempo #text-container-2 .letter-ctn-2 {
+  display: flex;
+  font-size: 0;
+  margin: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+body #video-tiempo #text-container-2 .letter-ctn-2 .spacer-2 {
+  font-size: 2rem;
+  visibility: hidden;
+}
+
+body #video-tiempo #text-container-2 .letter-ctn-2 span .letter-2 {
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+}
+
+/* ======================== End TIEMPO =========================*/
 
 /* ======================== Keyframes =========================*/
 
@@ -711,5 +808,14 @@ h2 {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes flipCard {
+  0% {
+    transform: perspective(500px) rotateX(90deg);
+  }¡
+  100% {
+    transform: perspective(500px) rotateX(0deg);
   }
 }

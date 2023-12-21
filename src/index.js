@@ -27,6 +27,7 @@ const logoCtn = document.getElementById("init");
 const scrollCtn = document.getElementById("scrollea");
 const videoCamara = document.getElementById("video-camara");
 const middleVideo = document.getElementById("middleVidCtn");
+const tiempoVideo = document.getElementById("video-tiempo-ctn");
 
 setTimeout(() => {
   logoCtn.style.display = "none";
@@ -253,7 +254,7 @@ closeModal.addEventListener("click", () => {
 
 /* ******* Init svg animation ******* */
 
-var paths = document.querySelectorAll(".path");
+var paths = document.querySelectorAll("#intro .path");
 
 paths.forEach((path) => {
   var length = path.getTotalLength();
@@ -302,6 +303,22 @@ urls2.forEach((url) => {
   middleVideo.appendChild(img);
 });
 
+let urls3 = new Array(130)
+  .fill()
+  .map(
+    (_, i) =>
+      `../src/assets/tiempo-frames/ezgif-frame-${(i + 1)
+        .toString()
+        .padStart(3, "0")}.jpg`
+  );
+  urls3.forEach((url) => {
+    let img = new Image();
+    img.src = url;
+    img.className = "TtiempoFrame";
+  
+    tiempoVideo.appendChild(img);
+  });
+
 /* ********* Timelines ********* */
 
 const vidCamaraTL = gsap.timeline({
@@ -329,7 +346,18 @@ const middleTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#middle",
     start: "top-=80% top",
-    end: "bottom+=500% bottom",
+    end: "bottom+=1000% bottom",
+    scrub: true,
+    //markers: true,
+    //pin: true
+  },
+});
+
+const textTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#video-tiempo",
+    start: "top top",
+    end: "bottom+=1000% bottom",
     scrub: true,
     markers: true,
     //pin: true
@@ -338,7 +366,7 @@ const middleTimeline = gsap.timeline({
 
 /* *********** END TIMELINE SEQUENCE ********** */
 
-vidCamaraTL.add(portfolioTl).add(middleTimeline)
+//vidCamaraTL.add(portfolioTl.add(middleTimeline.add(textTl)))
 
 /* *********** INTRO SCROLLING ********** */
 
@@ -489,7 +517,10 @@ portfolioTl.to(".txt-ctn-2", {
   delay: 4,
 });
 
-portfolioTl.to(".pf-accordion-outer", {
+portfolioTl.fromTo(".pf-accordion-outer", {
+  opacity: 0,
+  zIndex: 0
+}, {
   opacity: 1,
   duration: 1,
   scrollTrigger: ".bg-overlay",
@@ -631,4 +662,33 @@ middleTimeline.to(".accordion", {
   perspective: 0,
   duration: 10,
   delay: 30
+});
+
+/* *********** END MIDDLE SCROLLING ********** */
+
+textTl.to(
+  "#video-tiempo-ctn img",
+  {
+    opacity: 1,
+    zIndex: 100,
+    stagger: 0.5,
+    duration: 0,
+    y: 0
+  }
+);
+
+textTl.fromTo(
+  "#text-container-2 .text-2",
+  {
+    y: 1000,
+  },
+  {
+    y: 0,
+    stagger: 0.5,
+  }
+);
+
+textTl.to('#text-container-2 .letter-2', {
+  color: 'rgb(203, 219, 67)',
+  stagger: 0.5
 });
