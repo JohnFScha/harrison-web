@@ -158,9 +158,9 @@ window.addEventListener("DOMContentLoaded", () => {
   const portfolioSection = document.getElementById("portfolio");
 
   const videos = [
-    "../src/assets/casos/eugenie-comp.mp4",
-    "../src/assets/casos/delsud-comp.mp4",
-    "../src/assets/casos/flexy-comp.mp4",
+    "src/assets/casos/eugenie-comp.mp4",
+    "src/assets/casos/delsud-comp.mp4",
+    "src/assets/casos/flexy-comp.mp4",
   ];
   let currentVideo = null;
 
@@ -357,7 +357,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .fill()
     .map(
       (_, i) =>
-        `../src/assets/camara-frames/ezgif-frame-${(i + 1)
+        `src/assets/camara-frames/ezgif-frame-${(i + 1)
           .toString()
           .padStart(3, "0")}.jpg`
     );
@@ -373,7 +373,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .fill()
     .map(
       (_, i) =>
-        `../src/assets/middle-frames/ezgif-frame-${(i + 1)
+        `src/assets/middle-frames/ezgif-frame-${(i + 1)
           .toString()
           .padStart(3, "0")}.jpg`
     );
@@ -389,7 +389,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .fill()
     .map(
       (_, i) =>
-        `../src/assets/tiempo-frames/ezgif-frame-${(i + 1)
+        `src/assets/tiempo-frames/ezgif-frame-${(i + 1)
           .toString()
           .padStart(3, "0")}.jpg`
     );
