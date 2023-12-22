@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@studio-freight/lenis": "^1.0.29",
+    "animated-cursor": "^1.2.0",
     "gsap": "^3.12.3",
     "gsap-trial": "^3.12.3",
     "sass": "^1.69.5"
