@@ -10,6 +10,30 @@
   font-style: normal;
 }
 
+/* lenis css */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* lenis css */
+
 :root {
   font-size: 20px;
   font-family: "Montserraty", sans-serif;
@@ -47,17 +71,18 @@ body {
   position: fixed;
   display: flex;
   bottom: 0;
+  left: 25%;
   margin: auto;
   opacity: 0;
   margin: 0 auto;
-  z-index: 1000;
-  width: 100%;
-  height: 30%;
+  z-index: 500;
+  width: 50%;
+  height: 33%;
+  margin: auto;
 }
-
 #progressbar-ctn svg {
   margin: auto;
-  width: 35%;
+  width: 75%;
 }
 
 
@@ -74,15 +99,19 @@ nav {
   height: 12%;
   z-index: 6000;
 }
+
 nav section#menu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding: 3rem;
+  padding: 5rem;
+  z-index: 1000;
   background: rgb(203, 219, 67);
+  opacity: 0;
 }
+
 nav section#menu ul {
   display: flex;
   flex-direction: column;
@@ -90,45 +119,55 @@ nav section#menu ul {
   gap: 1rem;
   height: 10%;
 }
+
 nav section#menu ul #logoMenu {
   box-shadow: 2px 2px 5px #000;
   border-radius: 50%;
 }
+
 nav section#menu ul hr {
   border: 1px solid rgb(29, 62, 78);
   margin: 0 5rem;
   width: 90%;
 }
+
 nav section#menu ul li {
   margin: 0 5rem;
   padding-bottom: 0.5rem;
 }
+
 nav section#menu ul li a {
-  font-size: 3rem;
+  font-size: 4rem;
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 3px rgb(29, 62, 78);
   transition: color 0.5s ease;
 }
+
 nav section#menu ul li a:hover {
   color: rgb(29, 62, 78);
 }
+
 nav button {
   width: 6rem;
   height: 6rem;
   background-color: inherit;
   border: none;
   z-index: 7000;
-  margin: 0 0.5rem 0 0;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  /* margin: 0 0.5rem 0 0; */
 }
+
 nav a img {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
-nav button svg {
+
+nav button img {
   color: rgb(29, 62, 78) !important;
   fill: rgb(29, 62, 78) !important;
-  height: 3rem;
+  height: 3.5rem;
 }
 
 body #intro {
@@ -136,7 +175,7 @@ body #intro {
   height: 100vh;
 }
 
-#intro #init {
+body #intro #init {
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -168,7 +207,7 @@ body #intro #init svg {
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
   animation-name: draw, fill1, fill2;
-  animation-duration: 0.5s, 1s, 1.5s;
+  animation-duration: 2s, 0.5s, 0.5s;
   animation-delay: 0s, 1s, 1.5s;
   animation-fill-mode: both;
   animation-iteration-count: 1;
@@ -180,6 +219,10 @@ body #intro #scrollea svg {
   width: 15vw;
   height: 15vh;
   margin: auto;
+}
+
+body #intro #scrollea svg path {
+  fill: white;
 }
 
 body #intro #scrollea svg path.st1 {
@@ -762,7 +805,7 @@ body #middle #parent {
 
 #tiempoCtn {
   width: 100vw;
-  height: 300vh;
+  height: 100vh;
   transform-style: preserve-3d;
   transform-origin: center;
   transform: perspective(1000px) rotateX(0);
@@ -775,46 +818,34 @@ body #middle #parent {
   height: 100vh;
   transform-style: preserve-3d;
   transform: translate3d(0,-12.5%,250px);
-  scale: 0.75;
-  /* animation: flipCard 1s ease-in-out 1;  */
-  opacity: 0;
 }
 
 #middle #video-tiempo #tiempoVidCtn {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
-  /* opacity: 0; */
 }
 
 #middle #video-tiempo #tiempoVidCtn img {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 1;
 }
 
-/* #video-tiempo canvas {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-} */
-
-#middle #video-tiempo svg {
+#middle #video-tiempo #elementos-camara {
   position: fixed;
   transform: translate(0, -5%);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 1;
   animation: pulse 1.5s infinite;
   /* opacity: 0; */
 }
 
-#video-tiempo #text-container {
+#video-tiempo #text-container-tiempo {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -825,13 +856,7 @@ body #middle #parent {
   z-index: 1;
 }
 
-#video-tiempo #text-container hr {
-  width: 150%;
-  margin: 5%;
-  z-index: -100;
-}
-
-#video-tiempo #text-container p {
+#video-tiempo #text-container-tiempo p {
   font-size: 4rem;
   margin: 0;
   text-align: center;
@@ -839,7 +864,7 @@ body #middle #parent {
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
-#video-tiempo #text-container #letter-ctn {
+#video-tiempo #text-container-tiempo #letter-ctn {
   display: flex;
   font-size: 0;
   margin: 0;
@@ -848,12 +873,12 @@ body #middle #parent {
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
-#video-tiempo #text-container #letter-ctn .spacer {
+#video-tiempo #text-container-tiempo #letter-ctn .spacer {
   font-size: 2rem;
   visibility: hidden;
 }
 
-#video-tiempo #text-container #letter-ctn span {
+#video-tiempo #text-container-tiempo #letter-ctn span {
   font-size: 4rem;
   margin: 0;
   padding: 0;
@@ -865,6 +890,12 @@ body #middle #parent {
 
 
 /* ======================== Keyframes =========================*/
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 
 @keyframes fill1 {
   from {
@@ -941,11 +972,11 @@ body #middle #parent {
 
 #txt-container-2 {
   display: flex;
-  z-index: 500;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
 }
 #txt-container-2 p {
   transform: translateX(200%);
@@ -1105,8 +1136,9 @@ body #middle #parent {
 
 /* SECCION OUTRO */
 
-#txt-container-2{
+#end {
   position: fixed;
+  height: 100vh;
   width: 100vw;
 }
 

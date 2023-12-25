@@ -1,11 +1,10 @@
 /* Imports */
 
-// import Lenis from "../node_modules/@studio-freight/lenis/dist/lenis.mjs";
-// import gsap from "../node_modules/gsap/index.js";
-// import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger.js";
-// import { ScrollToPlugin } from "../node_modules/gsap/ScrollToPlugin.js";
+/* import Lenis from "../node_modules/@studio-freight/lenis/dist/lenis.mjs";
+import gsap from "../node_modules/gsap/index.js";
+import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger.js"; */
 
-var paths = document.querySelectorAll(".path");
+var paths = document.querySelectorAll("#intro #init svg .paths");
 
 paths.forEach((path) => {
   var length = path.getTotalLength();
@@ -18,41 +17,16 @@ paths.forEach((path) => {
   path.style.strokeDashoffset = "0";
 });
 
-// window.addEventListener("scroll", function(event) {
-//   var top = this.scrollY,
-//       left =this.scrollX;
 
-//       console.log(top)
-// }, false);
+/* window.addEventListener("scroll", function(event) {
+  var top = this.scrollY,
+      left =this.scrollX;
 
-/* gsap config */
+      console.log(top)
+}, false); */
+
 
 gsap.registerPlugin(ScrollTrigger);
-
-/* scroll test riido*/
-/* let links = gsap.utils.toArray(".nav-link");
-links.forEach(a => {
-  let element = document.querySelector(a.getAttribute("href")),
-      linkST = ScrollTrigger.create({
-            trigger: element,
-            start: "top top"
-          });
-  ScrollTrigger.create({
-    trigger: element,
-    start: "top center",
-    end: "bottom center",
-    onToggle: self => self.isActive && setActive(a)
-  });
-  a.addEventListener("click", e => {
-    e.preventDefault();
-    gsap.to(window, {duration: 1, scrollTo: linkST.start, overwrite: "auto"});
-  });
-});
-
-function setActive(link) {
-  links.forEach(el => el.classList.remove("active"));
-  link.classList.add("active");
-} */
 
 /* Lenis config */
 
@@ -65,6 +39,16 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+/* Lenis config */
+
 window.addEventListener("DOMContentLoaded", () => {
   /* ************* DOM elements ************ */
   const body = document.getElementById("body");
@@ -72,17 +56,28 @@ window.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
   const navItems = document.getElementsByClassName("nav-item");
   const separators = document.getElementsByClassName("separator");
+  const icon = document.getElementById("buttonIcon");
 
   const tl = gsap.timeline({ paused: true });
 
-  tl.from(menu, {
-    xPercent: "100",
-    duration: 0.5,
-    background: "transparent",
-    display: "none",
-    zIndex: 0,
-    ease: "power2.inOut",
-  });
+  tl.fromTo(
+    menu,
+    {
+      xPercent: "100",
+      opacity: 0,
+      background: "transparent",
+      display: "none",
+      ease: "power2.inOut",
+    },
+    {
+      xPercent: "0",
+      duration: 0.5,
+      opacity: 1,
+      background: "rgb(203, 219, 67)",
+      display: "block",
+      ease: "power2.inOut",
+    }
+  );
 
   tl.fromTo(
     navItems,
@@ -93,6 +88,7 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       opacity: 1,
       y: 0,
+      duration: 0.5,
     }
   );
 
@@ -102,18 +98,22 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 0.5,
   });
 
+  let isRotated = false;
+
   collapse.addEventListener("click", () => {
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/X.png" : "src/assets/Menu.png";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
     if (body.className.match("close")) {
       body.className = "open";
     } else if (body.className.includes("open")) {
       body.className = "close";
     }
-    if (tl.paused()) {
+    if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
     } else if (tl.totalProgress() === 1) {
       tl.reverse();
-    } else {
-      tl.paused(true);
     }
   });
   /* ****************** Intro dom ****************** */
@@ -152,10 +152,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modalContent");
-  const videoEl = document.getElementById("modalVideo");
   const closeModal = document.getElementById("closeModal");
-  const middleVidSection = document.getElementById("middleVidCtn");
-  const portfolioSection = document.getElementById("portfolio");
 
   const videos = [
     "src/assets/casos/eugenie-comp.mp4",
@@ -240,15 +237,6 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
-  // function out() {
-  //     ctn.forEach(element => {
-  //         gsap.to(element, 0.7, {
-  //             width: 100 / ctn.length + '%',
-  //             ease: 'out(1)' // Back.easeOut is now 'back.out'
-  //         });
-  //     });
-  // }
-
   /* ****************** End Middle dom ****************** */
 
   /* ******************  dom manipulation ****************** */
@@ -343,14 +331,6 @@ window.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("shown");
   });
 
-  /* ****************** end dom manipulation ****************** */
-
-  /* ****************** end Portfolio dom ****************** */
-
-  /* ******* Init svg animation ******* */
-
-  /* ********** Frame animation function ********** */
-
   /* ******** Video frames ******** */
 
   let urls1 = new Array(141)
@@ -407,39 +387,32 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: "#intro",
       start: "top top",
-      end: "bottom+=800% bottom-=100%",
+      end: "bottom+=100% bottom",
       scrub: true,
       pin: true,
+      pinSpacing: false,
     },
   });
 
   let portfolioTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#portfolio",
-      start: "top+=400% top+=400%",
-      end: "bottom+=1500% bottom",
+      start: "top top",
+      end: "bottom+=100% bottom",
       scrub: true,
       pin: true,
-      onLeave: () => {
-        console.log("leaving Portfolio");
-        document.addEventListener("DOMContentLoaded", function () {
-          const portfolioPin = document.querySelector(
-            ".pin-spacer:nth-child(1)"
-          );
-          portfolioSection.style.display = "none !important";
-          portfolioPin.style.background = "red !important";
-        });
-      },
+      pinSpacing: false
     },
   });
 
   const middleTimeline = gsap.timeline({
     scrollTrigger: {
       trigger: "#middle",
-      start: "top top",
-      end: "bottom+=1500% bottom",
+      start: "center center",
+      end: "2836px",
       scrub: true,
       pin: true,
+      pinSpacing: false
     },
   });
 
@@ -520,23 +493,26 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: ".sup-rodaje",
   });
 
-  
   portfolioTl.to(".sup-rodaje", {
     delay: 3,
     duration: 12,
     yPercent: -66,
   });
-  
-  portfolioTl.fromTo('#progressbar-ctn', {
-    opacity: 0,
-    y: 200,
-  }, {
-    opacity: 1,
-    y: 0,
-    duration: 2,
-    delay: -5
-  })
-  
+
+  portfolioTl.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  );
+
   portfolioTl.to(".txt-ctn-1 .txt-row h2", {
     opacity: 1,
     duration: 5,
@@ -567,17 +543,25 @@ window.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
   });
 
-  portfolioTl.fromTo('#rect1', {
-    fill: '#CBDB43'
-  }, {
-    fill: 'white'
-  })
-  
-  portfolioTl.fromTo('#rect2', {
-    fill: 'white'
-  }, {
-    fill: '#CBDB43'
-  })
+  portfolioTl.fromTo(
+    "#rect1",
+    {
+      fill: "#CBDB43",
+    },
+    {
+      fill: "white",
+    }
+  );
+
+  portfolioTl.fromTo(
+    "#rect2",
+    {
+      fill: "white",
+    },
+    {
+      fill: "#CBDB43",
+    }
+  );
 
   portfolioTl.to(".sup-rodaje", {
     duration: 10,
@@ -657,7 +641,7 @@ window.addEventListener("DOMContentLoaded", () => {
     delay: 4,
     duration: 5,
   });
-  
+
   portfolioTl.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
@@ -666,7 +650,7 @@ window.addEventListener("DOMContentLoaded", () => {
     top: "-200%",
     scrollTrigger: ".box-ctn",
   });
-  
+
   portfolioTl.to(".box-ctn", {
     delay: 4,
     duration: 7.5,
@@ -675,16 +659,19 @@ window.addEventListener("DOMContentLoaded", () => {
     top: "30%",
   });
 
-  portfolioTl.fromTo('#progressbar-ctn', {
-    opacity: 1,
-    y: 0,
-  }, {
-    opacity: 0,
-    y: 200,
-    duration: 5,
-    delay: 0
-  })
-  
+  portfolioTl.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      y: 0,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 0,
+    }
+  );
 
   portfolioTl.to(".portfolio", {
     opacity: 0,
@@ -708,8 +695,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  middleTimeline.to("#middleVidCtn", {
+  middleTimeline.fromTo("#middleVidCtn", 
+  {
+    opacity: 0,
+    zIndex: 0,
+    visibility: 'hidden'
+  }, 
+  {
     opacity: 1,
+    zIndex: 100,
+    visibility: 'visible',
     duration: 10,
   });
 
@@ -726,10 +721,12 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       opacity: 1,
       zIndex: 100,
+      visibility: 'visible'
     },
     {
       opacity: 0,
       zIndex: 0,
+      visibility: 'hidden',
       duration: 10,
     }
   );
@@ -746,16 +743,19 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  middleTimeline.fromTo('#progressbar-ctn', {
-    opacity: 0,
-    y: 200,
-  }, {
-    opacity: 1,
-    y: 0,
-    duration: 4,
-    delay: 0
-  })
-  
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 4,
+      delay: 0,
+    }
+  );
 
   middleTimeline.fromTo(
     "#middle .text",
@@ -769,19 +769,27 @@ window.addEventListener("DOMContentLoaded", () => {
       duration: 10,
     }
   );
-  middleTimeline.fromTo('#rect2', {
-    fill: '#CBDB43'
-  }, {
-    fill: 'white',
-    duration:2
-  })
-  
-  middleTimeline.fromTo('#rect3', {
-    fill: 'white'
-  }, {
-    fill: '#CBDB43',
-    duration:2
-  })
+  middleTimeline.fromTo(
+    "#rect2",
+    {
+      fill: "#CBDB43",
+    },
+    {
+      fill: "white",
+      duration: 2,
+    }
+  );
+
+  middleTimeline.fromTo(
+    "#rect3",
+    {
+      fill: "white",
+    },
+    {
+      fill: "#CBDB43",
+      duration: 2,
+    }
+  );
 
   middleTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
@@ -793,9 +801,11 @@ window.addEventListener("DOMContentLoaded", () => {
     "#middle #text-container",
     {
       x: 0,
+      zIndex: 0
     },
     {
       x: -2000,
+      zIndex: 200,
       delay: 3,
       duration: 30,
     }
@@ -822,36 +832,38 @@ window.addEventListener("DOMContentLoaded", () => {
       duration: 20,
     }
   );
-  
+
   middleTimeline.to(".accordion", {
     rotateX: -69.3,
     duration: 10,
     delay: 30,
     opacity: 0,
   });
-  middleTimeline.fromTo('#progressbar-ctn', {
-    opacity: 1,
-    
-  }, {
-    opacity: 0,
-    
-    duration: 16,
-    delay: 0
-  })
 
-  /* *********** END MIDDLE SCROLLING ********** */
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
 
-  /* *********** TIEMPO SCROLLING ********** */
+      duration: 16,
+      delay: 0,
+    }
+  );
 
   middleTimeline.fromTo(
     "#video-tiempo",
     {
       rotateX: 111.2,
       opacity: 0,
+      zIndex: 0
     },
     {
       rotateX: 0,
-      translateY: -90,
+      translateY: -110,
+      zIndex: 200,
       duration: 10,
       opacity: 1,
       scrollTrigger: ".accordion",
@@ -862,39 +874,39 @@ window.addEventListener("DOMContentLoaded", () => {
     "#tiempoVidCtn img",
     {
       opacity: 0,
+      zIndex: 0
     },
     {
       opacity: 1,
+      zIndex: 200,
       stagger: 0.5,
       duration: 0,
     }
   );
 
   middleTimeline.fromTo(
-    "#video-tiempo #text-container",
+    "#video-tiempo #text-container-tiempo",
     {
       x: -2000,
-      duration: 0,
+      zIndex: 200,
       delay: -50,
     },
     {
       x: 0,
-      duration: 0,
+      zIndex: 200,
       delay: -50,
     }
   );
 
   middleTimeline.fromTo(
-    "#video-tiempo #text-container .text",
+    "#video-tiempo #text-container-tiempo .text",
     {
       y: 1000,
-      delay: -50,
     },
     {
       y: 0,
       stagger: 0.5,
-      duration: 8,
-      delay: -50,
+      duration: 1,
     }
   );
 
@@ -902,13 +914,12 @@ window.addEventListener("DOMContentLoaded", () => {
     "#video-tiempo .letter",
     {
       color: "transparent",
-      delay: -100,
     },
     {
       color: "rgb(203, 219, 67)",
       stagger: 4,
       duration: 4,
-      delay: -50,
+      delay: 1,
     }
   );
 
@@ -922,7 +933,6 @@ window.addEventListener("DOMContentLoaded", () => {
       rotateX: 110,
       translateY: -90,
       duration: 50,
-      scrollTrigger: ".accordion",
     }
   );
 
@@ -931,31 +941,14 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       opacity: 1,
       visibility: "visible",
-      scrollTrigger: ".accordion",
     },
     {
       opacity: 0,
       visibility: "hidden",
-      // delay: 12,
+      delay: 12,
       duration: 30,
     }
   );
-
-  // middleTimeline.fromTo(
-  //   "#tiempoCtn .text",
-  //   {
-  //     y: 1000,
-  //   },
-  //   {
-  //     y: 0,
-  //     stagger: 0.5,
-  //   }
-  // );
-
-  // middleTimeline.to('#tiempoCtn .letter', {
-  //   color: 'rgb(203, 219, 67)',
-  //   stagger: 0.5
-  // })
 
   /* *********** TIEMPO SCROLLING ********** */
 
@@ -967,16 +960,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (carouselCtn.style.transform === "scale(1)") {
     carousel.style.animation = "rotateAnim 30s infinite forwards";
   }
-
-  // let textTl = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: "#text-container",
-  //     start: "top top",
-  //     end: "bottom+=200%",
-  //     scrub: true,
-  //     pin: true,
-  //   },
-  // });
 
   middleTimeline.fromTo(
     "#txt-container-2",
@@ -1017,33 +1000,45 @@ window.addEventListener("DOMContentLoaded", () => {
     x: -2000,
   });
 
-  middleTimeline.fromTo('#progressbar-ctn', {
-    opacity: 0,
-    y: 200,
-  }, {
-    opacity: 1,
-    y: 0,
-    duration: 16,
-    delay: -2
-  })
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 16,
+      delay: -2,
+    }
+  );
 
   middleTimeline.to("#p1", {
     opacity: 0,
     duration: 0,
   });
-  middleTimeline.fromTo('#rect3', {
-    fill: '#CBDB43'
-  }, {
-    fill: 'white',
-    duration:6
-  })
-  
-  middleTimeline.fromTo('#rect4', {
-    fill: 'white'
-  }, {
-    fill: '#CBDB43',
-    duration:6
-  })
+  middleTimeline.fromTo(
+    "#rect3",
+    {
+      fill: "#CBDB43",
+    },
+    {
+      fill: "white",
+      duration: 6,
+    }
+  );
+
+  middleTimeline.fromTo(
+    "#rect4",
+    {
+      fill: "white",
+    },
+    {
+      fill: "#CBDB43",
+      duration: 6,
+    }
+  );
 
   middleTimeline.to("#p2", {
     delay: -30,
@@ -1051,15 +1046,11 @@ window.addEventListener("DOMContentLoaded", () => {
     y: 150,
   });
 
-  
-
   middleTimeline.to("#carousel-container", {
     transform: "scale(1)",
     duration: 10,
     delay: -20,
   });
-
-  
 
   middleTimeline.to("#txt-container-2", {
     delay: 30,
@@ -1069,15 +1060,19 @@ window.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
   });
 
-  middleTimeline.fromTo('#progressbar-ctn', {
-    opacity: 1,
-    duration:100
-  }, {
-    opacity: 0,
-    
-    duration: 80,
-    delay: 20
-  })
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 100,
+    },
+    {
+      opacity: 0,
+
+      duration: 80,
+      delay: 20,
+    }
+  );
 
   // middleTimeline.to("#p2", {
   //   opacity: 0,
@@ -1181,16 +1176,3 @@ window.addEventListener("DOMContentLoaded", () => {
     0.5
   );
 });
-
-
-/* preuba */
-
-/* const link1 = document.querySelector('nav section#menu ul li:nth-child(1)');
-
-link1.addEventListener("click", () => {
-  // console.log('clicked link 1');
-  window.scrollTo({
-    top: 23012,
-    behavior: 'smooth', // You can use 'auto' or 'smooth' for a smooth scroll effect
-  });
-}); */
