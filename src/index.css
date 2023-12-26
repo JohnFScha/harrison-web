@@ -29,18 +29,23 @@ a {
   color: inherit
 }
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   width: 100vw;
+  height: 100%;
   background-color: black;
   font-family: 'Montserraty';
   overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 /* ============= INTRO ============= */
@@ -107,6 +112,7 @@ nav button svg {
 body #intro {
   width: 100vw;
   height: 100vh;
+  position: fixed;
 }
 
 #intro #init {
@@ -204,10 +210,11 @@ body #intro #video #texto p {
 /* ============== PORTFOLIO ============= */
 
 section.portfolio {
-  position: relative;
+  position: fixed;
   width: 100vw;
   background-color: hsl(0, 0%, 0%);
   opacity: 0;
+  z-index: 1;
 }
 
 section.portfolio .bg-rodaje,
@@ -487,6 +494,7 @@ section.portfolio .shown {
 /* ======================== MIDDLE SECTION =========================*/
 
 #middle {
+  position: fixed;
   height: 100vh;
   width: 100vw;
   opacity: 0;
@@ -494,6 +502,7 @@ section.portfolio .shown {
   transform-origin: center top;
   transform: perspective(1000px) rotateX(0);
   transition: transform 0.5s;
+  z-index: 1;
 }
 
 body #middle #middleVidCtn {
@@ -725,7 +734,7 @@ body #middle #parent {
   top: 0;
   object-fit: cover;
   z-index: -1;
-  filter: hue-rotate(300deg);
+  /* filter: hue-rotate(300deg); */
   opacity: 0;
 }
 
@@ -1089,7 +1098,8 @@ body #middle #parent {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  position: relative;
+  position: fixed;
+  z-index: 10;
 }
 
 #svgOutro {
@@ -1108,6 +1118,7 @@ div#textAllCtn {
   position: absolute;
   /* visibility: hidden; */
   transform-style: preserve-3d;
+  z-index: 5;
 }
 div#textAllCtn p.textPostC {
   text-align: center;
@@ -1147,6 +1158,7 @@ div#textAllCtn .letter-container .spacerSpan {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  z-index: 5;
 }
 
 #p2_postC {

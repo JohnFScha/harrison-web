@@ -4,6 +4,7 @@ import Lenis from "../node_modules/@studio-freight/lenis/dist/lenis.mjs";
 import gsap from "../node_modules/gsap/index.js";
 import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger.js";
 
+console.log(top)
 
 var paths = document.querySelectorAll(".path");
 
@@ -375,68 +376,23 @@ window.addEventListener("DOMContentLoaded", () => {
     tiempoVideo.appendChild(img);
   });
 
-  /* ********* Timelines ********* */
-
-  const vidCamaraTL = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#intro",
-      start: "top top",
-      end: "bottom+=800% bottom-=100%",
-      scrub: true,
-      pin: true,
-    },
-  });
-
-  let portfolioTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#portfolio",
-      start: "top+=400% top+=400%",
-      end: "bottom+=1500% bottom",
-      scrub: true,
-      pin: true,
-      //markers: true
-      onLeave: () => {
-        console.log('leaving Portfolio')
-        document.addEventListener('DOMContentLoaded', function () {
-          const portfolioPin = document.querySelector('.pin-spacer:nth-child(1)');
-          portfolioSection.style.display = 'none !important';
-          portfolioPin.style.background = 'red !important';
-        });
-      }
-    },
-  });
+  /* ********* Timeline ********* */
 
   const middleTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: "#middle",
+      trigger: "body",
       start: "top top",
-      end: "bottom+=1500% bottom",
+      end: "bottom+=5000% bottom",
       scrub: true,
-      // markers: true,
       pin: true,
-      // pinSpacing: false,
     },
   });
 
-  // const tiempoTl = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: "#tiempoCtn",
-  //     start: "top top",
-  //     end: "bottom bottom",
-  //     scrub: true,
-  //     markers: true,
-  //     pin: true,
-  //     // pinSpacing: false,
-  //   },
-  // });
-
-  /* *********** END TIMELINE SEQUENCE ********** */
-
-  // vidCamaraTL.add(portfolioTl).add(middleTimeline)
+  /* *********** END TIMELINE ********** */
 
   /* *********** INTRO SCROLLING ********** */
 
-  vidCamaraTL.fromTo(
+  middleTimeline.fromTo(
     "#scrollea",
     {
       opacity: 1,
@@ -448,7 +404,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  vidCamaraTL.fromTo(
+  middleTimeline.fromTo(
     "#video-camara img",
     {
       opacity: 0,
@@ -460,7 +416,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  vidCamaraTL.fromTo(
+  middleTimeline.fromTo(
     "#texto",
     {
       transform: 'scale(0)',
@@ -476,18 +432,18 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  vidCamaraTL.to(".fill", {
+  middleTimeline.to(".fill", {
     color: "#D1D821",
     stagger: 3,
     duration: 5,
   });
 
-  vidCamaraTL.to("#texto", {
+  middleTimeline.to("#texto", {
     y: -1000,
     duration: 30,
   });
 
-  vidCamaraTL.to("#intro", {
+  middleTimeline.to("#intro", {
     opacity: 0,
     duration: 10,
     // delay: -2,
@@ -497,106 +453,110 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** PORTFOLIO SCROLLING ********** */
 
-  portfolioTl.to(".portfolio", {
+  middleTimeline.to(".portfolio", {
     opacity: 1,
     delay: -1,
     duration: 1,
   });
 
-  portfolioTl.to(".bg-rodaje", {
+  middleTimeline.to("#intro" , {
+    visibility: 'hidden',
+  });
+
+  middleTimeline.to(".bg-rodaje", {
     yPercent: -66,
     duration: 15,
     opacity: 0.8,
     scrollTrigger: ".sup-rodaje",
   });
 
-  portfolioTl.to(".sup-rodaje", {
+  middleTimeline.to(".sup-rodaje", {
     delay: 3,
     duration: 12,
     yPercent: -66,
   });
 
-  portfolioTl.to(".txt-ctn-1 .txt-row h2", {
+  middleTimeline.to(".txt-ctn-1 .txt-row h2", {
     opacity: 1,
     duration: 5,
   });
 
-  portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
+  middleTimeline.to(".txt-ctn-1 .dup-ctn span", {
     opacity: 1,
     stagger: 1,
     duration: 3,
     scrollTrigger: ".dup-ctn span",
   });
 
-  portfolioTl.to(".txt-ctn-1 .dup-ctn span", {
+  middleTimeline.to(".txt-ctn-1 .dup-ctn span", {
     color: "#D1D821",
     stagger: 1,
     duration: 3,
     delay: 5,
   });
 
-  portfolioTl.to(".sup-rodaje.zoomed", {
+  middleTimeline.to(".sup-rodaje.zoomed", {
     duration: 3,
     opacity: 1,
     delay: 10,
   });
 
-  portfolioTl.to(".txt-ctn-1", {
+  middleTimeline.to(".txt-ctn-1", {
     duration: 5,
     opacity: 0,
   });
 
-  portfolioTl.to(".sup-rodaje", {
+  middleTimeline.to(".sup-rodaje", {
     duration: 10,
     scale: 2.5,
     transformOrigin: "32% bottom",
     scrollTrigger: ".txt-ctn-2 .txt-row h2, .bg-overlay",
   });
 
-  portfolioTl.to(".bg-overlay", {
+  middleTimeline.to(".bg-overlay", {
     duration: 5,
     opacity: 0.3,
   });
 
-  portfolioTl.to(".txt-ctn-2 .txt-row h2", {
+  middleTimeline.to(".txt-ctn-2 .txt-row h2", {
     opacity: 1,
     duration: 4,
   });
 
-  portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
+  middleTimeline.to(".txt-ctn-2 .dup-ctn span", {
     opacity: 1,
     stagger: 1,
     duration: 2,
     scrollTrigger: ".dup-ctn span",
   });
 
-  portfolioTl.to(".txt-ctn-2 .dup-ctn span", {
+  middleTimeline.to(".txt-ctn-2 .dup-ctn span", {
     color: "#D1D821",
     stagger: 1,
     duration: 2,
     delay: 4,
   });
 
-  portfolioTl.to(".txt-ctn-2", {
+  middleTimeline.to(".txt-ctn-2", {
     opacity: 0,
     duration: 4,
     delay: 4,
   });
 
-  portfolioTl.to(".pf-accordion-outer", {
+  middleTimeline.to(".pf-accordion-outer", {
     opacity: 1,
     duration: 4,
     scrollTrigger: ".bg-overlay",
     zIndex: 20,
   });
 
-  portfolioTl.to(".bg-overlay", {
+  middleTimeline.to(".bg-overlay", {
     duration: 4,
     opacity: 0.5,
     scrollTrigger: ".pf-accordion-outer ol li h2",
   });
 
-  portfolioTl.to(".pf-accordion-outer ol li h2", {
+  middleTimeline.to(".pf-accordion-outer ol li h2", {
     y: 0,
     opacity: 1,
     stagger: 1,
@@ -604,20 +564,20 @@ window.addEventListener("DOMContentLoaded", () => {
     delay: 2,
   });
 
-  portfolioTl.to(".pf-accordion", {
+  middleTimeline.to(".pf-accordion", {
     delay: 3,
     opacity: 1,
     duration: 2,
   });
 
-  portfolioTl.to(".pf-accordion", {
+  middleTimeline.to(".pf-accordion", {
     delay: 5,
     opacity: 0,
     duration: 6,
     scrollTrigger: ".pf-accordion",
   });
 
-  portfolioTl.to(".pf-accordion-outer ol li h2", {
+  middleTimeline.to(".pf-accordion-outer ol li h2", {
     y: 30,
     opacity: 0,
     stagger: 1,
@@ -625,7 +585,7 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 5,
   });
 
-  portfolioTl.to(".sup-rodaje", {
+  middleTimeline.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
     width: "450%",
@@ -634,7 +594,7 @@ window.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: ".box-ctn",
   });
 
-  portfolioTl.to(".box-ctn", {
+  middleTimeline.to(".box-ctn", {
     delay: 4,
     duration: 7.5,
     transform: "scale(4.1)",
@@ -642,7 +602,7 @@ window.addEventListener("DOMContentLoaded", () => {
     top: "30%",
   });
 
-  portfolioTl.to(".portfolio", {
+  middleTimeline.to(".portfolio", {
     opacity: 0,
     duration: 0,
   });
@@ -828,22 +788,6 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 30,
   })
 
-  // middleTimeline.fromTo(
-  //   "#tiempoCtn .text",
-  //   {
-  //     y: 1000,
-  //   },
-  //   {
-  //     y: 0,
-  //     stagger: 0.5,
-  //   }
-  // );
-
-  // middleTimeline.to('#tiempoCtn .letter', {
-  //   color: 'rgb(203, 219, 67)',
-  //   stagger: 0.5
-  // })
-
   /* *********** TIEMPO SCROLLING ********** */
 
   /* **************** SECCION FINAL ***************** */
@@ -854,16 +798,6 @@ window.addEventListener("DOMContentLoaded", () => {
   if (carouselCtn.style.transform === "scale(1)") {
     carousel.style.animation = "rotateAnim 30s infinite forwards";
   }
-
-  // let textTl = gsap.timeline({
-  //   scrollTrigger: {
-  //     trigger: "#text-container",
-  //     start: "top top",
-  //     end: "bottom+=200%",
-  //     scrub: true,
-  //     pin: true,
-  //   },
-  // });
 
   middleTimeline.fromTo("#txt-container-2", {
     opacity: 0,
@@ -916,11 +850,6 @@ window.addEventListener("DOMContentLoaded", () => {
     transform: "scale(0.5)",
     opacity: 0
   });
-
-  // middleTimeline.to("#p2", {
-  //   opacity: 0,
-  //   duration: 0,
-  // });
 
   middleTimeline.fromTo("#svgOutro", {
     y: -1000,
@@ -1002,3 +931,19 @@ window.addEventListener("DOMContentLoaded", () => {
   );
 
 })
+
+const link1 = document.querySelector('nav section#menu ul li:nth-child(1) a');
+
+link1.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  const percentage = 90; // Adjust this value as needed
+
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const targetPosition = (document.body.scrollHeight - windowHeight) * (percentage / 100);
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth',
+  });
+});
