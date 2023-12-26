@@ -1,8 +1,8 @@
 /* Imports */
 
-import Lenis from "../node_modules/@studio-freight/lenis/dist/lenis.mjs";
-import gsap from "../node_modules/gsap/index.js";
-import { ScrollTrigger } from "../node_modules/gsap/ScrollTrigger.js";
+import Lenis from "./../node_modules/@studio-freight/lenis/dist/lenis.mjs";
+import gsap from "./../node_modules/gsap/index.js";
+import { ScrollTrigger } from "./../node_modules/gsap/ScrollTrigger.js";
 
 console.log(top)
 
@@ -931,19 +931,3 @@ window.addEventListener("DOMContentLoaded", () => {
   );
 
 })
-
-const link1 = document.querySelector('nav section#menu ul li:nth-child(1) a');
-
-link1.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  const percentage = 90; // Adjust this value as needed
-
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  const targetPosition = (document.body.scrollHeight - windowHeight) * (percentage / 100);
-
-  window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth',
-  });
-});
