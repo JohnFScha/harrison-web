@@ -344,37 +344,37 @@ window.addEventListener("DOMContentLoaded", () => {
     videoCamara.appendChild(img);
   });
 
-  let urls2 = new Array(102)
-    .fill()
-    .map(
-      (_, i) =>
-        `../src/assets/middle-frames/ezgif-frame-${(i + 1)
-          .toString()
-          .padStart(3, "0")}.jpg`
-    );
-  urls2.forEach((url) => {
-    let img = new Image();
-    img.src = url;
-    img.class = "middleVid";
+  // let urls2 = new Array(102)
+  //   .fill()
+  //   .map(
+  //     (_, i) =>
+  //       `../src/assets/middle-frames/ezgif-frame-${(i + 1)
+  //         .toString()
+  //         .padStart(3, "0")}.jpg`
+  //   );
+  // urls2.forEach((url) => {
+  //   let img = new Image();
+  //   img.src = url;
+  //   img.class = "middleVid";
 
-    middleVideo.appendChild(img);
-  });
+  //   middleVideo.appendChild(img);
+  // });
 
-  let urls3 = new Array(130)
-    .fill()
-    .map(
-      (_, i) =>
-        `../src/assets/tiempo-frames/ezgif-frame-${(i + 1)
-          .toString()
-          .padStart(3, "0")}.jpg`
-    );
-  urls3.forEach((url) => {
-    let img = new Image();
-    img.src = url;
-    img.class = "tiempoVid";
+  // let urls3 = new Array(130)
+  //   .fill()
+  //   .map(
+  //     (_, i) =>
+  //       `../src/assets/tiempo-frames/ezgif-frame-${(i + 1)
+  //         .toString()
+  //         .padStart(3, "0")}.jpg`
+  //   );
+  // urls3.forEach((url) => {
+  //   let img = new Image();
+  //   img.src = url;
+  //   img.class = "tiempoVid";
 
-    tiempoVideo.appendChild(img);
-  });
+  //   tiempoVideo.appendChild(img);
+  // });
 
   /* ********* Timeline ********* */
 
@@ -396,10 +396,12 @@ window.addEventListener("DOMContentLoaded", () => {
     "#scrollea",
     {
       opacity: 1,
+      duration: 8,
       x: 0,
     },
     {
       opacity: 0,
+      duration: 8,
       x: -100,
     }
   );
@@ -439,8 +441,9 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   middleTimeline.to("#texto", {
-    y: -1000,
+    y: -800,
     duration: 30,
+    delay: 5,
   });
 
   middleTimeline.to("#intro", {
@@ -453,26 +456,34 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* *********** PORTFOLIO SCROLLING ********** */
 
-  middleTimeline.to(".portfolio", {
+  middleTimeline.fromTo(".portfolio", {
+    opacity: 0,
+    zIndex: -1,
+  }, {
     opacity: 1,
-    delay: -1,
-    duration: 1,
+    delay: -10,
+    duration: 10,
+    zIndex: 2
   });
 
-  middleTimeline.to("#intro" , {
+  middleTimeline.fromTo("#intro" , {
+    zIndex: 1,
+    visibility: 'visible',
+  }, {
+    zIndex: -1,
     visibility: 'hidden',
   });
 
   middleTimeline.to(".bg-rodaje", {
     yPercent: -66,
-    duration: 15,
+    duration: 25,
     opacity: 0.8,
     scrollTrigger: ".sup-rodaje",
   });
 
   middleTimeline.to(".sup-rodaje", {
     delay: 3,
-    duration: 12,
+    duration: 23,
     yPercent: -66,
   });
 
@@ -604,7 +615,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   middleTimeline.to(".portfolio", {
     opacity: 0,
-    duration: 0,
+    duration: 8,
   });
 
   /* *********** END PORTFOLIO SCROLLING ********** */
@@ -612,38 +623,36 @@ window.addEventListener("DOMContentLoaded", () => {
   /* *********** MIDDLE SCROLLING ********** */
 
   middleTimeline.fromTo(
-    "#middle",
-    {
+    "#middle", {
       opacity: 0,
-      duration: 1,
+      zIndex: -1,
     }, {
-    opacity: 1,
-    duration: 1,
-    delay: -10
-  }
-  );
+      opacity: 1,
+      duration: 8,
+      delay: -10,
+      zIndex: 3,
+    });
 
   middleTimeline.to(
     "#middleVidCtn", {
     opacity: 1,
     duration: 10,
+    delay: -10
   })
 
   middleTimeline.to(
-    "#middleVidCtn img",
-    {
-      opacity: 1,
-      zIndex: 100,
-      stagger: 0.5,
-      duration: 0,
-      y: 0
-    }
-  );
+    "#middleVidCtn", {
+    opacity: 0,
+    duration: 10,
+    delay: 20
+  })
 
   middleTimeline.fromTo('.bg-video', {
+    delay: -10,
     opacity: 0,
     duration: 5,
   }, {
+    delay: -10,
     opacity: 0.2,
     duration: 5
   })
@@ -711,9 +720,11 @@ window.addEventListener("DOMContentLoaded", () => {
   /* *********** TIEMPO SCROLLING ********** */
 
   middleTimeline.fromTo("#video-tiempo", {
+    zIndex: -1,
     rotateX: 111.20,
     opacity: 0
   }, {
+    zIndex: 4,
     rotateX: 0,
     translateY: -90,
     duration: 10,
@@ -722,70 +733,70 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   middleTimeline.fromTo(
-    "#tiempoVidCtn img", {
+    "#tiempoVidCtn", {
     opacity: 0,
+    delay: -10
   }, {
     opacity: 1,
-    stagger: 0.5,
-    duration: 0,
+    duration: 6,
   }
   );
 
   middleTimeline.fromTo(
-    "#video-tiempo #text-container", {
+    "#video-tiempo #text-container-2", {
     x: -2000,
     duration: 0,
-    delay: -50
+    delay: -20
   }, {
     x: 0,
     duration: 0,
-    delay: -50
+    delay: -20
   }
   );
 
   middleTimeline.fromTo(
-    "#video-tiempo #text-container .text",
+    "#video-tiempo #text-container-2 .text",
     {
       y: 1000,
-      delay: -50
+      delay: 20
     },
     {
       y: 0,
       stagger: 0.5,
       duration: 8,
-      delay: -50,
+      delay: 20,
     }
   );
 
-  middleTimeline.fromTo("#video-tiempo .letter", {
+  middleTimeline.fromTo("#video-tiempo #text-container-2 .letter", {
     color: "transparent",
-    delay: -100,
+    duration: 4,
+    delay: 20,
   }, {
     color: "rgb(203, 219, 67)",
     stagger: 4,
     duration: 4,
-    delay: -50,
+    delay: 20,
   });
 
   middleTimeline.fromTo("#video-tiempo", {
     rotateX: 0,
-    duration: 50,
+    duration: 20,
   }, {
     rotateX: 110,
     translateY: -90,
-    duration: 50,
+    duration: 20,
     scrollTrigger: ".accordion",
   });
 
   middleTimeline.fromTo('#video-tiempo', {
     opacity: 1,
-    visibility: "visible",
+    duration: 20,
     scrollTrigger: ".accordion",
   }, {
     opacity: 0,
-    visibility: "hidden",
     // delay: 12,
-    duration: 30,
+    duration: 20,
   })
 
   /* *********** TIEMPO SCROLLING ********** */
@@ -800,9 +811,15 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   middleTimeline.fromTo("#txt-container-2", {
+    zIndex: -1,
     opacity: 0,
+    duration: 10,
+    delay: -20
   }, {
-    opacity: 1
+    zIndex: 5,
+    opacity: 1,
+    duration: 10,
+    delay: -20
   });
 
   middleTimeline.fromTo("#p1", {
@@ -846,7 +863,7 @@ window.addEventListener("DOMContentLoaded", () => {
   middleTimeline.to("#txt-container-2", {
     delay: 30,
     y: 800,
-    duration: 50,
+    duration: 30,
     transform: "scale(0.5)",
     opacity: 0
   });
@@ -855,9 +872,11 @@ window.addEventListener("DOMContentLoaded", () => {
     y: -1000,
     transform: "scale(2.5)",
     duration: 20,
-    delay: -30,
+    delay: -20,
     opacity: 0,
   }, {
+    delay: -20,
+
     y: 0,
     transform: "scale(1.6)",
     duration: 20,
@@ -880,12 +899,12 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       visibility: "hidden",
       rotateY: -90,
-      duration: 5,
+      duration: 8,
     },
     {
       visibility: "visible",
       rotateY: 0,
-      duration: 5
+      duration: 8
     });
 
   middleTimeline.staggerTo(
@@ -894,23 +913,23 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       color: "#D1D821",
       stagger: 1,
-      duration: 10,
+      duration: 80,
     },
     2
   );
 
-  middleTimeline.staggerTo(
-    ['#textAllCtn'],
-    3,
-    {
-      scale: 0.6,
-      y: -200,
-    },
-    1
-  );
+  middleTimeline.to(".charSpan", {
+    delay: 10,
+  });
+
+  middleTimeline.to("#textAllCtn", {
+    scale: 0.6,
+    y: -200,
+    duration: 20,
+  });
 
   middleTimeline.to('.subTextContainer', {
-    y: 0, visibility: "visible"
+    y: 0, visibility: "visible",
   });
 
   middleTimeline.fromTo(
@@ -929,5 +948,4 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     0.5
   );
-
-})
+});

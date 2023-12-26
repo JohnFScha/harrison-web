@@ -214,7 +214,7 @@ section.portfolio {
   width: 100vw;
   background-color: hsl(0, 0%, 0%);
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 section.portfolio .bg-rodaje,
@@ -312,12 +312,11 @@ section.portfolio .hand-cursor {
   position: absolute;
   width: 80px;
   height: 80px;
-  background-image: url('./assets/cursor-mano.svg');
+  background-image: url('./../src/assets/cursor-mano.svg');
   background-size: cover;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  z-index: 100;
-  display: none;
+  z-index: 1000;
 }
 
 section.portfolio .pf-accordion-outer {
@@ -502,7 +501,7 @@ section.portfolio .shown {
   transform-origin: center top;
   transform: perspective(1000px) rotateX(0);
   transition: transform 0.5s;
-  z-index: 1;
+  z-index: 3;
 }
 
 body #middle #middleVidCtn {
@@ -796,7 +795,7 @@ body #middle #parent {
   /* opacity: 0; */
 }
 
-#video-tiempo #text-container {
+#video-tiempo #text-container-2 {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -807,13 +806,13 @@ body #middle #parent {
   z-index: 1;
 }
 
-#video-tiempo #text-container hr {
+#video-tiempo #text-container-2 hr {
   width: 150%;
   margin: 5%;
   z-index: -100;
 }
 
-#video-tiempo #text-container p {
+#video-tiempo #text-container-2 p {
   font-size: 4rem;
   margin: 0;
   text-align: center;
@@ -821,7 +820,7 @@ body #middle #parent {
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
-#video-tiempo #text-container #letter-ctn {
+#video-tiempo #text-container-2 #letter-ctn {
   display: flex;
   font-size: 0;
   margin: 0;
@@ -830,12 +829,12 @@ body #middle #parent {
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
-#video-tiempo #text-container #letter-ctn .spacer {
+#video-tiempo #text-container-2 #letter-ctn .spacer {
   font-size: 2rem;
   visibility: hidden;
 }
 
-#video-tiempo #text-container #letter-ctn span {
+#video-tiempo #text-container-2 #letter-ctn span {
   font-size: 4rem;
   margin: 0;
   padding: 0;
