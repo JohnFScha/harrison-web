@@ -4,8 +4,6 @@ import Lenis from "./../node_modules/@studio-freight/lenis/dist/lenis.mjs";
 import gsap from "./../node_modules/gsap/index.js";
 import { ScrollTrigger } from "./../node_modules/gsap/ScrollTrigger.js";
 
-console.log(top)
-
 var paths = document.querySelectorAll(".path");
 
 paths.forEach((path) => {
@@ -44,6 +42,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const menu = document.getElementById("menu");
   const navItems = document.getElementsByClassName("nav-item");
   const separators = document.getElementsByClassName("separator");
+  const icon = document.getElementById("buttonIcon");
+  const social = document.querySelectorAll(".social-img");
 
   const tl = gsap.timeline({ paused: true });
 
@@ -74,20 +74,33 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 0.5,
   });
 
+  let isRotated = false;
+
   collapse.addEventListener("click", () => {
+    isRotated = !isRotated;
+    icon.src = isRotated ? "src/assets/x.svg" : "src/assets/menu.png";
+    collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
+
     if (body.className.match("close")) {
       body.className = "open";
+      social[0].src = "src/assets/mail-dark.png";
+      social[1].src = "src/assets/whatsapp-dark.png";
+      social[2].src = "src/assets/ig-dark.png";
+      social[3].src = "src/assets/Linkedin-dark.png";
     } else if (body.className.includes("open")) {
       body.className = "close";
+      social[0].src = "src/assets/mail.png";
+      social[1].src = "src/assets/wsp.png";
+      social[2].src = "src/assets/ig.png";
+      social[3].src = "src/assets/Linkedin.png";
     }
-    if (tl.paused()) {
+    if (tl.paused() || tl.totalProgress() === 0) {
       tl.play();
     } else if (tl.totalProgress() === 1) {
       tl.reverse();
-    } else {
-      tl.paused(true);
     }
   });
+
   /* ****************** Intro dom ****************** */
 
   const logoCtn = document.getElementById("init");
@@ -150,7 +163,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
-    let originalWidth = getComputedStyle(event.currentTarget).width;
+    // let originalWidth = getComputedStyle(event.currentTarget).width;
 
     gsap.to(event.currentTarget, 0.7, {
       width: "2000px",
@@ -328,16 +341,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* ******** Video frames ******** */
 
-  let urls1 = new Array(141)
-    .fill()
-    .map(
-      (_, i) =>
-        `../src/assets/camara-frames/ezgif-frame-${(i + 1)
-          .toString()
-          .padStart(3, "0")}.jpg`
-    );
+  let urls1 = new Array(380)
+  .fill()
+  .map(
+    (_, i) =>
+      `../src/assets/camara-frames/introframes(${(i + 1)
+        .toString()}).webp`
+  );
 
-  urls1.forEach((url) => {
+   urls1.forEach((url) => {
     let img = new Image();
     img.src = url;
     img.class = "camara";
@@ -380,7 +392,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const middleTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: "body",
+      trigger: "main.wrapper",
       start: "top top",
       end: "bottom+=5000% bottom",
       scrub: true,
@@ -391,6 +403,12 @@ window.addEventListener("DOMContentLoaded", () => {
   /* *********** END TIMELINE ********** */
 
   /* *********** INTRO SCROLLING ********** */
+
+  middleTimeline.fromTo("#scrollea", {
+    display: "none",
+  }, {
+    display: "flex",
+  });
 
   middleTimeline.fromTo(
     "#scrollea",
@@ -406,38 +424,98 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  middleTimeline.fromTo(
-    "#video-camara img",
-    {
-      opacity: 0,
-    },
-    {
-      opacity: 1,
-      stagger: 0.5,
-      duration: 0,
+  middleTimeline.fromTo("#scrollea", {
+    display: "flex"
+  }, {
+    display: "none",
+  });
+
+  middleTimeline.fromTo("#video", {
+    display: "none",
+  }, {
+    display: "flex"
+  });
+
+  // middleTimeline.fromTo(
+  //   "#video-camara img",
+  //   {
+  //     display: "none",
+  //     // opacity: 0,
+  //   },
+  //   {
+  //     display: "block",
+  //     // opacity: 1,
+  //     stagger: 0.5,
+  //     duration: 1,
+  //   }
+  // );
+
+  // middleTimeline.fromTo(
+  //   "#video-camara img",
+  //   {
+  //     display: "block",
+  //     // opacity: 1,
+  //   },
+  //   {
+  //     display: "none",
+  //     // opacity: 0,
+  //     stagger: 0.5,
+  //     duration: 1,
+  //   }
+  // );
+
+  middleTimeline.fromTo("#video-camara",{
+    opacity: 0,
+    duration: 5,
+  }, {
+    opacity: 1,
+    duration: 5,
+  });
+
+  const cameraFrames = gsap.utils.toArray("#video-camara img");
+  
+  cameraFrames.forEach((img, index) => {
+    middleTimeline.fromTo(
+      img,
+      {
+        display: "none",
+      },
+      {
+        display: "block",
+        stagger: 0.3, 
+        duration: 0.5,
+      },
+    )
+    if (index < cameraFrames.length - 1) {
+      middleTimeline.set(img, { display: 'none' });
     }
-  );
+  })
+
+  middleTimeline.to("#video-camara", {
+    delay:10,
+  });
 
   middleTimeline.fromTo(
     "#texto",
     {
       transform: 'scale(0)',
       opacity: 0,
-      duration: 5,
-      delay: -10,
+      duration: 10,
+      delay: -50,
     },
     {
       transform: 'scale(1)',
       opacity: 1,
       duration: 20,
-      delay: -30,
+      delay: -50,
     }
   );
 
   middleTimeline.to(".fill", {
     color: "#D1D821",
     stagger: 3,
-    duration: 5,
+    duration: 10,
+    delay: 1,
   });
 
   middleTimeline.to("#texto", {
@@ -448,20 +526,37 @@ window.addEventListener("DOMContentLoaded", () => {
 
   middleTimeline.to("#intro", {
     opacity: 0,
-    duration: 10,
-    // delay: -2,
+    duration: 8,
+    scrollTrigger: "#portfolio"
+  });
+
+  middleTimeline.fromTo("#intro", {
+    display: "flex",
+    duration: 0
+  }, {
+    display: "none",
+    duration: 0
   });
 
   /* *********** END INTRO SCROLLING ********** */
 
   /* *********** PORTFOLIO SCROLLING ********** */
 
+  middleTimeline.fromTo("#portfolio", {
+    display: "none",
+    delay: -50,
+  }, {
+    display: "block",
+    delay: -50,
+  });
+
   middleTimeline.fromTo(".portfolio", {
     opacity: 0,
     zIndex: -1,
+    delay: -30,
   }, {
     opacity: 1,
-    delay: -10,
+    delay: -30,
     duration: 10,
     zIndex: 2
   });
@@ -479,13 +574,29 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 25,
     opacity: 0.8,
     scrollTrigger: ".sup-rodaje",
+    ease: "power1.inOut",
   });
 
   middleTimeline.to(".sup-rodaje", {
     delay: 3,
     duration: 23,
     yPercent: -66,
+    ease: "power1.inOut",
   });
+
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 2,
+      delay: -5,
+    }
+  );
 
   middleTimeline.to(".txt-ctn-1 .txt-row h2", {
     opacity: 1,
@@ -515,6 +626,18 @@ window.addEventListener("DOMContentLoaded", () => {
   middleTimeline.to(".txt-ctn-1", {
     duration: 5,
     opacity: 0,
+  });
+
+  middleTimeline.to("#rect1", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  middleTimeline.to("#rect2", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
   });
 
   middleTimeline.to(".sup-rodaje", {
@@ -576,7 +699,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   middleTimeline.to(".pf-accordion", {
-    delay: 3,
+    delay: 10,
     opacity: 1,
     duration: 2,
   });
@@ -613,6 +736,20 @@ window.addEventListener("DOMContentLoaded", () => {
     top: "30%",
   });
 
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      y: 0,
+    },
+    {
+      opacity: 0,
+      y: 200,
+      duration: 5,
+      delay: 0,
+    }
+  );
+
   middleTimeline.to(".portfolio", {
     opacity: 0,
     duration: 8,
@@ -632,6 +769,14 @@ window.addEventListener("DOMContentLoaded", () => {
       delay: -10,
       zIndex: 3,
     });
+
+  middleTimeline.fromTo("#portfolio", {
+    display: "block",
+    delay: 0,
+  }, {
+    display: "none",
+    delay: 0,
+  });
 
   middleTimeline.to(
     "#middleVidCtn", {
@@ -653,9 +798,32 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 5,
   }, {
     delay: -10,
-    opacity: 0.2,
+    opacity: 0.1,
     duration: 5
   })
+
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      delay: 5,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 4,
+      delay: 5,
+    }
+  );
+
+  middleTimeline.fromTo(".accordion", {
+    display: "none",
+    duration: 0
+  }, {
+    display: "flex",
+    duration: 0,
+  });
 
   middleTimeline.fromTo(
     "#middle .text",
@@ -670,10 +838,23 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   );
 
+  middleTimeline.to("#rect2", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  middleTimeline.to("#rect3", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
+  });
+
+
   middleTimeline.to("#middle #text-container .letter", {
     color: "#D1D821",
-    stagger: 2,
-    duration: 4,
+    stagger: 1.5,
+    duration: 3,
   });
 
   middleTimeline.fromTo("#middle #text-container", {
@@ -712,25 +893,78 @@ window.addEventListener("DOMContentLoaded", () => {
     rotateX: -69.3,
     duration: 10,
     delay: 30,
-    opacity: 0
+  });
+
+  middleTimeline.to(".accordion", {
+    opacity: 0,
+    duration: 2,
+    delay: -4
+  });
+
+  middleTimeline.to(".bg-video", {
+    opacity: 0,
+    duration: 10,
+    delay: -10
   });
 
   /* *********** END MIDDLE SCROLLING ********** */
 
   /* *********** TIEMPO SCROLLING ********** */
 
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+    },
+    {
+      opacity: 0,
+
+      duration: 16,
+      delay: 0,
+    }
+  );
+
+  middleTimeline.fromTo("#video-tiempo", {
+    opacity: 0,
+    duration: 0,
+  }, {
+    opacity: 1,
+    duration: 0,
+  });
+
+  middleTimeline.fromTo(".bg-video", {
+    rotateX: "0",
+    duration: 0
+  }, {
+    rotateX: "-65deg",
+    duration: 0,
+  });
+
+  middleTimeline.fromTo(".accordion", {
+    display: "flex",
+    duration: 0
+  }, {
+    display: "none",
+    duration: 0,
+  });
+
   middleTimeline.fromTo("#video-tiempo", {
     zIndex: -1,
-    rotateX: 111.20,
-    opacity: 0
+    rotateX: 115.3,
   }, {
     zIndex: 4,
     rotateX: 0,
-    translateY: -90,
+    // translateY: -90,
     duration: 10,
-    opacity: 1,
     scrollTrigger: ".accordion",
   });
+
+  middleTimeline.to(
+    "#video-tiempo #text-container-2 .text",
+    {
+      y: 1500,
+      duration: 0
+    });
 
   middleTimeline.fromTo(
     "#tiempoVidCtn", {
@@ -746,37 +980,36 @@ window.addEventListener("DOMContentLoaded", () => {
     "#video-tiempo #text-container-2", {
     x: -2000,
     duration: 0,
-    delay: -20
+    delay: -10
   }, {
     x: 0,
     duration: 0,
-    delay: -20
-  }
-  );
+    delay: -10
+  });
 
   middleTimeline.fromTo(
     "#video-tiempo #text-container-2 .text",
     {
-      y: 1000,
-      delay: 20
+      y: 1500,
+      delay: 15
     },
     {
       y: 0,
       stagger: 0.5,
       duration: 8,
-      delay: 20,
+      delay: 10,
     }
   );
 
   middleTimeline.fromTo("#video-tiempo #text-container-2 .letter", {
     color: "transparent",
     duration: 4,
-    delay: 20,
+    delay: 15,
   }, {
     color: "rgb(203, 219, 67)",
     stagger: 4,
     duration: 4,
-    delay: 20,
+    delay: 15,
   });
 
   middleTimeline.fromTo("#video-tiempo", {
@@ -784,7 +1017,6 @@ window.addEventListener("DOMContentLoaded", () => {
     duration: 20,
   }, {
     rotateX: 110,
-    translateY: -90,
     duration: 20,
     scrollTrigger: ".accordion",
   });
@@ -797,7 +1029,31 @@ window.addEventListener("DOMContentLoaded", () => {
     opacity: 0,
     // delay: 12,
     duration: 20,
-  })
+  });
+
+  middleTimeline.fromTo("#txt-container-2", {
+    display: "none",
+    duration: 0
+  }, {
+    display: "flex",
+    duration: 0,
+  });
+
+  middleTimeline.fromTo(".bg-video", {
+    opacity: 0,
+    duration: 0,
+  }, {
+    opacity: 0.1,
+    duration: 0,
+  });
+
+  middleTimeline.fromTo(".bg-video", {
+    rotateX: -65,
+    duration: 20,
+  }, {
+    rotateX: 0,
+    duration: 20,
+  });
 
   /* *********** TIEMPO SCROLLING ********** */
 
@@ -838,14 +1094,40 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   middleTimeline.to("#p1", {
-    delay: 40,
+    delay: 20,
     duration: 30,
     x: -2000,
   });
 
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 0,
+      y: 200,
+    },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 16,
+      delay: -2,
+    }
+  );
+
   middleTimeline.to("#p1", {
     opacity: 0,
     duration: 0
+  });
+
+  middleTimeline.to("#rect3", {
+    attr: { rx: "8.5", y: "34", width: "17", height: "43.4444" },
+    fill: "#D9D9D9",
+    duration: 1,
+  });
+
+  middleTimeline.to("#rect4", {
+    attr: { rx: "12.2778", y: "0", width: "24.5556", height: "86.8889" },
+    fill: "#CBDB43",
+    duration: 1,
   });
 
   middleTimeline.to("#p2", {
@@ -854,8 +1136,16 @@ window.addEventListener("DOMContentLoaded", () => {
     y: 150
   });
 
+  middleTimeline.fromTo(".flipLogoContainer", {
+    display: "none",
+    duration: 0
+  }, {
+    display: "flex",
+    duration: 0,
+  });
+
   middleTimeline.to("#carousel-container", {
-    transform: "scale(1)",
+    transform: "scale(1.3)",
     duration: 10,
     delay: -20
   });
@@ -867,6 +1157,19 @@ window.addEventListener("DOMContentLoaded", () => {
     transform: "scale(0.5)",
     opacity: 0
   });
+
+  middleTimeline.fromTo(
+    "#progressbar-ctn",
+    {
+      opacity: 1,
+      duration: 100,
+    },
+    {
+      opacity: 0,
+      duration: 2,
+      delay: 20,
+    }
+  );
 
   middleTimeline.fromTo("#svgOutro", {
     y: -1000,
@@ -889,6 +1192,14 @@ window.addEventListener("DOMContentLoaded", () => {
     rotateY: 809,
   });
 
+  middleTimeline.fromTo("#txt-container-2", {
+    display: "flex",
+    duration: 0
+  }, {
+    display: "none",
+    duration: 0,
+  });
+
   middleTimeline.to("#svgOutro",
     {
       visibility: "hidden"
@@ -904,7 +1215,8 @@ window.addEventListener("DOMContentLoaded", () => {
     {
       visibility: "visible",
       rotateY: 0,
-      duration: 8
+      duration: 8,
+      delay: 15
     });
 
   middleTimeline.staggerTo(
@@ -925,11 +1237,19 @@ window.addEventListener("DOMContentLoaded", () => {
   middleTimeline.to("#textAllCtn", {
     scale: 0.6,
     y: -200,
-    duration: 20,
+    duration: 15,
   });
 
   middleTimeline.to('.subTextContainer', {
     y: 0, visibility: "visible",
+  });
+
+  middleTimeline.fromTo("nav .social-ctn a", {
+    scale: 1,
+    duration: 4,
+  }, {
+    scale: 0,
+    duration: 4,
   });
 
   middleTimeline.fromTo(
@@ -948,4 +1268,22 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     0.5
   );
+});
+
+const link1 = document.querySelector('nav section#menu ul li:nth-of-type(3) a');
+
+link1.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  console.log('clicked');
+
+  const percentage = 50; // Adjust this value as needed
+
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const targetPosition = (document.body.scrollHeight - windowHeight) * (percentage / 100);
+
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth',
+  });
 });

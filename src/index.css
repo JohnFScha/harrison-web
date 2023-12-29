@@ -30,22 +30,49 @@ a {
 }
 
 html {
+  overflow: hidden;
   height: 100%;
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  position: fixed;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   background-color: black;
   font-family: 'Montserraty';
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body::-webkit-scrollbar {
-  /* display: none; */
+  display: none;
+}
+
+#progressbar-ctn {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  left: 25%;
+  margin: auto;
+  opacity: 0;
+  margin: 0 auto;
+  z-index: 10;
+  width: 50%;
+  height: 150px;
+  margin: auto;
+}
+
+#progressbar-ctn svg {
+  margin: auto;
+  width: 30%;
+  overflow: visible;
 }
 
 /* ============= INTRO ============= */
@@ -54,10 +81,43 @@ nav {
   position: fixed;
   top: 0;
   display: flex;
-  flex-direction: column;
-  align-items: end;
-  height: 100vh;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
   z-index: 6000;
+}
+nav .social-ctn {
+  display: flex;
+  justify-content: flex-end;
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem 0;
+  z-index: 20;
+}
+nav .menu-btn-ctn {
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem 0;
+  margin-right: 20px;
+  z-index: 20;
+}
+nav .social-ctn a,
+nav .menu-btn-ctn button {
+  margin: 0 0.5rem;
+}
+
+nav .menu-btn-ctn button {
+  width: 3rem;
+}
+
+nav .social-ctn a {
+  width: 2rem;
+}
+
+nav .social-ctn a img,
+button#collapse img {
+  width: 100%;
 }
 nav section#menu {
   position: fixed;
@@ -96,13 +156,13 @@ nav section#menu ul li a:hover {
   color: rgb(29, 62, 78);
 }
 nav button {
-  position: fixed;
+  /* position: fixed; */
   right: 0;
   background-color: inherit;
   border: none;
-  padding: 1rem;
+  /* padding: 1rem; */
   z-index: 7000;
-
+  cursor: pointer;
 }
 nav button svg {
   color: rgb(29, 62, 78);
@@ -116,6 +176,7 @@ body #intro {
 }
 
 #intro #init {
+  position: fixed;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -166,6 +227,10 @@ body #intro #scrollea svg path.st1 {
   animation: scroll 0.8s infinite;
 }
 
+body #intro #scrollea svg .st0 {
+  fill: white;
+}
+
 body #intro #video {
   display: flex;
   justify-content: center;
@@ -178,13 +243,17 @@ body #intro #video #video-camara{
   position: relative;
   width: 100vw;
   height: 100vh;
+  background-image: url(../src/assets/camara-frames/introframes\(1\).webp);
+  background-position: center;
+  background-size: cover;
 }
 body #intro #video #video-camara img{
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  /* opacity: 0; */
+  /* display: none; */
 }
 
 body #intro #video #texto {
@@ -236,10 +305,13 @@ section.portfolio .sup-rodaje.zoomed {
 }
 
 section.portfolio h2,
-section.portfolio p,
-section.portfolio bold,
 section.portfolio span {
   font-family: "Montserraty", sans-serif;
+}
+
+section.portfolio p,
+section.portfolio bold {
+  font-family: "Montserrat", sans-serif;
 }
 
 section.portfolio h2,
@@ -511,6 +583,7 @@ body #middle #middleVidCtn {
   height: 100vh;
   z-index: -1;
   opacity: 0;
+  object-fit: cover;
 }
 
 body #middle #middleVidCtn img {
@@ -733,8 +806,10 @@ body #middle #parent {
   top: 0;
   object-fit: cover;
   z-index: -1;
-  /* filter: hue-rotate(300deg); */
+  filter: hue-rotate(145deg);
   opacity: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(0deg);
 }
 
 /* ======================== End middle =========================*/
@@ -755,8 +830,8 @@ body #middle #parent {
   width: 100vw;
   height: 100vh;
   transform-style: preserve-3d;
-  transform: translate3d(0,-12.5%,250px);
-  scale: 0.75;
+  /* transform: translate3d(0,0%,-500px); */
+  /* scale: 0.75; */
   /* animation: flipCard 1s ease-in-out 1;  */
   opacity: 0;
 }
@@ -767,6 +842,7 @@ body #middle #parent {
   width: 100vw;
   height: 100vh;
   z-index: 1;
+  object-fit: cover;
   /* opacity: 0; */
 }
 
@@ -868,14 +944,19 @@ body #middle #parent {
 
 
 @keyframes scroll {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-70px);
+    transform: translateY(-50px);
   }
 
-  to {
+  80% {
     opacity: 1;
-    transform: translateY(50px);
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(40px);
   }
 }
 
@@ -985,6 +1066,7 @@ body #middle #parent {
   border-radius: 6%;
   overflow: hidden;
   transform: translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  background-color: #000;
 }
 
 .carousel figure .card-ctn:not(:first-of-type) {
@@ -1031,6 +1113,8 @@ body #middle #parent {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: hue-rotate(200deg);
+  opacity: 0.7;
 }
 
 @keyframes rotateAnim {
@@ -1108,7 +1192,7 @@ body #middle #parent {
 
 div#textAllCtn {
   width: 100vw;
-  height: 100vh;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1156,7 +1240,7 @@ div#textAllCtn .letter-container .spacerSpan {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 50%;
   z-index: 5;
 }
 
