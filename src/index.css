@@ -203,7 +203,7 @@ nav section#menu {
   opacity: 0;
 }
 
-nav section#menu div.social-ctn {
+nav section#menu div.social-ctn-2 {
   display: none;
 }
 
@@ -1458,7 +1458,7 @@ div#textAllCtn .letter-container .spacerSpan {
     padding: 0;
   }
 
-  nav section#menu .social-ctn {
+  nav section#menu .social-ctn-2 {
     display: flex !important;
     justify-content: center;
     align-items: center;
@@ -1468,7 +1468,11 @@ div#textAllCtn .letter-container .spacerSpan {
     position: fixed;
     bottom: 0;
     left: 0;
-    filter: invert(1);
+    z-index: ;
+  }
+
+  nav section#menu .social-ctn-2 a img {
+    width: 3rem;
   }
 
   nav section#menu ul {
