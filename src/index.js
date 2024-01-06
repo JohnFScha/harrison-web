@@ -1,5 +1,3 @@
-let mobileView = window.matchMedia("(max-width: 900px)");
-
 // Function to check if the screen width is 900px or less
 function isMobile() {
   return window.innerWidth <= 900;
@@ -267,12 +265,8 @@ collapse.addEventListener("click", () => {
   }
   if (menuTl.totalProgress() === 0) {
     menuTl.play();
-    // collapse.disabled = false;
   } else if (menuTl.totalProgress() > 0) {
     menuTl.reverse();
-    // collapse.disabled = true;
-    // tl.totalProgress(0);
-    // tl.pause();
   }
 });
 
@@ -329,62 +323,6 @@ links.forEach((a) => {
   });
 });
 
-//   const tl = gsap.timeline({ paused: true });
-
-//   tl.from(menu, {
-//     xPercent: "100",
-//     duration: 1,
-//     background: "transparent",
-//     display: "none",
-//     zIndex: 0,
-//     ease: "power2.inOut",
-//   });
-
-//   tl.fromTo(
-//     navItems,
-//     {
-//       opacity: 0,
-//       y: 50,
-//     },
-//     {
-//       opacity: 1,
-//       y: 0,
-//     }
-//   );
-
-//   tl.to(separators, {
-//     x: 0,
-//     transformOrigin: "100% 50%",
-//     duration: 0.5,
-//   });
-
-//   let isRotated = false;
-
-//   collapse.addEventListener("click", () => {
-//     isRotated = !isRotated;
-//     icon.src = isRotated ? "src/assets/x.svg" : "src/assets/menu.png";
-//     collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
-
-//     if (body.className.match("close")) {
-//       body.className = "open";
-//       social.forEach((element) => {
-//         element.style.filter = "";
-//       })
-//     } else if (body.className.includes("open")) {
-//       body.className = "close";
-//       social[0].src = "src/assets/mail.png";
-//       social[1].src = "src/assets/wsp.png";
-//       social[2].src = "src/assets/ig.png";
-//       social[3].src = "src/assets/Linkedin.png";
-//     }
-//     if (tl.paused() || tl.totalProgress() === 0) {
-//       tl.play();
-//     } else if (tl.totalProgress() !== 0) {
-//       tl.reverse();
-//     } else if (tl.reverse() || tl.totalProgress() === 1) {
-//       tl.play();
-//   }
-// });
 
 /* ****************** Intro dom ****************** */
 
@@ -1131,14 +1069,6 @@ mainTimeline.to(".bg-overlay", {
   scrollTrigger: ".pf-accordion-outer ol li h2",
 });
 
-// if(isMobile()) {
-//   mainTimeline.to(".box-ctn", {
-
-//   });
-// } else {
-
-// }
-
 mainTimeline.to(".pf-accordion-outer ol li h2", {
   y: 0,
   opacity: 1,
@@ -1232,7 +1162,6 @@ if (isMobile()) {
     duration: 9,
     transform: "scale(4.1)",
     top: "50%",
-    // scrollTrigger: ".sup-rodaje"
   });
 } else {
   mainTimeline.to(".box-ctn", {
