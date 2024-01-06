@@ -454,15 +454,15 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
-if (middleVideo.style.display === "block") {
+/* if (middleVideo.style.display === "block") {
   middleVideo.play();
 } else if (middleVideo.style.display === "none") {
   middleVideo.pause();
-}
+} */
 
 middleVideo.addEventListener("ended", () => {
   gsap.to(window, {
-    scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios")
+    scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo")
   });
   middleVideo.currentTime = 0;
   middleVideo.load();
@@ -1249,6 +1249,9 @@ mainTimeline.fromTo(
 }, {
   display: "block",
   duration: 0,
+  onStart: () => {
+    middleVideo.play()
+  }
 }
 )
 
