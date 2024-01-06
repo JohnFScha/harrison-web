@@ -1238,7 +1238,8 @@ if (isMobile()) {
   mainTimeline.to(".box-ctn", {
     delay: 4,
     duration: 7.5,
-    transform: "scale(4.1)",
+    transform: "scale(4)",
+    opacity: 0,
     xPercent: -100,
     top: "30%",
   });
