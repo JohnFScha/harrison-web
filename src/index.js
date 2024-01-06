@@ -95,7 +95,7 @@ window.onload = () => {
 };
 
 const timeout = setTimeout(() => {
-  window.location.href = "/404"; // Adjust the path as needed
+  window.location.href = "/404.html"; // Adjust the path as needed
 }, 5000); // 5 seconds in milliseconds
 
 // Clear the timeout if the content loads before the timeout triggers
