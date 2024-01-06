@@ -1807,7 +1807,6 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #textAllCtn {
     margin: 0 1rem !important;
-    max-width: 360px !important;
     letter-spacing: 1px;
     font-weight: 400;
   }
@@ -1824,11 +1823,18 @@ div#textAllCtn .letter-container .spacerSpan {
     padding: 0 1rem;
     display: block;
   }
+  .subTextContainer {
+    justify-content: flex-start;
+  }
   .socialContainer {
     gap: 0.5rem;
     align-items: center;
   }
-  svg.svgInner {
+  .svgSocial {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  a.svgInner {
     width: 50px !important;
     height: 50px;
   }
