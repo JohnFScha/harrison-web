@@ -1834,7 +1834,10 @@ div#textAllCtn .letter-container .spacerSpan {
   }
   .subTextContainer {
     justify-content: flex-start;
+<<<<<<< HEAD
     top: 25%;
+=======
+>>>>>>> 22db64b44c9c3b1e766ad12789fcd1cf196d1df4
   }
   .socialContainer {
     gap: 0.5rem;
