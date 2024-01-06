@@ -432,9 +432,9 @@ const middleVidSection = document.getElementById('middleVidCtn');
 const portfolioSection = document.getElementById('portfolio');
 
 const videos = [
-  "../src/assets/casos/eugenie-comp.webm",
-  "../src/assets/casos/delsud-comp.webm",
-  "../src/assets/casos/flexy-comp.webm",
+  "src/assets/casos/eugenie-comp.webm",
+  "src/assets/casos/delsud-comp.webm",
+  "src/assets/casos/flexy-comp.webm",
 ];
 let currentVideo = null;
 
@@ -442,6 +442,12 @@ if (isMobile()) {
   middleVidSection.src = "src/assets/calidad-vertical.webm"
 } else {
   middleVidSection.src = "src/assets/calidad.webm"
+}
+
+if (isMobile()) {
+  videoTiempo.src = "src/assets/Video-tiempo_v.mp4"
+} else {
+  videoTiempo.src = "src/assets/video-tiempo.webm"
 }
 
 /* ****************** end Portfolio dom ****************** */
@@ -773,37 +779,6 @@ closeModal.addEventListener("click", () => {
   mainTimeline.scrollTrigger.enable(true);
 });
 
-// // Set the initial time based on the video duration
-// let time = videoTiempo.duration * 1000; // Convert seconds to milliseconds
-
-// // Create a function to update the timer
-// function updateTimer() {
-//   const hours = Math.floor(time / 3600000);
-//   const minutes = Math.floor((time % 3600000) / 60000);
-//   const seconds = Math.floor((time % 60000) / 1000);
-//   const milliseconds = time % 1000;
-
-//   // Format the time with leading zeros
-//   const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(3, '0')}`;
-
-//   // Update the HTML
-//   document.getElementById('countdown-timer').innerText = formattedTime;
-// }
-
-// // // Find the specific point in your timeline where you want to add the countdown
-// // const specificPointInTimeline = 2; // Change this to the desired time in seconds
-
-// // // Add the countdown animation to your existing timeline
-// // const existingTimeline = gsap.timeline();
-// mainTimeline.to('#tiempoVidCtn', { time: videoTiempo.duration, duration: videoTiempo.duration, ease: 'none' });
-
-// // Create a GSAP timeline for the countdown
-// const countdownTimeline = gsap.timeline({ paused: true });
-// countdownTimeline.add(() => {
-//   updateTimer();
-//   time -= 10; // Decrease the time by 10 milliseconds
-// }, 0.01);
-
 /* ****************** end dom manipulation ****************** */
 
 /* ****************** end Portfolio dom ****************** */
@@ -820,7 +795,7 @@ let urls1 = new Array(380)
   .fill()
   .map(
     (_, i) =>
-      `../src/assets/camara-frames/introframes(${(i + 1)
+      `src/assets/camara-frames/introframes(${(i + 1)
         .toString()}).webp`
   );
 
@@ -1508,13 +1483,13 @@ mainTimeline.fromTo(".accordion", {
   duration: 0,
 });
 
-mainTimeline.fromTo("svg#TEXT", {
+/* mainTimeline.fromTo("svg#TEXT", {
   opacity: 0,
   duration: 0
 }, {
   opacity: 1,
   duration: 0
-});
+}); */
 
 // mainTimeline.to("#video-tiempo", {
 //   scrollTrigger: {
@@ -1622,14 +1597,14 @@ mainTimeline.fromTo('#video-tiempo', {
   duration: 0,
 });
 
-mainTimeline.fromTo("svg#TEXT", {
+/* mainTimeline.fromTo("svg#TEXT", {
   opacity: 1,
   duration: 0,
   scrollTrigger: ".accordion",
 }, {
   opacity: 0,
   duration: 0
-});
+}); */
 
 mainTimeline.fromTo("#txt-container-2", {
   display: "none",
@@ -1920,5 +1895,3 @@ link1.addEventListener("click", (event) => {
 });
 
 /******** JS MEDIA QUERIES  ********/
-
-
