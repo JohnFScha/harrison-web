@@ -1124,6 +1124,10 @@ section.portfolio .logo-box {
   transform: scale(0);
 }
 
+#mobileBrandsCtn{
+  display: none;
+}
+
 .carousel {
   position: relative;
   perspective: 2500px;
@@ -1357,7 +1361,7 @@ div#textAllCtn .letter-container .spacerSpan {
   position: relative;
   visibility: hidden;
   display: flex;
-  top: 12.5%;
+  top: 18.5%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1499,7 +1503,7 @@ div#textAllCtn .letter-container .spacerSpan {
   body #intro #video #video-camara img {
     object-fit: contain;
     transform: rotate(-90deg);
-    width: calc(182% - 5%);
+    width: 100vh;
     height: 100%;
   }
 
@@ -1638,6 +1642,11 @@ div#textAllCtn .letter-container .spacerSpan {
   section.portfolio .logo-box {
     width: 50px;
     height: 50px;
+  }
+
+  #modalVideo {
+    transform: rotate(90deg);
+    width: 160vw;
   }
 
   /* ============= servicios ============ */
@@ -1807,7 +1816,6 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #textAllCtn {
     margin: 0 1rem !important;
-    max-width: 360px !important;
     letter-spacing: 1px;
     font-weight: 400;
   }
@@ -1824,11 +1832,19 @@ div#textAllCtn .letter-container .spacerSpan {
     padding: 0 1rem;
     display: block;
   }
+  .subTextContainer {
+    justify-content: flex-start;
+    top: 25%;
+  }
   .socialContainer {
     gap: 0.5rem;
     align-items: center;
   }
-  svg.svgInner {
+  .svgSocial {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  a.svgInner {
     width: 50px !important;
     height: 50px;
   }
