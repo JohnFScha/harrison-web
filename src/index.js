@@ -284,24 +284,20 @@ let links = gsap.utils.toArray(".nav-link");
 links.forEach((a) => {
   a.addEventListener("click", (e) => {
     e.preventDefault();
-
-    if (a.innerText === `Inicio`) {
-      // window.scrollTo(0, 0)
+    
+    if (a.innerText.toLowerCase() === `inicio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
       });
-    } else if (a.innerText === `Portfolio`) {
-      // window.scrollTo(0, portfolio)
+    } else if (a.innerText.toLowerCase() === `portfolio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
       });
-    } else if (a.innerText === `Servicios`) {
-      // window.scrollTo(0, servicios)
+    } else if (a.innerText.toLowerCase() === `servicios`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
       });
-    } else if (a.innerText === `Clientes`) {
-      // window.scrollTo(0, clientes)
+    } else if (a.innerText.toLowerCase() === `clientes`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
       });
@@ -361,8 +357,6 @@ let videoTiempo = document.querySelector("#tiempoVidCtn");
 let videoTiempoSection = document.querySelector("section#video-tiempo");
 let txtContainers = document.querySelectorAll(".child .text-ctn");
 let txtInnerCtn = document.querySelectorAll(".child .text-ctn ol");
-// const customCursor = document.createElement("div");
-// customCursor.className = "hand-cursor";
 
 // modals
 const liElements = [];
@@ -2059,25 +2053,5 @@ mainTimeline.staggerTo(
   },
   0.5
 );
-
-const link1 = document.querySelector("nav section#menu ul li:nth-of-type(3) a");
-
-link1.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  console.log("clicked");
-
-  const percentage = 50; // Adjust this value as needed
-
-  const windowHeight =
-    window.innerHeight || document.documentElement.clientHeight;
-  const targetPosition =
-    (document.body.scrollHeight - windowHeight) * (percentage / 100);
-
-  window.scrollTo({
-    top: targetPosition,
-    behavior: "smooth",
-  });
-});
 
 /******** JS MEDIA QUERIES  ********/
