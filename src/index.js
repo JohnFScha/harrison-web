@@ -94,6 +94,15 @@ window.onload = () => {
   init.style.display = "none";
 };
 
+const timeout = setTimeout(() => {
+  window.location.href = "/404.html"; // Adjust the path as needed
+}, 10000); // 10 seconds in milliseconds
+
+// Clear the timeout if the content loads before the timeout triggers
+window.addEventListener("load", () => {
+  clearTimeout(timeout);
+});
+
 /* ********* Timeline ********* */
 
 const mainTimeline = gsap.timeline({
