@@ -344,6 +344,7 @@ const nav = document.querySelector("nav");
 /* ****************** Portfolio dom ****************** */
 
 let txtCtn = document.querySelectorAll(".text-ctn-1");
+let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
 let hoveredTitleCtn = document.querySelectorAll(
   "section.portfolio li h2:hover"
@@ -360,9 +361,9 @@ let txtInnerCtn = document.querySelectorAll(".child .text-ctn ol");
 
 // modals
 const liElements = [];
-liElements.push(document.getElementById("eugenie"));
-liElements.push(document.getElementById("delsud"));
-liElements.push(document.getElementById("flexy"));
+liElements.push(document.querySelector("#eugenie h2"));
+liElements.push(document.querySelector("#delsud h2"));
+liElements.push(document.querySelector("#flexy h2"));
 
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
@@ -548,34 +549,34 @@ if (isMobile()) {
   }
 }
 
-// function out() {
-//     ctn.forEach(element => {
-//         gsap.to(element, 0.7, {
-//             width: 100 / ctn.length + '%',
-//             ease: 'out(1)' // Back.easeOut is now 'back.out'
-//         });
-//     });
-// }
-
 /* ****************** End Middle dom ****************** */
 
 /* ******************  dom manipulation ****************** */
 
-// Append customCursor to the body
-// document.body.appendChild(customCursor);
 
-titleCtn.forEach((element, index) => {
-  element.addEventListener("mouseover", (event) => hover(event, index));
-  element.addEventListener("mouseout", (event) => out(event, index));
-  element.addEventListener("mousemove", (event) => {
-    // Update the position of the custom cursor based on the mouse pointer
-    // customCursor.style.left = event.pageX + "px";
-    // customCursor.style.top = event.pageY + "px";
+if (isMobile()) {
+
+  titleOuterCtn.forEach((element, index) => {
+    element.addEventListener("click", (event) => {
+      element.disabled = true;
+      event.stopPropagation();
+      toggleClickCtn(index);
+    });
   });
-});
 
-function hover(event, index) {
-  if (isMobile()) {
+  function toggleClickCtn(index) {
+    console.log("clicked!");
+
+    titleOuterCtn.forEach((element, i) => {
+      if (i !== index) {
+        element.disabled = true;
+        titleCtn[i].style.zIndex = -1;
+        animateOut(i);
+      }
+    });
+
+    titleCtn[index].style.zIndex = 10;
+
     gsap.to(ctnHr[index], 0.5, {
       margin: "20 0 10 0",
     });
@@ -601,55 +602,87 @@ function hover(event, index) {
     gsap.to(logoPortfolio, 0.4, {
       opacity: 0,
     });
-  } else {
+  }
+
+  function animateOut(index) {
+    // Your existing out function code
     gsap.to(ctnHr[index], 0.5, {
-      margin: "20 0 10 0",
+      margin: "-12 0",
     });
     gsap.to(descCtn[index], 0.3, {
-      y: 0,
-      opacity: 1,
-    });
-    gsap.to(titleCtn[index], 0.3, {
-      color: "rgb(203, 219, 67)",
-      height: 100,
-    });
-    gsap.to(titleCtn[1], 0.7, {
-      height: 190,
-    });
-    gsap.to(previewVideos[index], 0.4, {
-      opacity: 1,
-    });
-    gsap.to(videoOverlay, 0.4, {
-      opacity: 0.4,
-    });
-    gsap.to(logoPortfolio, 0.4, {
+      y: -100,
       opacity: 0,
     });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "transparent",
+      height: "auto",
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 0,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 1,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0.4,
+    });
   }
-}
 
-function out(event, index) {
-  gsap.to(ctnHr[index], 0.5, {
-    margin: "-12 0",
+} else {
+
+  titleCtn.forEach((element, index) => {
+    element.addEventListener("mouseover", (event) => hover(event, index));
+    element.addEventListener("mouseout", (event) => out(event, index));
   });
-  gsap.to(descCtn[index], 0.3, {
-    y: -100,
-    opacity: 0,
-  });
-  gsap.to(titleCtn[index], 0.3, {
-    color: "transparent",
-    height: "auto",
-  });
-  gsap.to(previewVideos[index], 0.4, {
-    opacity: 0,
-  });
-  gsap.to(videoOverlay, 0.4, {
-    opacity: 1,
-  });
-  gsap.to(logoPortfolio, 0.4, {
-    opacity: 0.4,
-  });
-  // customCursor.style.display = "none";
+
+  function hover(event, index) {
+      gsap.to(ctnHr[index], 0.5, {
+        margin: "20 0 10 0",
+      });
+      gsap.to(descCtn[index], 0.3, {
+        y: 0,
+        opacity: 1,
+      });
+      gsap.to(titleCtn[index], 0.3, {
+        color: "rgb(203, 219, 67)",
+        height: 100,
+      });
+      gsap.to(titleCtn[1], 0.7, {
+        height: 190,
+      });
+      gsap.to(previewVideos[index], 0.4, {
+        opacity: 1,
+      });
+      gsap.to(videoOverlay, 0.4, {
+        opacity: 0.4,
+      });
+      gsap.to(logoPortfolio, 0.4, {
+        opacity: 0,
+      });
+    }
+
+    function out(event, index) {
+      gsap.to(ctnHr[index], 0.5, {
+        margin: "-12 0",
+      });
+      gsap.to(descCtn[index], 0.3, {
+        y: -100,
+        opacity: 0,
+      });
+      gsap.to(titleCtn[index], 0.3, {
+        color: "transparent",
+        height: "auto",
+      });
+      gsap.to(previewVideos[index], 0.4, {
+        opacity: 0,
+      });
+      gsap.to(videoOverlay, 0.4, {
+        opacity: 1,
+      });
+      gsap.to(logoPortfolio, 0.4, {
+        opacity: 0.4,
+      });
+    }
 }
 
 liElements.forEach((liElement, index) =>
