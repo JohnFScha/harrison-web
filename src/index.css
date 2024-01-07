@@ -292,10 +292,10 @@ body #intro {
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
   animation-name: draw, fill1, fill2;
-  animation-duration: 0.5s, 1s, 1.5s;
+  animation-duration: 1s, 1s, 1s;
   animation-delay: 0s, 1s, 1.5s;
   animation-fill-mode: both;
-  animation-iteration-count: infinite;
+  animation-iteration-count: infinite, infinite, infinite;
   animation-timing-function: linear;
   margin: auto;
 }
@@ -1019,6 +1019,12 @@ section.portfolio .logo-box {
 /* ======================== End Tiempo Section =========================*/
 
 /* ======================== Keyframes =========================*/
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 1;
+  }
+}
 
 @keyframes fill1 {
   from {

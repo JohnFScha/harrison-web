@@ -61,7 +61,7 @@ function renderCountdown(time) {
   }
 }
 
-var paths = document.querySelectorAll(".path");
+/* var paths = document.querySelectorAll(".path");
 
 paths.forEach((path) => {
   var length = path.getTotalLength();
@@ -72,7 +72,7 @@ paths.forEach((path) => {
   path.style.transition = path.style.WebkitTransition =
     "stroke-dashoffset 2s ease-in-out";
   path.style.strokeDashoffset = "0";
-});
+}); */
 
 /* gsap config */
 
