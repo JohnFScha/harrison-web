@@ -179,6 +179,7 @@ nav .menu-btn-ctn button {
 
 nav .menu-btn-ctn button {
   width: 3rem;
+  transition: all 0.2s ease-in-out;
 }
 
 nav .social-ctn a {
