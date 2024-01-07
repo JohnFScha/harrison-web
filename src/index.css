@@ -41,6 +41,7 @@ html {
 body {
   width: 100vw;
   height: 100vh;
+  cursor: none;
 }
 
 main {
@@ -52,7 +53,6 @@ main {
   height: 100vh;
   background-color: black;
   font-family: "Montserraty";
-  cursor: none;
   /* overflow: hidden; */
 }
 
@@ -175,6 +175,7 @@ nav .menu-btn-ctn {
 nav .social-ctn a,
 nav .menu-btn-ctn button {
   margin: 0 0.5rem;
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 nav .menu-btn-ctn button {
@@ -232,6 +233,7 @@ nav section#menu ul li a {
   color: transparent;
   -webkit-text-stroke: 3px rgb(29, 62, 78);
   transition: color 0.5s ease;
+  cursor: none;
 }
 
 nav section#menu ul li a:hover {
@@ -626,12 +628,12 @@ section.portfolio .logo-box {
 .modal .close {
   position: absolute;
   z-index: 50000;
-  top: 5%;
+  top: 8%;
   right: 11.5%;
-  width: 48px;
+  width: 60px;
   cursor: pointer;
   filter: invert(1);
-  filter: drop-shadow(#fff 1px 0px 5px);
+  cursor: url("assets/cursor-mano.svg"), pointer;
 }
 
 .modal .close .st0 {
@@ -1686,6 +1688,10 @@ div#textAllCtn .letter-container .spacerSpan {
 
   /* ============= servicios ============ */
 
+  #middle {
+    background-color: #1d3e4e9e;
+  }
+
   #middle #text-container {
     clip-path: inset(120px 0 90px 0);
     overflow: hidden;
@@ -1858,6 +1864,7 @@ div#textAllCtn .letter-container .spacerSpan {
     margin: 0 1rem !important;
     letter-spacing: 1px;
     font-weight: 400;
+    right: -4%;
   }
 
   #p1_postC,

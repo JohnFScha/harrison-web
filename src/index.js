@@ -128,6 +128,7 @@ const social = document.querySelectorAll(".social-img");
 const wrapperCtn = document.querySelector(".wrapper");
 const expandBtns = document.querySelectorAll(".expand");
 const expandBtnImgs = document.querySelectorAll(".btn-img");
+const textCtn2 = document.getElementById("txt-container-2");
 
 /* ********* CURSOR *********** */
 
@@ -285,7 +286,7 @@ let links = gsap.utils.toArray(".nav-link");
 links.forEach((a) => {
   a.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
     if (a.innerText.toLowerCase() === `inicio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
@@ -329,7 +330,6 @@ links.forEach((a) => {
   });
 });
 
-
 /* ****************** Intro dom ****************** */
 
 const logoCtn = document.getElementById("init");
@@ -372,6 +372,7 @@ const videoEl = document.getElementById("modalVideo");
 const closeModal = document.getElementById("closeModal");
 const middleVidSection = document.getElementById("middleVidCtn");
 const portfolioSection = document.getElementById("portfolio");
+const bgVideo = document.getElementById('bg-video')
 
 const videos = [
   "src/assets/casos/eugenie-comp.webm",
@@ -553,10 +554,81 @@ if (isMobile()) {
 /* ****************** End Middle dom ****************** */
 
 /* ******************  dom manipulation ****************** */
-
+console.log(bgVideo)
+if (isMobile()) {
+  bgVideo.src = ''
+  textCtn2.innerHTML = `
+  <p id="p1">Y DESDE AHÍ NACEN</p>
+  <p id="p2">NUESTROS VÍNCULOS</p>
+  <div id="mobileBrandsCtn">
+  <img src="/src/assets/logo-eugenie.png" alt="logo de Eugenie" class="mobileBrands">
+  <img src="/src/assets/logo-flexy.png" alt="logo de Flexy" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="logo de La Caja" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="logo de Delsud" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="logo de PBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="logo de Jr. NBA" class="mobileBrands">
+</div>
+  `;
+} else {
+  bgVideo.src = 'src/assets/fondo-verde.webm'
+  textCtn2.innerHTML = `
+  <p id="p1">Y DESDE AHÍ NACEN</p>
+  <p id="p2">NUESTROS VÍNCULOS</p>
+  <div class="carousel-container" id="carousel-container">
+    <div class="carousel">
+      <figure id="carouselFig">
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+          </video>
+        </div>
+        <div class="card-ctn">
+          <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="" />
+          <video autoplay muted loop>
+            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+          </video>
+        </div>
+      </figure>
+    </div>
+  </div>
+  `
+}
 
 if (isMobile()) {
-
   titleOuterCtn.forEach((element, index) => {
     element.addEventListener("click", (event) => {
       element.disabled = true;
@@ -642,62 +714,60 @@ if (isMobile()) {
       opacity: 0.4,
     });
   }
-
 } else {
-
   titleCtn.forEach((element, index) => {
     element.addEventListener("mouseover", (event) => hover(event, index));
     element.addEventListener("mouseout", (event) => out(event, index));
   });
 
   function hover(event, index) {
-      gsap.to(ctnHr[index], 0.5, {
-        margin: "20 0 10 0",
-      });
-      gsap.to(descCtn[index], 0.3, {
-        y: 0,
-        opacity: 1,
-      });
-      gsap.to(titleCtn[index], 0.3, {
-        color: "rgb(203, 219, 67)",
-        height: 100,
-      });
-      gsap.to(titleCtn[1], 0.7, {
-        height: 190,
-      });
-      gsap.to(previewVideos[index], 0.4, {
-        opacity: 1,
-      });
-      gsap.to(videoOverlay, 0.4, {
-        opacity: 0.4,
-      });
-      gsap.to(logoPortfolio, 0.4, {
-        opacity: 0,
-      });
-    }
+    gsap.to(ctnHr[index], 0.5, {
+      margin: "20 0 10 0",
+    });
+    gsap.to(descCtn[index], 0.3, {
+      y: 0,
+      opacity: 1,
+    });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "rgb(203, 219, 67)",
+      height: 100,
+    });
+    gsap.to(titleCtn[1], 0.7, {
+      height: 190,
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 1,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 0.4,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0,
+    });
+  }
 
-    function out(event, index) {
-      gsap.to(ctnHr[index], 0.5, {
-        margin: "-12 0",
-      });
-      gsap.to(descCtn[index], 0.3, {
-        y: -100,
-        opacity: 0,
-      });
-      gsap.to(titleCtn[index], 0.3, {
-        color: "transparent",
-        height: "auto",
-      });
-      gsap.to(previewVideos[index], 0.4, {
-        opacity: 0,
-      });
-      gsap.to(videoOverlay, 0.4, {
-        opacity: 1,
-      });
-      gsap.to(logoPortfolio, 0.4, {
-        opacity: 0.4,
-      });
-    }
+  function out(event, index) {
+    gsap.to(ctnHr[index], 0.5, {
+      margin: "-12 0",
+    });
+    gsap.to(descCtn[index], 0.3, {
+      y: -100,
+      opacity: 0,
+    });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "transparent",
+      height: "auto",
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 0,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 1,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0.4,
+    });
+  }
 }
 
 liElements.forEach((liElement, index) =>
@@ -738,19 +808,18 @@ closeModal.addEventListener("click", () => {
   if (currentVideo) {
     setTimeout(() => {
       currentVideo.pause();
-    currentVideo.parentNode.removeChild(currentVideo);
-    currentVideo = null;
+      currentVideo.parentNode.removeChild(currentVideo);
+      currentVideo = null;
       modal.classList.remove("shown");
       modal.classList.add("hidden");
     }, 500);
-    
+
     // progress.style.zIndex = "0 !important";
   }
   wrapperCtn.style.overflow = "";
   // const scrollPosition = parseInt(document.body.style.top || "0", 10);
   wrapperCtn.style.top = "";
   // window.scrollTo(0, -scrollPosition);
-
 
   mainTimeline.seek("portfolio");
   body.style.position = "absolute";
@@ -762,12 +831,6 @@ closeModal.addEventListener("click", () => {
 });
 
 /* ****************** end dom manipulation ****************** */
-
-/* ****************** end Portfolio dom ****************** */
-
-/* ******* Init svg animation ******* */
-
-/* ********** Frame animation function ********** */
 
 /* ******** Video frames ******** */
 
@@ -875,13 +938,12 @@ mainTimeline.fromTo(
     transform: "scale(0)",
     opacity: 0,
     duration: 10,
-    delay: -50,
   },
   {
     transform: "scale(1)",
     opacity: 1,
     duration: 20,
-    delay: -50,
+    delay: -80,
   }
 );
 
@@ -889,18 +951,19 @@ mainTimeline.to(".fill", {
   color: "#D1D821",
   stagger: 3,
   duration: 10,
-  delay: 1,
+  delay: -50,
 });
 
 mainTimeline.to("#texto", {
   y: -800,
   duration: 30,
-  delay: 5,
+  delay: -10,
 });
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 8,
+  duration: 100,
+  delay: 20,
   scrollTrigger: "#portfolio",
 });
 
@@ -1117,38 +1180,62 @@ mainTimeline.to(".txt-ctn-2", {
 
 if (isMobile()) {
   // Additional animations from animateOut()
-  mainTimeline.to(".ctn-line", {
-    margin: "-12 0",
-    duration: 0.5,
-  }, "-=0.5");
-  
-  mainTimeline.to(".desc-ctn", {
-    y: -100,
-    opacity: 0,
-    duration: 0.5,
-  }, "-=0.5");
-  
-  mainTimeline.to("section.portfolio li h2", {
-    color: "transparent",
-    height: "auto",
-    duration: 0.5,
-    zIndex: -1
-  }, "-=0.5");
-  
-  mainTimeline.to(".preview-video", {
-    opacity: 0,
-    duration: 0.5,
-  }, "-=0.5");
-  
-  mainTimeline.to(".vid-overlay", {
-    opacity: 1,
-    duration: 0.5,
-  }, "-=0.5");
-  
-  mainTimeline.to(".logo-box", {
-    opacity: 0.4,
-    duration: 0.5,
-  }, "-=0.5");
+  mainTimeline.to(
+    ".ctn-line",
+    {
+      margin: "-12 0",
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".desc-ctn",
+    {
+      y: -100,
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    "section.portfolio li h2",
+    {
+      color: "transparent",
+      height: "auto",
+      duration: 0.5,
+      zIndex: -1,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".preview-video",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".vid-overlay",
+    {
+      opacity: 1,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
+
+  mainTimeline.to(
+    ".logo-box",
+    {
+      opacity: 0.4,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 }
 
 mainTimeline.to(".pf-accordion-outer", {
@@ -1173,11 +1260,13 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
   // zIndex: -1
 });
 
-mainTimeline.to(".pf-accordion", {
-  delay: 10,
-  opacity: 1,
-  duration: 2,
-}).addLabel("portfolio");
+mainTimeline
+  .to(".pf-accordion", {
+    delay: 10,
+    opacity: 1,
+    duration: 2,
+  })
+  .addLabel("portfolio");
 
 mainTimeline.to(".pf-accordion", {
   delay: 5,
@@ -1200,39 +1289,63 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
 });
 
 if (isMobile()) {
-// Additional animations from animateOut()
-mainTimeline.to(".ctn-line", {
-  margin: "-12 0",
-  duration: 0.5,
-}, "-=0.5");
+  // Additional animations from animateOut()
+  mainTimeline.to(
+    ".ctn-line",
+    {
+      margin: "-12 0",
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 
-mainTimeline.to(".desc-ctn", {
-  y: -100,
-  opacity: 0,
-  duration: 0.5,
-}, "-=0.5");
+  mainTimeline.to(
+    ".desc-ctn",
+    {
+      y: -100,
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 
-mainTimeline.to("section.portfolio li h2", {
-  color: "transparent",
-  height: "auto",
-  duration: 0.5,
-  zIndex: -1
-}, "-=0.5");
+  mainTimeline.to(
+    "section.portfolio li h2",
+    {
+      color: "transparent",
+      height: "auto",
+      duration: 0.5,
+      zIndex: -1,
+    },
+    "-=0.5"
+  );
 
-mainTimeline.to(".preview-video", {
-  opacity: 0,
-  duration: 0.5,
-}, "-=0.5");
+  mainTimeline.to(
+    ".preview-video",
+    {
+      opacity: 0,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 
-mainTimeline.to(".vid-overlay", {
-  opacity: 1,
-  duration: 0.5,
-}, "-=0.5");
+  mainTimeline.to(
+    ".vid-overlay",
+    {
+      opacity: 1,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 
-mainTimeline.to(".logo-box", {
-  opacity: 0.4,
-  duration: 0.5,
-}, "-=0.5");
+  mainTimeline.to(
+    ".logo-box",
+    {
+      opacity: 0.4,
+      duration: 0.5,
+    },
+    "-=0.5"
+  );
 }
 
 if (isMobile()) {
@@ -1363,7 +1476,7 @@ mainTimeline.fromTo(
     opacity: 1,
     duration: 4,
     onStart: () => {
-      console.log('start')
+      console.log("start");
       middleVideo.play();
     },
   }
@@ -1393,8 +1506,8 @@ mainTimeline.fromTo(
     duration: 10,
     delay: 20,
     onComplete: () => {
-      middleVideo.pause()
-    }
+      middleVideo.pause();
+    },
   }
 );
 
@@ -1816,12 +1929,12 @@ mainTimeline.fromTo(
 
 /* **************** SECCION FINAL ***************** */
 
-const carouselCtn = document.getElementById("carousel-container");
+/* const carouselCtn = document.getElementById("carousel-container");
 const carousel = document.getElementById("carouselFig");
 
 if (carouselCtn.style.transform === "scale(1)") {
   carousel.style.animation = "rotateAnim 30s infinite forwards";
-}
+} */
 
 mainTimeline.fromTo(
   "#txt-container-2",
@@ -1844,7 +1957,7 @@ if (isMobile()) {
     "#p1",
     {
       y: 2000,
-      x: 0
+      x: 0,
     },
     {
       y: 150,
@@ -1857,7 +1970,7 @@ if (isMobile()) {
     "#p2",
     {
       y: 2000,
-      x: 0
+      x: 0,
     },
     {
       y: 150,
@@ -1906,18 +2019,21 @@ if (isMobile()) {
     duration: 1,
   });
 
-  mainTimeline.fromTo('#mobileBrandsCtn', {
-    visibility: 'hidden',
-    y: 200,
-    x: 0
-  }, {
-    visibility: 'visible',
-    y: 0,
-    x: 0,
-    duration: 5,
-    // scrollTrigger: '#p2'
-  })
-
+  mainTimeline.fromTo(
+    "#mobileBrandsCtn",
+    {
+      visibility: "hidden",
+      y: 200,
+      x: 0,
+    },
+    {
+      visibility: "visible",
+      y: 0,
+      x: 0,
+      duration: 5,
+      // scrollTrigger: '#p2'
+    }
+  );
 } else {
   mainTimeline.fromTo(
     "#p1",
