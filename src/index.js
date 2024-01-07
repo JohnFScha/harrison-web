@@ -117,6 +117,7 @@ const mainTimeline = gsap.timeline({
 });
 
 /* ************* DOM elements ************ */
+const html = document.querySelector("html");
 const body = document.getElementById("body");
 const collapse = document.getElementById("collapse");
 const menu = document.getElementById("menu");
@@ -564,9 +565,23 @@ if (isMobile()) {
     });
   });
 
-  function toggleClickCtn(index) {
-    console.log("clicked!");
+  // Add click event listener to the document
+  document.addEventListener("click", (event) => {
+    // Convert titleOuterCtn to an array
+    const titleOuterArray = Array.from(titleOuterCtn);
 
+    // Check if the clicked element is not inside any fieldset
+    if (!titleOuterArray.some((fieldset) => fieldset.contains(event.target))) {
+      // Trigger animateOut for each element
+      titleOuterArray.forEach((element, index) => {
+        element.disabled = true;
+        animateOut(index);
+        titleCtn[index].style.zIndex = -1;
+      });
+    }
+  });
+
+  function toggleClickCtn(index) {
     titleOuterCtn.forEach((element, i) => {
       if (i !== index) {
         element.disabled = true;
@@ -694,7 +709,7 @@ liElements.forEach((liElement, index) =>
     // const scrollPosition = window.scrollY;
 
     // Disable body scrolling
-    wrapperCtn.style.overflow = "hidden";
+    // wrapperCtn.style.overflow = "hidden";
     let newVideo = document.createElement("video");
     newVideo.id = "modalVideo";
     let swapSrc = document.createElement("source");
@@ -706,36 +721,44 @@ liElements.forEach((liElement, index) =>
     // wrapperCtn.style.top = `-${scrollPosition}px`;
     newVideo.play();
     currentVideo = newVideo;
-    mainTimeline.scrub = 0;
+    // mainTimeline.scrub = 0;
     // mainTimeline.scrollTrigger.pause();
+    mainTimeline.seek("portfolio");
+    body.style.position = "fixed";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
     });
     // wrapperCtn.style.zIndex = "500 !important";
-    mainTimeline.seek("portfolio");
-    mainTimeline.scrollTrigger.disable(false);
+
+    // mainTimeline.scrollTrigger.disable(false);
   })
 );
 
 closeModal.addEventListener("click", () => {
   if (currentVideo) {
-    currentVideo.pause();
+    setTimeout(() => {
+      currentVideo.pause();
     currentVideo.parentNode.removeChild(currentVideo);
     currentVideo = null;
+      modal.classList.remove("shown");
+      modal.classList.add("hidden");
+    }, 500);
+    
     // progress.style.zIndex = "0 !important";
   }
   wrapperCtn.style.overflow = "";
   // const scrollPosition = parseInt(document.body.style.top || "0", 10);
-  // wrapperCtn.style.top = "";
+  wrapperCtn.style.top = "";
   // window.scrollTo(0, -scrollPosition);
-  modal.classList.remove("shown");
-  modal.classList.add("hidden");
 
+
+  mainTimeline.seek("portfolio");
+  body.style.position = "absolute";
   gsap.to(window, {
     scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
   });
-  mainTimeline.seek("portfolio");
-  mainTimeline.scrollTrigger.enable(true);
+
+  // mainTimeline.scrollTrigger.enable(true);
 });
 
 /* ****************** end dom manipulation ****************** */
@@ -1092,6 +1115,42 @@ mainTimeline.to(".txt-ctn-2", {
   delay: 4,
 });
 
+if (isMobile()) {
+  // Additional animations from animateOut()
+  mainTimeline.to(".ctn-line", {
+    margin: "-12 0",
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".desc-ctn", {
+    y: -100,
+    opacity: 0,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to("section.portfolio li h2", {
+    color: "transparent",
+    height: "auto",
+    duration: 0.5,
+    zIndex: -1
+  }, "-=0.5");
+  
+  mainTimeline.to(".preview-video", {
+    opacity: 0,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".vid-overlay", {
+    opacity: 1,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".logo-box", {
+    opacity: 0.4,
+    duration: 0.5,
+  }, "-=0.5");
+}
+
 mainTimeline.to(".pf-accordion-outer", {
   opacity: 1,
   duration: 4,
@@ -1111,15 +1170,14 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
   stagger: 1,
   duration: 3,
   delay: 2,
+  // zIndex: -1
 });
 
-mainTimeline
-  .to(".pf-accordion", {
-    delay: 10,
-    opacity: 1,
-    duration: 2,
-  })
-  .addLabel("portfolio");
+mainTimeline.to(".pf-accordion", {
+  delay: 10,
+  opacity: 1,
+  duration: 2,
+}).addLabel("portfolio");
 
 mainTimeline.to(".pf-accordion", {
   delay: 5,
@@ -1140,6 +1198,42 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
   duration: 0,
   display: "none",
 });
+
+if (isMobile()) {
+// Additional animations from animateOut()
+mainTimeline.to(".ctn-line", {
+  margin: "-12 0",
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".desc-ctn", {
+  y: -100,
+  opacity: 0,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to("section.portfolio li h2", {
+  color: "transparent",
+  height: "auto",
+  duration: 0.5,
+  zIndex: -1
+}, "-=0.5");
+
+mainTimeline.to(".preview-video", {
+  opacity: 0,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".vid-overlay", {
+  opacity: 1,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".logo-box", {
+  opacity: 0.4,
+  duration: 0.5,
+}, "-=0.5");
+}
 
 if (isMobile()) {
   mainTimeline.fromTo(
