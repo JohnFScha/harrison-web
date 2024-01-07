@@ -1392,6 +1392,9 @@ mainTimeline.fromTo(
     opacity: 0,
     duration: 10,
     delay: 20,
+    onComplete: () => {
+      middleVideo.pause()
+    }
   }
 );
 
