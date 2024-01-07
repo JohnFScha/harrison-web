@@ -1681,6 +1681,18 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 50px;
   }
 
+  .modal .close { 
+    position: absolute;
+    z-index: 50000;
+    bottom: 18% !important;
+    right: 11.5%;
+    top: none;
+    width: 60px;
+    cursor: pointer;
+    filter: invert(1);
+    cursor: url(assets/cursor-mano.svg),pointer;
+  }
+
   #modalVideo {
     transform: rotate(90deg);
     width: 160vw;

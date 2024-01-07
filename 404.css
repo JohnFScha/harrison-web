@@ -123,32 +123,41 @@ button {
 
 @media screen and (max-width: 900px) {
     main {
-        width: 110vw;
-        height: 110vh;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    main .text {
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     main .overlay {
-        width: 110vw;
-        height: 110vh;
+        width: 100vw;
+        height: 100vh;
     }
 
     main .titleCtn {
         font-size: 8rem;
+        margin-bottom: 5rem;
     }
 
     main .titleCtn .error {
-        left: 25%;
+        left: 22%;
         top: 15%;
     }
 
     main .subCtn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        gap: 1rem;
+        
+        color: white;
         width: 100%;
+        position: absolute;
+        top: 57%;
     }
+
 
     main .subCtn .sub1 {
         margin: 0;
@@ -162,9 +171,9 @@ button {
     main .subCtn p {
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 300;
-        width: 80%;
+        width: 100%;
     }
-    
+
     main .subCtn button {
         margin-bottom: 20px;
     }
