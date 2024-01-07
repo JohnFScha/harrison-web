@@ -4,13 +4,11 @@
   font-family: "Montserraty";
   src: url("assets/Montserrat-black/Montserrat-Black.eot");
   /* IE9 Compat Modes */
-  src: url("assets/Montserrat-black/Montserrat-Black.eot")
-      format("embedded-opentype"),
+  src: url("assets/Montserrat-black/Montserrat-Black.eot") format("embedded-opentype"),
     url("assets/Montserrat-black/Montserrat-Black.woff2") format("woff2"),
     url("assets/Montserrat-black/Montserrat-Black.woff") format("woff"),
     url("assets/Montserrat-black/Montserrat-Black.ttf") format("truetype"),
-    url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName")
-      format("svg");
+    url("assets/Montserrat-black/Montserrat-Black.svg#svgFontName") format("svg");
   /* Legacy iOS */
   font-weight: 900;
   font-style: normal;
@@ -1152,7 +1150,7 @@ section.portfolio .logo-box {
   height: -1000px;
 }
 
-.carousel > * {
+.carousel>* {
   flex: 0 0 auto;
 }
 
@@ -1179,8 +1177,7 @@ section.portfolio .logo-box {
   opacity: 0.9;
   border-radius: 6%;
   overflow: hidden;
-  transform: translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   background-color: #000;
 }
 
@@ -1192,33 +1189,27 @@ section.portfolio .logo-box {
 }
 
 .carousel figure .card-ctn:nth-child(2) {
-  transform: rotateY(0.897597901rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(0.897597901rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(3) {
-  transform: rotateY(1.7951958021rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(1.7951958021rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(4) {
-  transform: rotateY(2.6927937031rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(2.6927937031rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(5) {
-  transform: rotateY(3.5903916041rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(3.5903916041rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(6) {
-  transform: rotateY(4.4879895051rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(4.4879895051rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn:nth-child(7) {
-  transform: rotateY(5.3855874062rad) translateZ(200px)
-    matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: rotateY(5.3855874062rad) translateZ(200px) matrix3d(1, 0, 0, 0, 0, 1, -0.03, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 }
 
 .carousel figure .card-ctn img {
@@ -1448,6 +1439,17 @@ div#textAllCtn .letter-container .spacerSpan {
 }
 
 @media (max-width: 900px) {
+
+  #progressbar-ctn {
+    width: 100%;
+    left: 0;
+    height: 110px;
+  }
+
+  #progressbar-ctn svg {
+    width: 45%;
+  }
+
   /* ============= nav ============ */
 
   nav .menu-btn-ctn button {
@@ -1483,7 +1485,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   nav section#menu .social-ctn-2 a img {
-    width: 3rem;
+    width: 2.5rem;
   }
 
   nav section#menu ul {
@@ -1627,6 +1629,10 @@ div#textAllCtn .letter-container .spacerSpan {
     font-size: 15px;
   }
 
+  section.portfolio ol #delsud {
+    margin: auto -40px;
+  }
+
   section.portfolio ol li hr.ctn-line {
     width: 100%;
   }
@@ -1678,7 +1684,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #middle #text-container #letter-ctn {
     display: block;
-    width: 295px;
+    width: 250px;
   }
 
   #middle #text-container p,
@@ -1799,11 +1805,13 @@ div#textAllCtn .letter-container .spacerSpan {
   #middle #video-tiempo #text-container-2 #letter-ctn span {
     font-size: 1.5rem;
   }
+
   /* carousel*/
   #text-container-2 {
     max-width: 360px !important;
     margin: 0 1rem;
   }
+
   p#p1,
   p#p2 {
     text-align: center;
@@ -1811,9 +1819,11 @@ div#textAllCtn .letter-container .spacerSpan {
     letter-spacing: 1px;
     font-weight: 400;
   }
+
   #p2 {
     margin-bottom: 3rem;
   }
+
   #carousel-container {
     display: none !important;
   }
@@ -1827,6 +1837,7 @@ div#textAllCtn .letter-container .spacerSpan {
     width: 360px;
     gap: 1rem;
   }
+
   #mobileBrandsCtn img.mobileBrands {
     height: 52px;
     margin: 0.2rem;
@@ -1844,36 +1855,44 @@ div#textAllCtn .letter-container .spacerSpan {
   p.letter-container span {
     font-size: 50px !important;
   }
+
   #firstSpacer {
     display: none;
     font-size: 0;
   }
-  #textAllCtn > p.letter-container {
+
+  #textAllCtn>p.letter-container {
     padding: 0 1rem;
     display: block;
   }
+
   .subTextContainer {
     justify-content: flex-start;
     top: 25%;
   }
+
   .socialContainer {
     gap: 0.5rem;
     align-items: center;
   }
+
   .svgSocial {
     width: 50px !important;
     height: 50px !important;
   }
+
   a.svgInner {
     width: 50px !important;
     height: 50px;
   }
+
   #textEndCtn {
     max-width: 360px;
     display: block;
     padding: 0 2.5rem;
     margin-top: 2rem;
   }
+
   .charSpan2 {
     font-size: 20px !important;
   }
