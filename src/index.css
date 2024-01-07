@@ -456,9 +456,15 @@ section.portfolio .txt-row {
 }
 
 section.portfolio .dup-ctn {
+  display: flex;
+  justify-content: center;
   position: relative;
   text-align: center;
   z-index: 3;
+}
+
+section.portfolio .dup-ctn .spaced-txt {
+  display: flex;
 }
 
 section.portfolio .txt-row h2 {
@@ -1580,6 +1586,7 @@ div#textAllCtn .letter-container .spacerSpan {
     width: 246px;
     margin-top: 5px;
     text-align: center;
+    display: block;
   }
 
   section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
@@ -1596,6 +1603,7 @@ div#textAllCtn .letter-container .spacerSpan {
     position: absolute;
     width: 325px;
     left: -42px;
+    display: block;
   }
 
   section.portfolio .pf-accordion-outer {
