@@ -1349,11 +1349,7 @@ mainTimeline.fromTo(
   },
   {
     display: "block",
-    duration: 0.1,
-    onStart: () => {
-      console.log('start')
-      middleVideo.play();
-    },
+    duration: 0,
   }
 );
 
@@ -1366,7 +1362,10 @@ mainTimeline.fromTo(
   {
     opacity: 1,
     duration: 4,
-    
+    onStart: () => {
+      console.log('start')
+      middleVideo.play();
+    },
   }
 );
 
