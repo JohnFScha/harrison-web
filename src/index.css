@@ -459,11 +459,13 @@ section.portfolio .txt-row {
 
 section.portfolio .dup-ctn {
   position: relative;
+  text-align: center;
   z-index: 3;
 }
 
 section.portfolio .txt-row h2 {
   position: relative;
+  text-align: center;
   z-index: 0;
   opacity: 0;
 }
@@ -484,6 +486,10 @@ section.portfolio ol {
   position: relative;
   padding-left: 25px;
   z-index: 20;
+}
+
+section.portfolio ol fieldset {
+  border: none;
 }
 
 section.portfolio ol li {
@@ -601,7 +607,7 @@ section.portfolio .logo-box {
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #000;
 }
 
 .modal-content {
@@ -1474,7 +1480,6 @@ div#textAllCtn .letter-container .spacerSpan {
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: ;
   }
 
   nav section#menu .social-ctn-2 a img {
@@ -1607,6 +1612,10 @@ div#textAllCtn .letter-container .spacerSpan {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  section.portfolio ol li h2 {
+    z-index: -1;
   }
 
   section.portfolio ol li:nth-child(1) h2 {

@@ -117,6 +117,7 @@ const mainTimeline = gsap.timeline({
 });
 
 /* ************* DOM elements ************ */
+const html = document.querySelector("html");
 const body = document.getElementById("body");
 const collapse = document.getElementById("collapse");
 const menu = document.getElementById("menu");
@@ -344,6 +345,7 @@ const nav = document.querySelector("nav");
 /* ****************** Portfolio dom ****************** */
 
 let txtCtn = document.querySelectorAll(".text-ctn-1");
+let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
 let titleCtn = document.querySelectorAll("section.portfolio li h2");
 let hoveredTitleCtn = document.querySelectorAll(
   "section.portfolio li h2:hover"
@@ -360,9 +362,9 @@ let txtInnerCtn = document.querySelectorAll(".child .text-ctn ol");
 
 // modals
 const liElements = [];
-liElements.push(document.getElementById("eugenie"));
-liElements.push(document.getElementById("delsud"));
-liElements.push(document.getElementById("flexy"));
+liElements.push(document.querySelector("#eugenie h2"));
+liElements.push(document.querySelector("#delsud h2"));
+liElements.push(document.querySelector("#flexy h2"));
 
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
@@ -548,34 +550,48 @@ if (isMobile()) {
   }
 }
 
-// function out() {
-//     ctn.forEach(element => {
-//         gsap.to(element, 0.7, {
-//             width: 100 / ctn.length + '%',
-//             ease: 'out(1)' // Back.easeOut is now 'back.out'
-//         });
-//     });
-// }
-
 /* ****************** End Middle dom ****************** */
 
 /* ******************  dom manipulation ****************** */
 
-// Append customCursor to the body
-// document.body.appendChild(customCursor);
 
-titleCtn.forEach((element, index) => {
-  element.addEventListener("mouseover", (event) => hover(event, index));
-  element.addEventListener("mouseout", (event) => out(event, index));
-  element.addEventListener("mousemove", (event) => {
-    // Update the position of the custom cursor based on the mouse pointer
-    // customCursor.style.left = event.pageX + "px";
-    // customCursor.style.top = event.pageY + "px";
+if (isMobile()) {
+
+  titleOuterCtn.forEach((element, index) => {
+    element.addEventListener("click", (event) => {
+      element.disabled = true;
+      event.stopPropagation();
+      toggleClickCtn(index);
+    });
   });
-});
 
-function hover(event, index) {
-  if (isMobile()) {
+  // Add click event listener to the document
+  document.addEventListener("click", (event) => {
+    // Convert titleOuterCtn to an array
+    const titleOuterArray = Array.from(titleOuterCtn);
+
+    // Check if the clicked element is not inside any fieldset
+    if (!titleOuterArray.some((fieldset) => fieldset.contains(event.target))) {
+      // Trigger animateOut for each element
+      titleOuterArray.forEach((element, index) => {
+        element.disabled = true;
+        animateOut(index);
+        titleCtn[index].style.zIndex = -1;
+      });
+    }
+  });
+
+  function toggleClickCtn(index) {
+    titleOuterCtn.forEach((element, i) => {
+      if (i !== index) {
+        element.disabled = true;
+        titleCtn[i].style.zIndex = -1;
+        animateOut(i);
+      }
+    });
+
+    titleCtn[index].style.zIndex = 10;
+
     gsap.to(ctnHr[index], 0.5, {
       margin: "20 0 10 0",
     });
@@ -601,55 +617,87 @@ function hover(event, index) {
     gsap.to(logoPortfolio, 0.4, {
       opacity: 0,
     });
-  } else {
+  }
+
+  function animateOut(index) {
+    // Your existing out function code
     gsap.to(ctnHr[index], 0.5, {
-      margin: "20 0 10 0",
+      margin: "-12 0",
     });
     gsap.to(descCtn[index], 0.3, {
-      y: 0,
-      opacity: 1,
-    });
-    gsap.to(titleCtn[index], 0.3, {
-      color: "rgb(203, 219, 67)",
-      height: 100,
-    });
-    gsap.to(titleCtn[1], 0.7, {
-      height: 190,
-    });
-    gsap.to(previewVideos[index], 0.4, {
-      opacity: 1,
-    });
-    gsap.to(videoOverlay, 0.4, {
-      opacity: 0.4,
-    });
-    gsap.to(logoPortfolio, 0.4, {
+      y: -100,
       opacity: 0,
     });
+    gsap.to(titleCtn[index], 0.3, {
+      color: "transparent",
+      height: "auto",
+    });
+    gsap.to(previewVideos[index], 0.4, {
+      opacity: 0,
+    });
+    gsap.to(videoOverlay, 0.4, {
+      opacity: 1,
+    });
+    gsap.to(logoPortfolio, 0.4, {
+      opacity: 0.4,
+    });
   }
-}
 
-function out(event, index) {
-  gsap.to(ctnHr[index], 0.5, {
-    margin: "-12 0",
+} else {
+
+  titleCtn.forEach((element, index) => {
+    element.addEventListener("mouseover", (event) => hover(event, index));
+    element.addEventListener("mouseout", (event) => out(event, index));
   });
-  gsap.to(descCtn[index], 0.3, {
-    y: -100,
-    opacity: 0,
-  });
-  gsap.to(titleCtn[index], 0.3, {
-    color: "transparent",
-    height: "auto",
-  });
-  gsap.to(previewVideos[index], 0.4, {
-    opacity: 0,
-  });
-  gsap.to(videoOverlay, 0.4, {
-    opacity: 1,
-  });
-  gsap.to(logoPortfolio, 0.4, {
-    opacity: 0.4,
-  });
-  // customCursor.style.display = "none";
+
+  function hover(event, index) {
+      gsap.to(ctnHr[index], 0.5, {
+        margin: "20 0 10 0",
+      });
+      gsap.to(descCtn[index], 0.3, {
+        y: 0,
+        opacity: 1,
+      });
+      gsap.to(titleCtn[index], 0.3, {
+        color: "rgb(203, 219, 67)",
+        height: 100,
+      });
+      gsap.to(titleCtn[1], 0.7, {
+        height: 190,
+      });
+      gsap.to(previewVideos[index], 0.4, {
+        opacity: 1,
+      });
+      gsap.to(videoOverlay, 0.4, {
+        opacity: 0.4,
+      });
+      gsap.to(logoPortfolio, 0.4, {
+        opacity: 0,
+      });
+    }
+
+    function out(event, index) {
+      gsap.to(ctnHr[index], 0.5, {
+        margin: "-12 0",
+      });
+      gsap.to(descCtn[index], 0.3, {
+        y: -100,
+        opacity: 0,
+      });
+      gsap.to(titleCtn[index], 0.3, {
+        color: "transparent",
+        height: "auto",
+      });
+      gsap.to(previewVideos[index], 0.4, {
+        opacity: 0,
+      });
+      gsap.to(videoOverlay, 0.4, {
+        opacity: 1,
+      });
+      gsap.to(logoPortfolio, 0.4, {
+        opacity: 0.4,
+      });
+    }
 }
 
 liElements.forEach((liElement, index) =>
@@ -661,7 +709,7 @@ liElements.forEach((liElement, index) =>
     // const scrollPosition = window.scrollY;
 
     // Disable body scrolling
-    wrapperCtn.style.overflow = "hidden";
+    // wrapperCtn.style.overflow = "hidden";
     let newVideo = document.createElement("video");
     newVideo.id = "modalVideo";
     let swapSrc = document.createElement("source");
@@ -673,36 +721,44 @@ liElements.forEach((liElement, index) =>
     // wrapperCtn.style.top = `-${scrollPosition}px`;
     newVideo.play();
     currentVideo = newVideo;
-    mainTimeline.scrub = 0;
+    // mainTimeline.scrub = 0;
     // mainTimeline.scrollTrigger.pause();
+    mainTimeline.seek("portfolio");
+    body.style.position = "fixed";
     gsap.to(window, {
       scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
     });
     // wrapperCtn.style.zIndex = "500 !important";
-    mainTimeline.seek("portfolio");
-    mainTimeline.scrollTrigger.disable(false);
+
+    // mainTimeline.scrollTrigger.disable(false);
   })
 );
 
 closeModal.addEventListener("click", () => {
   if (currentVideo) {
-    currentVideo.pause();
+    setTimeout(() => {
+      currentVideo.pause();
     currentVideo.parentNode.removeChild(currentVideo);
     currentVideo = null;
+      modal.classList.remove("shown");
+      modal.classList.add("hidden");
+    }, 500);
+    
     // progress.style.zIndex = "0 !important";
   }
   wrapperCtn.style.overflow = "";
   // const scrollPosition = parseInt(document.body.style.top || "0", 10);
-  // wrapperCtn.style.top = "";
+  wrapperCtn.style.top = "";
   // window.scrollTo(0, -scrollPosition);
-  modal.classList.remove("shown");
-  modal.classList.add("hidden");
 
+
+  mainTimeline.seek("portfolio");
+  body.style.position = "absolute";
   gsap.to(window, {
     scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
   });
-  mainTimeline.seek("portfolio");
-  mainTimeline.scrollTrigger.enable(true);
+
+  // mainTimeline.scrollTrigger.enable(true);
 });
 
 /* ****************** end dom manipulation ****************** */
@@ -1059,6 +1115,42 @@ mainTimeline.to(".txt-ctn-2", {
   delay: 4,
 });
 
+if (isMobile()) {
+  // Additional animations from animateOut()
+  mainTimeline.to(".ctn-line", {
+    margin: "-12 0",
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".desc-ctn", {
+    y: -100,
+    opacity: 0,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to("section.portfolio li h2", {
+    color: "transparent",
+    height: "auto",
+    duration: 0.5,
+    zIndex: -1
+  }, "-=0.5");
+  
+  mainTimeline.to(".preview-video", {
+    opacity: 0,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".vid-overlay", {
+    opacity: 1,
+    duration: 0.5,
+  }, "-=0.5");
+  
+  mainTimeline.to(".logo-box", {
+    opacity: 0.4,
+    duration: 0.5,
+  }, "-=0.5");
+}
+
 mainTimeline.to(".pf-accordion-outer", {
   opacity: 1,
   duration: 4,
@@ -1078,15 +1170,14 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
   stagger: 1,
   duration: 3,
   delay: 2,
+  // zIndex: -1
 });
 
-mainTimeline
-  .to(".pf-accordion", {
-    delay: 10,
-    opacity: 1,
-    duration: 2,
-  })
-  .addLabel("portfolio");
+mainTimeline.to(".pf-accordion", {
+  delay: 10,
+  opacity: 1,
+  duration: 2,
+}).addLabel("portfolio");
 
 mainTimeline.to(".pf-accordion", {
   delay: 5,
@@ -1107,6 +1198,42 @@ mainTimeline.to(".pf-accordion-outer ol li h2", {
   duration: 0,
   display: "none",
 });
+
+if (isMobile()) {
+// Additional animations from animateOut()
+mainTimeline.to(".ctn-line", {
+  margin: "-12 0",
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".desc-ctn", {
+  y: -100,
+  opacity: 0,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to("section.portfolio li h2", {
+  color: "transparent",
+  height: "auto",
+  duration: 0.5,
+  zIndex: -1
+}, "-=0.5");
+
+mainTimeline.to(".preview-video", {
+  opacity: 0,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".vid-overlay", {
+  opacity: 1,
+  duration: 0.5,
+}, "-=0.5");
+
+mainTimeline.to(".logo-box", {
+  opacity: 0.4,
+  duration: 0.5,
+}, "-=0.5");
+}
 
 if (isMobile()) {
   mainTimeline.fromTo(
