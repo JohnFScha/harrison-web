@@ -919,7 +919,7 @@ cameraFrames.forEach((img, index) => {
     {
       display: "block",
       stagger: 0.3,
-      duration: 0.5,
+      duration: 0.2,
     }
   );
   if (index < cameraFrames.length - 1) {
@@ -927,9 +927,9 @@ cameraFrames.forEach((img, index) => {
   }
 });
 
-mainTimeline.to("#video-camara", {
+/* mainTimeline.to("#video-camara", {
   delay: 10,
-});
+}); */
 
 mainTimeline.fromTo(
   "#texto",
@@ -942,7 +942,7 @@ mainTimeline.fromTo(
     transform: "scale(1)",
     opacity: 1,
     duration: 20,
-    delay: -80,
+    delay: -30,
   }
 );
 
@@ -950,13 +950,13 @@ mainTimeline.to(".fill", {
   color: "#D1D821",
   stagger: 3,
   duration: 10,
-  delay: -50,
+  delay: -20,
 });
 
 mainTimeline.to("#texto", {
   y: -800,
   duration: 30,
-  delay: -10,
+  delay: -1,
 });
 
 mainTimeline.to("#intro", {
