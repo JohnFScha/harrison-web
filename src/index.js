@@ -1418,7 +1418,8 @@ if (isMobile()) {
   );
   mainTimeline.to("#portfolio", {
     filter: "blur(100px)",
-    duration: 10,
+    duration: 5,
+    delay: 5
   });
 } else {
   mainTimeline.to(".sup-rodaje", {
