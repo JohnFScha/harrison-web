@@ -299,6 +299,10 @@ body #intro {
   margin: auto;
 }
 
+#intro #scrollea img {
+  display: none;
+}
+
 #intro #scrollea svg {
   width: 15vw;
   height: 15vh;
@@ -1472,6 +1476,27 @@ div#textAllCtn .letter-container .spacerSpan {
   #intro #init {
     background-size: 100px;
     background-repeat: space;
+  }
+
+  #intro #scrollea {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #intro #scrollea svg {
+    width: 30vw;
+    margin: 0;
+  }
+
+  #intro #scrollea img {
+    width: 40vw;
+    display: block;
   }
 
   #progressbar-ctn {
