@@ -84,14 +84,14 @@ window.onload = () => {
   }, 1000);
 };
 
-const timeout = setTimeout(() => {
-  window.location.href = "/error"; // Adjust the path as needed
-}, 10000); // 5 seconds in milliseconds
+// const timeout = setTimeout(() => {
+//   window.location.href = "/error"; // Adjust the path as needed
+// }, 10000); // 5 seconds in milliseconds
 
-// Clear the timeout if the content loads before the timeout triggers
-window.addEventListener("load", () => {
-  clearTimeout(timeout);
-});
+// // Clear the timeout if the content loads before the timeout triggers
+// window.addEventListener("load", () => {
+//   clearTimeout(timeout);
+// });
 
 /* ********* Timeline ********* */
 
@@ -103,7 +103,7 @@ const mainTimeline = gsap.timeline({
     scrub: true,
     pin: true,
     inertia: true,
-  }
+  },
 });
 
 /* ************* DOM elements ************ */
@@ -335,6 +335,7 @@ const middleVideo = document.getElementById("middleVidCtn");
 const tiempoVideo = document.getElementById("tiempoVidCtn");
 const progressBar = document.getElementById("progressbar-ctn");
 const nav = document.querySelector("nav");
+const intro = document.getElementById('intro')
 
 /* ****************** end intro dom ****************** */
 
@@ -505,7 +506,6 @@ if (isMobile()) {
 
   function hoverAcc(event, index) {
     // Calculate the original width dynamically
-    // let originalWidth = getComputedStyle(event.currentTarget).width;
 
     gsap.to(event.currentTarget, 0.7, {
       width: "2000px",
@@ -972,20 +972,11 @@ mainTimeline.to("#texto", {
   y: -800,
   duration: 30,
   delay: -1,
-  onComplete: () => {
-    console.log("complete");
-    if (mainTimeline.totalProgress() <= 0.27366214498594194 && mainTimeline.totalProgress() >= 0.1097627728685822) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("initPortolio"),
-        duration: 4,
-      });
-    }
-  },
 });
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 100,
+  duration: 20,
   delay: 20,
 });
 
@@ -1017,27 +1008,35 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.fromTo('#nav button', {
-  opacity: 0,
-  scale: 0,
-  duration: 5,
-}, {
-  opacity: 1,
-  scale: 1,
-  duration: 5,
-  scrollTrigger: '#nav .social-ctn .social-nav'
-})
+mainTimeline.fromTo(
+  "#nav button",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav .social-ctn .social-nav",
+  }
+);
 
-mainTimeline.fromTo('#nav .social-ctn .social-nav', {
-  opacity: 0,
-  scale: 0,
-  duration: 5,
-}, {
-  opacity: 1,
-  scale: 1,
-  duration: 5,
-  scrollTrigger: '#nav button'
-})
+mainTimeline.fromTo(
+  "#nav .social-ctn .social-nav",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav button",
+  }
+);
 
 mainTimeline.fromTo(
   ".portfolio",
@@ -1422,7 +1421,7 @@ if (isMobile()) {
     delay: 4,
     duration: 10,
     width: "700%",
-    left: "-450%",
+    left: "-480%",
     top: "-300%",
     scrollTrigger: ".box-ctn",
   });
@@ -1453,7 +1452,7 @@ if (isMobile()) {
   );
   mainTimeline.to(".box-ctn", {
     delay: -2,
-    duration: 9,
+    duration: 7,
     transform: "scale(4.1)",
     top: "50%",
   });
@@ -1462,7 +1461,7 @@ if (isMobile()) {
     delay: 4,
     duration: 10,
     transform: "scale(4)",
-    opacity: 0,
+    // opacity: 0,
     xPercent: -100,
     top: "30%",
   });
@@ -1666,7 +1665,7 @@ if (isMobile()) {
   mainTimeline.fromTo(
     ".acc-borders",
     {
-      opacity: 1,
+      opacity: 0,
       x: 1000,
       duration: 20,
       width: "0vw",
@@ -1695,8 +1694,12 @@ if (isMobile()) {
         duration: 20,
         delay: -5,
       }
-    )
-    .addLabel("servicios");
+    ).addLabel("servicios");
+    mainTimeline.fromTo("#middle #text-container", {
+      display: "flex"
+    }, {
+      display: "none"
+    });
 } else {
   mainTimeline.fromTo(
     "#middle #text-container",
@@ -1709,6 +1712,11 @@ if (isMobile()) {
       duration: 30,
     }
   );
+  mainTimeline.fromTo("#middle #text-container", {
+    display: "flex"
+  }, {
+    display: "none"
+  });
   mainTimeline.to(".acc-borders", {
     opacity: 1,
     x: 0,
@@ -2137,35 +2145,38 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.fromTo(
-  "#carousel-container",
-  {
-    display: "none",
-    duration: 0,
-    delay: -20,
-  },
-  {
-    display: "block",
-    duration: 0,
-    delay: -20,
-  }
-);
-
-mainTimeline
-  .fromTo(
+if(!isMobile()) {
+  mainTimeline.fromTo(
     "#carousel-container",
     {
-      transform: "scale(0)",
-      duration: 10,
+      display: "none",
+      duration: 0,
       delay: -20,
     },
     {
-      transform: "scale(1.3)",
-      duration: 10,
+      display: "block",
+      duration: 0,
       delay: -20,
     }
-  )
-  .addLabel("clientes");
+  );
+  
+  mainTimeline
+    .fromTo(
+      "#carousel-container",
+      {
+        transform: "scale(0)",
+        duration: 10,
+        delay: -20,
+      },
+      {
+        transform: "scale(1.3)",
+        duration: 10,
+        delay: -20,
+      }
+    )
+    .addLabel("clientes");
+  
+}
 
 mainTimeline.to("#txt-container-2", {
   delay: 30,
@@ -2200,9 +2211,9 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.to('#progressbar-ctn', {
-  display: 'none'
-})
+mainTimeline.to("#progressbar-ctn", {
+  display: "none",
+});
 
 mainTimeline.fromTo(
   ".bg-video",
