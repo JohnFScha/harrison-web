@@ -250,21 +250,21 @@ collapse.addEventListener("click", () => {
   }
 
   isRotated = !isRotated;
-  icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
+  icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
   collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
 
   if (body.className.match("close")) {
     body.className = "open";
-    social[0].src = "src/assets/mail-dark.png";
-    social[1].src = "src/assets/whatsapp-dark.png";
-    social[2].src = "src/assets/ig-dark.png";
-    social[3].src = "src/assets/Linkedin-dark.png";
+    social[0].src = "src/assets/mail-dark.webp";
+    social[1].src = "src/assets/whatsapp-dark.webp";
+    social[2].src = "src/assets/ig-dark.webp";
+    social[3].src = "src/assets/Linkedin-dark.webp";
   } else if (body.className.includes("open")) {
     body.className = "close";
-    social[0].src = "src/assets/mail.png";
-    social[1].src = "src/assets/wsp.png";
-    social[2].src = "src/assets/ig.png";
-    social[3].src = "src/assets/Linkedin.png";
+    social[0].src = "src/assets/mail.webp";
+    social[1].src = "src/assets/wsp.webp";
+    social[2].src = "src/assets/ig.webp";
+    social[3].src = "src/assets/Linkedin.webp";
   }
   if (menuTl.totalProgress() === 0) {
     menuTl.play();
@@ -302,20 +302,20 @@ links.forEach((a) => {
     }
 
     isRotated = !isRotated;
-    icon.src = isRotated ? "src/assets/x-dark.png" : "src/assets/Menu.png";
+    icon.src = isRotated ? "src/assets/x-dark.webp" : "src/assets/Menu.webp";
     collapse.style.transform = isRotated ? "rotate(90deg)" : "rotate(0deg)";
     if (body.className.match("close")) {
       body.className = "open";
-      social[0].src = "src/assets/mail-dark.png";
-      social[1].src = "src/assets/whatsapp-dark.png";
-      social[2].src = "src/assets/ig-dark.png";
-      social[3].src = "src/assets/Linkedin-dark.png";
+      social[0].src = "src/assets/mail-dark.webp";
+      social[1].src = "src/assets/whatsapp-dark.webp";
+      social[2].src = "src/assets/ig-dark.webp";
+      social[3].src = "src/assets/Linkedin-dark.webp";
     } else if (body.className.includes("open")) {
       body.className = "close";
-      social[0].src = "src/assets/mail.png";
-      social[1].src = "src/assets/wsp.png";
-      social[2].src = "src/assets/ig.png";
-      social[3].src = "src/assets/Linkedin.png";
+      social[0].src = "src/assets/mail.webp";
+      social[1].src = "src/assets/wsp.webp";
+      social[2].src = "src/assets/ig.webp";
+      social[3].src = "src/assets/Linkedin.webp";
     }
 
     if (menuTl.paused() || menuTl.totalProgress() === 0) {
@@ -399,7 +399,7 @@ if (isMobile()) {
 }
 
 if (isMobile()) {
-  videoTiempo.src = "src/assets/Video-tiempo_v.mp4";
+  videoTiempo.src = "src/assets/Video-tiempo_v.webm";
 } else {
   videoTiempo.src = "src/assets/video-tiempo.webm";
 }
@@ -437,7 +437,7 @@ if (isMobile()) {
       isOpen = !isOpen; // Toggle the isOpen variable
 
       if (isOpen) {
-        expandBtnImgs[index].src = "src/assets/contract.png";
+        expandBtnImgs[index].src = "src/assets/contract.webp";
 
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
@@ -467,7 +467,7 @@ if (isMobile()) {
           });
         }
       } else {
-        expandBtnImgs[index].src = "src/assets/expand.png";
+        expandBtnImgs[index].src = "src/assets/expand.webp";
 
         for (let i = 0; i < txtInnerCtn.length; i++) {
           if (index === 0) {
@@ -579,15 +579,15 @@ if (isMobile()) {
   <p id="p1">Y DESDE AHÍ NACEN</p>
   <p id="p2">NUESTROS VÍNCULOS</p>
   <div id="mobileBrandsCtn">
-  <img src="/src/assets/logo-eugenie.png" alt="logo de Eugenie" class="mobileBrands">
-  <img src="/src/assets/logo-flexy.png" alt="logo de Flexy" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="logo de La Caja" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="logo de Delsud" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="logo de PBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="logo de Jr. NBA" class="mobileBrands">
-  <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="/src/assets/logo-eugenie.webp" alt="logo de Eugenie" class="mobileBrands">
+  <img src="/src/assets/logo-flexy.webp" alt="logo de Flexy" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_La_Caja.webp" alt="logo de La Caja" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_Desarrollos.webp" alt="logo de Delsud" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_PBA.webp" alt="logo de PBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_NBA.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Yacoub.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logo_FCE.webp" alt="logo de Jr. NBA" class="mobileBrands">
+  <img src="src/assets/marcas/Marcas_Logos_Sancor.webp" alt="logo de Jr. NBA" class="mobileBrands">
 </div>
   `;
 } else {
@@ -599,45 +599,45 @@ if (isMobile()) {
     <div class="carousel">
       <figure id="carouselFig">
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logo_Desarrollos.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logo_Desarrollos.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logo_FCE.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logo_FCE.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_La_Caja.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_La_Caja.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_NBA.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_NBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_PBA.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_PBA.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_Sancor.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_Sancor.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_azul.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_azul.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="card-ctn">
-          <img src="src/assets/marcas/Marcas_Logos_Yacoub.png" alt="" />
+          <img src="src/assets/marcas/Marcas_Logos_Yacoub.webp" alt="" />
           <video autoplay muted loop>
-            <source src="src/assets/fondo_tarjetas_verde.webm" type="video/webm" />
+            <source src="src/assets/fondo_tarjetas_verde.mp4" type="video/mp4" />
           </video>
         </div>
       </figure>
