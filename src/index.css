@@ -291,11 +291,10 @@ body #intro {
   stroke-dasharray: 1500px;
   stroke-dashoffset: 1500px;
   mix-blend-mode: lighten;
-  animation-name: draw, fill1, fill2;
-  animation-duration: 1s, 1s, 1s;
-  animation-delay: 0s, 1s, 1.5s;
+  animation-name: draw;
+  animation-duration: 3s;
   animation-fill-mode: both;
-  animation-iteration-count: infinite, infinite, infinite;
+  animation-iteration-count: infinite;
   animation-timing-function: linear;
   margin: auto;
 }
@@ -1033,12 +1032,31 @@ section.portfolio .logo-box {
 /* ======================== Keyframes =========================*/
 
 @keyframes draw {
-  to {
-    stroke-dashoffset: 1;
+  0% {
+    stroke-dashoffset: 1500px;
+  }
+
+  25% {
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    fill-opacity: 0;
+  }
+
+  75% {
+    fill-opacity: 1;
+    fill: white;
+  }
+
+  100% {
+    fill-opacity: 1;
+    fill: #d1d821;
+    stroke: #d1d821;
   }
 }
 
-@keyframes fill1 {
+/* @keyframes fill1 {
   from {
     fill-opacity: 0;
   }
@@ -1055,7 +1073,7 @@ section.portfolio .logo-box {
     fill: #d1d821;
     stroke: #d1d821;
   }
-}
+} */
 
 @keyframes scroll {
   0% {
