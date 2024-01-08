@@ -99,6 +99,16 @@ main .sub2 {
     display: inline-block;
 }
 
+main .subCtn .social a img {
+    width: 50px;
+    margin: 0 10px;
+}
+
+main .subCtn .social {
+    position: fixed;
+    right: 0;
+}
+
 p {
     font-weight: 200;
     width: 960px;

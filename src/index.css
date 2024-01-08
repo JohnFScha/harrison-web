@@ -1496,6 +1496,17 @@ div#textAllCtn .letter-container .spacerSpan {
 
   /* ============= nav ============ */
 
+  nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    height: 125px;
+    z-index: 10;
+  }
+
   nav .menu-btn-ctn button {
     margin: 0;
     width: 2.5rem;
@@ -1853,9 +1864,9 @@ div#textAllCtn .letter-container .spacerSpan {
     display: block;
     opacity: 1;
     width: 100%;
-    padding: 2rem;
+    padding: 0rem;
     z-index: 100;
-    height: 80vh;
+    height: 100vh;
   }
 
   #middle #video-tiempo #text-container-2 .text {
