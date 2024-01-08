@@ -290,18 +290,22 @@ links.forEach((a) => {
     if (a.innerText.toLowerCase() === `inicio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+        duration: 0
       });
     } else if (a.innerText.toLowerCase() === `portfolio`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("portfolio"),
+        duration: 3
       });
     } else if (a.innerText.toLowerCase() === `servicios`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("servicios"),
+        duration: 3
       });
     } else if (a.innerText.toLowerCase() === `clientes`) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("clientes"),
+        duration: 3
       });
     }
 
@@ -401,6 +405,7 @@ middleVideo.addEventListener("ended", () => {
   middleVideo.style.display = "none";
   gsap.to(window, {
     scrollTo: mainTimeline.scrollTrigger.labelToScroll("start-tiempo"),
+    duration: 3
   });
   middleVideo.currentTime = 0;
   middleVideo.load();
@@ -1664,6 +1669,7 @@ if (isMobile()) {
     width: "400vw",
     delay: -30,
   });
+
   mainTimeline
     .fromTo(
       ".accordion",
