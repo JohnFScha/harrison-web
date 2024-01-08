@@ -95,7 +95,7 @@ window.onload = () => {
 };
 
 const timeout = setTimeout(() => {
-  window.location.href = "/harrison-web/404.html"; // Adjust the path as needed
+  window.location.href = "/error"; // Adjust the path as needed
 }, 10000); // 5 seconds in milliseconds
 
 // Clear the timeout if the content loads before the timeout triggers
