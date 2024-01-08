@@ -103,10 +103,7 @@ const mainTimeline = gsap.timeline({
     scrub: true,
     pin: true,
     inertia: true,
-  },
-  onUpdate: () => {
-    console.log(mainTimeline.totalProgress());
-  },
+  }
 });
 
 /* ************* DOM elements ************ */
@@ -123,7 +120,7 @@ const expandBtns = document.querySelectorAll(".expand");
 const expandBtnImgs = document.querySelectorAll(".btn-img");
 const textCtn2 = document.getElementById("txt-container-2");
 const desliza = document.getElementById("desliza");
-const subir = document.querySelector("#subir svg");
+const subir = document.querySelector("#subir #subirbtn");
 
 /* ********* CURSOR *********** */
 
@@ -981,10 +978,10 @@ mainTimeline.to("#texto", {
   delay: -1,
   onComplete: () => {
     console.log("complete");
-    if (mainTimeline.totalProgress() <= 0.27366214498594194) {
+    if (mainTimeline.totalProgress() <= 0.27366214498594194 && mainTimeline.totalProgress() >= 0.1097627728685822) {
       gsap.to(window, {
         scrollTo: mainTimeline.scrollTrigger.labelToScroll("initPortolio"),
-        duration: 5,
+        duration: 4,
       });
     }
   },
@@ -994,7 +991,6 @@ mainTimeline.to("#intro", {
   opacity: 0,
   duration: 100,
   delay: 20,
-  // scrollTrigger: "#portfolio",
 });
 
 mainTimeline.fromTo(
@@ -1024,6 +1020,28 @@ mainTimeline.fromTo(
     delay: -50,
   }
 );
+
+mainTimeline.fromTo('#nav button', {
+  opacity: 0,
+  scale: 0,
+  duration: 5,
+}, {
+  opacity: 1,
+  scale: 1,
+  duration: 5,
+  scrollTrigger: '#nav .social-ctn .social-nav'
+})
+
+mainTimeline.fromTo('#nav .social-ctn .social-nav', {
+  opacity: 0,
+  scale: 0,
+  duration: 5,
+}, {
+  opacity: 1,
+  scale: 1,
+  duration: 5,
+  scrollTrigger: '#nav button'
+})
 
 mainTimeline.fromTo(
   ".portfolio",
@@ -2235,6 +2253,10 @@ mainTimeline.fromTo(
     delay: 20,
   }
 );
+
+mainTimeline.to('#progressbar-ctn', {
+  display: 'none'
+})
 
 mainTimeline.fromTo(
   ".bg-video",

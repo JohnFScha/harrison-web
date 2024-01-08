@@ -2001,15 +2001,22 @@ div#textAllCtn .letter-container .spacerSpan {
     position: absolute;
     bottom: 0;
     width: 100vw;
+    z-index: 1000000000;
   }
 
-  #middle #subir svg {
+  #middle #subir button {
     width: 20vw;
     height: 20vh;
-    z-index: 1000;
+    background-color: transparent;
+    border: none;
   }
 
-  #middle #subir svg .swipe {
+  #middle #subir button svg {
+    width: 20vw;
+    height: 20vh;
+  }
+
+  #middle #subir button svg .swipe {
     animation: scroll2 1s infinite;
   }
 }
