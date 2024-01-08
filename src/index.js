@@ -1378,6 +1378,11 @@ if (isMobile()) {
     duration: 10
   })
 } else {
+  mainTimeline.to('.sup-rodaje', {
+    backgroundColor: 'transparent',
+    duration: 0,
+    scrollTrigger: ".box-ctn",
+  })
   mainTimeline.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
@@ -1386,6 +1391,18 @@ if (isMobile()) {
     top: "-200%",
     scrollTrigger: ".box-ctn",
   });
+  /* mainTimeline.to(".box-ctn", {
+    delay: 4,
+    duration: 10,
+    transform: "scale(4)",
+    opacity: 0,
+    xPercent: -100,
+    top: "30%",
+  });
+  mainTimeline.to('#portfolio', {
+    filter: 'blur(100px)',
+    duration: 1
+  }) */
 }
 
 if (isMobile()) {
@@ -1422,7 +1439,7 @@ if (isMobile()) {
 } else {
   mainTimeline.to(".box-ctn", {
     delay: 4,
-    duration: 1,
+    duration: 10,
     transform: "scale(4)",
     opacity: 0,
     xPercent: -100,
@@ -1430,7 +1447,8 @@ if (isMobile()) {
   });
   mainTimeline.to('#portfolio', {
     filter: 'blur(100px)',
-    duration: 10
+    duration: 10,
+    delay: -8
   })
 }
 

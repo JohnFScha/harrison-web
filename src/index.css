@@ -568,7 +568,7 @@ section.portfolio .box-ctn {
   align-items: center;
   width: 50%;
   height: 30%;
-  background-color: rgb(10, 10, 10);
+  background-color: transparent;
   transform: skew(3.5deg, 7deg) translate(-5px, 40px);
 }
 
@@ -578,7 +578,7 @@ section.portfolio .vid-overlay {
   height: 101%;
   top: -1px;
   left: -1px;
-  background-color: rgb(10, 10, 10);
+  background-color: transparent;
   z-index: 6;
   opacity: 1;
 }
