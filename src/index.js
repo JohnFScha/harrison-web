@@ -1437,7 +1437,7 @@ if (isMobile()) {
       duration: 5,
       scale: 40,
       y: 1400,
-      transformOrigin: "50% 100%",
+      transformOrigin: "50% 99%",
       scrollTrigger: ".box-ctn",
     }
   );
