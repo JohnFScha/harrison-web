@@ -429,6 +429,7 @@ if (isMobile()) {
 
 /* ****************** Middle dom ****************** */
 
+
 middleVideo.addEventListener("ended", () => {
   middleVideo.style.display = "none";
   gsap.to(window, {
@@ -981,7 +982,12 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.to(".fill", {
+mainTimeline.fromTo(".fill", {
+  color: "transparent",
+  stagger: 3,
+  duration: 10,
+  delay: -20,
+},{
   color: "#D1D821",
   stagger: 3,
   duration: 10,
@@ -1546,9 +1552,8 @@ mainTimeline.fromTo(
     opacity: 1,
     duration: 4,
     onStart: () => {
-      console.log("start");
       middleVideo.play();
-    },
+    }
   }
 );
 
@@ -1989,7 +1994,7 @@ mainTimeline.fromTo(
     duration: 0,
   },
   {
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 0,
   }
 );

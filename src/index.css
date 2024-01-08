@@ -366,17 +366,20 @@ body #intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   align-self: center;
   height: 100%;
   width: 100%;
 }
 
-#intro #video #texto p {
+#intro #video #texto p,
+#intro #video #texto .spanIntroCtn span {
   font-size: 5rem;
   margin: 0;
   text-align: center;
   color: transparent;
   -webkit-text-stroke: 2px rgb(203, 219, 67);
+  font-family: "Montserraty", sans-serif;
 }
 
 /* ============== END INTRO ============= */
@@ -1519,7 +1522,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   nav {
     position: fixed;
-    top: 0;
+    top: 40px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1607,6 +1610,25 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 100vh;
     display: flex;
     justify-content: center;
+  }
+
+  body #intro #video #texto p:nth-child(1) {
+    width: 300px;
+    text-align: center;
+  }
+
+  body #intro #video #texto p:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body #intro #video #texto .spanIntroCtn {
+    display: flex;
+    justify-content: center;
+  }
+
+  body #intro #video #texto .spanIntroCtn span {
+    font-size: 2.2rem;
   }
 
   /* ============= portfolio ============ */
@@ -1885,10 +1907,10 @@ div#textAllCtn .letter-container .spacerSpan {
   #middle #video-tiempo #elementos-mob {
     display: block;
     opacity: 1;
-    width: 100%;
+    width: 95vw;
+    height: 95vh;
     padding: 0rem;
     z-index: 100;
-    height: 100vh;
   }
 
   #middle #video-tiempo #text-container-2 .text {
@@ -1949,8 +1971,8 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #p1_postC,
-  p.letter-container span {
-    font-size: 50px !important;
+  div#textAllCtn .letter-container .charSpan {
+    font-size: 60px;
   }
 
   #firstSpacer {
@@ -1960,7 +1982,11 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #textAllCtn>p.letter-container {
     display: block;
-    width: 400px;
+    width: 350px;
+  }
+
+  #textAllCtn>p.letter-container .spacerSpan {
+    font-size: 1rem;
   }
 
   .subTextContainer {
