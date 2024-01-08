@@ -61,19 +61,6 @@ function renderCountdown(time) {
   }
 }
 
-/* var paths = document.querySelectorAll(".path");
-
-paths.forEach((path) => {
-  var length = path.getTotalLength();
-  path.style.transition = path.style.WebkitTransition = "none";
-  path.style.strokeDasharray = length + " " + length;
-  path.style.strokeDashoffset = length;
-  path.getBoundingClientRect();
-  path.style.transition = path.style.WebkitTransition =
-    "stroke-dashoffset 2s ease-in-out";
-  path.style.strokeDashoffset = "0";
-}); */
-
 /* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -1751,26 +1738,6 @@ mainTimeline.fromTo(
   }
 );
 
-/* mainTimeline.fromTo("svg#TEXT", {
-  opacity: 0,
-  duration: 0
-}, {
-  opacity: 1,
-  duration: 0
-}); */
-
-// mainTimeline.to("#video-tiempo", {
-//   scrollTrigger: {
-//     trigger: "#video-tiempo",
-//     onEnter: () => {
-//       startCountdown();
-//     },
-//     onLeave: () => {
-//       stopCountdown();
-//     }
-//   }
-// });
-
 mainTimeline.fromTo(
   "#video-tiempo",
   {
@@ -1927,13 +1894,6 @@ mainTimeline.fromTo(
 /* *********** TIEMPO SCROLLING ********** */
 
 /* **************** SECCION FINAL ***************** */
-
-/* const carouselCtn = document.getElementById("carousel-container");
-const carousel = document.getElementById("carouselFig");
-
-if (carouselCtn.style.transform === "scale(1)") {
-  carousel.style.animation = "rotateAnim 30s infinite forwards";
-} */
 
 mainTimeline.fromTo(
   "#txt-container-2",
@@ -2299,5 +2259,3 @@ mainTimeline.staggerTo(
   },
   0.5
 );
-
-/******** JS MEDIA QUERIES  ********/
