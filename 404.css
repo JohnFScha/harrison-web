@@ -27,7 +27,7 @@ body {
 }
 
 main {
-    background-image: url('src/assets/404bg.png');
+    background-image: url('src/assets/404bg.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
