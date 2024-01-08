@@ -2118,7 +2118,7 @@ if (isMobile()) {
       x: 0,
       duration: 5,
     }
-  );
+  ).addLabel('clientes');
 } else {
   mainTimeline.fromTo(
     "#p1",
