@@ -982,7 +982,12 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.to(".fill", {
+mainTimeline.fromTo(".fill", {
+  color: "transparent",
+  stagger: 3,
+  duration: 10,
+  delay: -20,
+},{
   color: "#D1D821",
   stagger: 3,
   duration: 10,
