@@ -61,6 +61,19 @@ function renderCountdown(time) {
   }
 }
 
+/* var paths = document.querySelectorAll(".path");
+
+paths.forEach((path) => {
+  var length = path.getTotalLength();
+  path.style.transition = path.style.WebkitTransition = "none";
+  path.style.strokeDasharray = length + " " + length;
+  path.style.strokeDashoffset = length;
+  path.getBoundingClientRect();
+  path.style.transition = path.style.WebkitTransition =
+    "stroke-dashoffset 2s ease-in-out";
+  path.style.strokeDashoffset = "0";
+}); */
+
 /* gsap config */
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
@@ -327,9 +340,9 @@ const tiempoVideo = document.getElementById("tiempoVidCtn");
 const progressBar = document.getElementById("progressbar-ctn");
 const nav = document.querySelector("nav");
 
-  /* ****************** end intro dom ****************** */
+/* ****************** end intro dom ****************** */
 
-  /* ****************** Portfolio dom ****************** */
+/* ****************** Portfolio dom ****************** */
 
 let txtCtn = document.querySelectorAll(".text-ctn-1");
 let titleOuterCtn = document.querySelectorAll("section.portfolio fieldset");
@@ -380,7 +393,7 @@ if (isMobile()) {
   videoTiempo.src = "src/assets/video-tiempo.webm";
 }
 
-  /* ****************** end Portfolio dom ****************** */
+/* ****************** end Portfolio dom ****************** */
 
 /* ****************** Middle dom ****************** */
 
@@ -818,7 +831,7 @@ closeModal.addEventListener("click", () => {
 
 /* ****************** end dom manipulation ****************** */
 
-  /* ******** Video frames ******** */
+/* ******** Video frames ******** */
 
 let urls1 = new Array(380)
   .fill()
@@ -826,12 +839,12 @@ let urls1 = new Array(380)
     (_, i) => `src/assets/camara-frames/introframes(${(i + 1).toString()}).webp`
   );
 
-  urls1.forEach((url) => {
-    let img = new Image();
-    img.src = url;
-    img.class = "camara";
-    videoCamara.appendChild(img);
-  });
+urls1.forEach((url) => {
+  let img = new Image();
+  img.src = url;
+  img.class = "camara";
+  videoCamara.appendChild(img);
+});
 
 /* *********** END TIMELINE ********** */
 
@@ -965,9 +978,9 @@ mainTimeline.fromTo(
   }
 );
 
-  /* *********** END INTRO SCROLLING ********** */
+/* *********** END INTRO SCROLLING ********** */
 
-  /* *********** PORTFOLIO SCROLLING ********** */
+/* *********** PORTFOLIO SCROLLING ********** */
 
 mainTimeline.fromTo(
   "#portfolio",
@@ -1422,9 +1435,9 @@ mainTimeline.to(".portfolio", {
   duration: 8,
 });
 
-  /* *********** END PORTFOLIO SCROLLING ********** */
+/* *********** END PORTFOLIO SCROLLING ********** */
 
-  /* *********** MIDDLE SCROLLING ********** */
+/* *********** MIDDLE SCROLLING ********** */
 
 mainTimeline.fromTo(
   "#middle",
@@ -1449,23 +1462,8 @@ mainTimeline.fromTo(
   {
     display: "block",
     duration: 0,
-    y: 0,
-  });
-
-  middleTimeline.fromTo(
-    "#middleVidCtn",
-    {
-      opacity: 1,
-      zIndex: 100,
-      visibility: 'visible'
-    },
-    {
-      opacity: 0,
-      zIndex: 0,
-      visibility: 'hidden',
-      duration: 10,
-    }
-  );
+  }
+);
 
 mainTimeline.fromTo(
   "#middleVidCtn",
@@ -1753,6 +1751,26 @@ mainTimeline.fromTo(
   }
 );
 
+/* mainTimeline.fromTo("svg#TEXT", {
+  opacity: 0,
+  duration: 0
+}, {
+  opacity: 1,
+  duration: 0
+}); */
+
+// mainTimeline.to("#video-tiempo", {
+//   scrollTrigger: {
+//     trigger: "#video-tiempo",
+//     onEnter: () => {
+//       startCountdown();
+//     },
+//     onLeave: () => {
+//       stopCountdown();
+//     }
+//   }
+// });
+
 mainTimeline.fromTo(
   "#video-tiempo",
   {
@@ -1909,6 +1927,13 @@ mainTimeline.fromTo(
 /* *********** TIEMPO SCROLLING ********** */
 
 /* **************** SECCION FINAL ***************** */
+
+/* const carouselCtn = document.getElementById("carousel-container");
+const carousel = document.getElementById("carouselFig");
+
+if (carouselCtn.style.transform === "scale(1)") {
+  carousel.style.animation = "rotateAnim 30s infinite forwards";
+} */
 
 mainTimeline.fromTo(
   "#txt-container-2",
@@ -2274,3 +2299,5 @@ mainTimeline.staggerTo(
   },
   0.5
 );
+
+/******** JS MEDIA QUERIES  ********/
