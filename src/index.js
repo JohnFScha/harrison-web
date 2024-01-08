@@ -104,6 +104,9 @@ const mainTimeline = gsap.timeline({
     pin: true,
     inertia: true,
   },
+  onUpdate: () => {
+    console.log(mainTimeline.totalProgress());
+  },
 });
 
 /* ************* DOM elements ************ */
@@ -120,6 +123,7 @@ const expandBtns = document.querySelectorAll(".expand");
 const expandBtnImgs = document.querySelectorAll(".btn-img");
 const textCtn2 = document.getElementById("txt-container-2");
 const desliza = document.getElementById("desliza");
+const subir = document.querySelector("#subir svg");
 
 /* ********* CURSOR *********** */
 
@@ -415,6 +419,13 @@ middleVideo.addEventListener("ended", () => {
   });
   middleVideo.currentTime = 0;
   middleVideo.load();
+});
+
+subir.addEventListener("click", () => {
+  gsap.to(window, {
+    scrollTo: mainTimeline.scrollTrigger.labelToScroll("intro"),
+    duration: 2,
+  });
 });
 
 let ctn = document.querySelectorAll(".child");
@@ -970,10 +981,12 @@ mainTimeline.to("#texto", {
   delay: -1,
   onComplete: () => {
     console.log("complete");
-    gsap.to(window, {
-      scrollTo: mainTimeline.scrollTrigger.labelToScroll("initPortolio"),
-      duration: 5,
-    });
+    if (mainTimeline.totalProgress() <= 0.27366214498594194) {
+      gsap.to(window, {
+        scrollTo: mainTimeline.scrollTrigger.labelToScroll("initPortolio"),
+        duration: 5,
+      });
+    }
   },
 });
 
@@ -2345,6 +2358,19 @@ mainTimeline.staggerTo(
     duration: 25,
   },
   0.5
+);
+
+mainTimeline.fromTo(
+  "#subir",
+  {
+    y: 500,
+    opacity: 0,
+  },
+  {
+    y: 0,
+    opacity: 1,
+    duration: 2,
+  }
 );
 
 /******** JS MEDIA QUERIES  ********/

@@ -1096,6 +1096,23 @@ section.portfolio .logo-box {
   }
 }
 
+@keyframes scroll2 {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 @keyframes fadeOutAnimation {
   from {
     opacity: 1;
@@ -1467,6 +1484,10 @@ div#textAllCtn .letter-container .spacerSpan {
 .textEndCtn .spacerSpan2 {
   font-size: 0.5rem;
   visibility: hidden;
+}
+
+#middle #subir {
+  display: none;
 }
 
 /* =================== media queries =================== */
@@ -1972,6 +1993,24 @@ div#textAllCtn .letter-container .spacerSpan {
 
   .charSpan2 {
     font-size: 20px !important;
+  }
+
+  #middle #subir {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+  }
+
+  #middle #subir svg {
+    width: 20vw;
+    height: 20vh;
+    z-index: 1000;
+  }
+
+  #middle #subir svg .swipe {
+    animation: scroll2 1s infinite;
   }
 }
 
