@@ -1003,7 +1003,7 @@ mainTimeline.to("#texto", {
 mainTimeline.to("#intro", {
   opacity: 0,
   duration: 20,
-  delay: 20,
+  delay: -10,
 });
 
 mainTimeline.fromTo(
@@ -1026,10 +1026,12 @@ mainTimeline.fromTo(
   "#portfolio",
   {
     display: "none",
+    duration: 2,
     delay: -50,
   },
   {
     display: "block",
+    duration: 2,
     delay: -50,
   }
 );
@@ -1150,6 +1152,8 @@ mainTimeline.fromTo(
   {
     opacity: 0,
     y: 200,
+    duration: 2,
+    delay: -5,
   },
   {
     opacity: 1,
@@ -1476,6 +1480,11 @@ if (isMobile()) {
       duration: 5,
     }
   );
+  mainTimeline.to('.box-ctn', {
+    opacity: 0,
+    duration: 2,
+    delay: -4
+  })
   mainTimeline.to(".box-ctn", {
     delay: -2,
     duration: 7,
@@ -1487,7 +1496,6 @@ if (isMobile()) {
     delay: 4,
     duration: 10,
     transform: "scale(4)",
-    // opacity: 0,
     xPercent: -100,
     top: "30%",
   });
