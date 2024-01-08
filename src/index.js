@@ -1582,7 +1582,7 @@ mainTimeline.fromTo(
   },
   {
     delay: -10,
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 5,
   }
 );
@@ -1812,23 +1812,44 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.fromTo(
-  "#video-tiempo",
-  {
-    zIndex: -1,
-    rotateX: 115.3,
-  },
-  {
-    zIndex: 4,
-    rotateX: 0,
-    // translateY: -90,
-    duration: 10,
-    scrollTrigger: ".accordion",
-    onStart: () => {
-      startCountdown();
+if (isMobile()) {
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
     },
-  }
-);
+    {
+      zIndex: 4,
+      rotateX: 0,
+      // translateY: -90,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+} else {
+  mainTimeline.fromTo(
+    "#video-tiempo",
+    {
+      zIndex: -1,
+      rotateX: 115.3,
+    },
+    {
+      zIndex: 4,
+      rotateX: 0,
+      // translateY: -90,
+      duration: 10,
+      scrollTrigger: ".accordion",
+      onStart: () => {
+        startCountdown();
+      },
+    }
+  );
+}
+
 
 mainTimeline.to("#video-tiempo #text-container-2 .text", {
   y: 1500,
@@ -2218,12 +2239,12 @@ mainTimeline.to("#progressbar-ctn", {
 mainTimeline.fromTo(
   ".bg-video",
   {
-    opacity: 0.1,
+    opacity: 0.5,
     duration: 12,
     delay: -15,
   },
   {
-    opacity: 0.2,
+    opacity: 0.8,
     duration: 12,
     delay: -15,
   }
