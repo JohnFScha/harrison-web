@@ -946,10 +946,6 @@ cameraFrames.forEach((img, index) => {
   }
 });
 
-/* mainTimeline.to("#video-camara", {
-  delay: 10,
-}); */
-
 mainTimeline.fromTo(
   "#texto",
   {
@@ -1410,16 +1406,12 @@ if (isMobile()) {
     {
       delay: 4,
       duration: 5,
-      scale: 30,
-      y: 1300,
+      scale: 40,
+      y: 1400,
       transformOrigin: "50% 100%",
       scrollTrigger: ".box-ctn",
     }
   );
-  mainTimeline.to("#portfolio", {
-    filter: "blur(100px)",
-    duration: 10,
-  });
 } else {
   mainTimeline.to(".sup-rodaje", {
     backgroundColor: "transparent",
@@ -1429,23 +1421,11 @@ if (isMobile()) {
   mainTimeline.to(".sup-rodaje", {
     delay: 4,
     duration: 10,
-    width: "450%",
-    left: "-290%",
-    top: "-200%",
+    width: "700%",
+    left: "-450%",
+    top: "-300%",
     scrollTrigger: ".box-ctn",
   });
-  /* mainTimeline.to(".box-ctn", {
-    delay: 4,
-    duration: 10,
-    transform: "scale(4)",
-    opacity: 0,
-    xPercent: -100,
-    top: "30%",
-  });
-  mainTimeline.to('#portfolio', {
-    filter: 'blur(100px)',
-    duration: 1
-  }) */
 }
 
 if (isMobile()) {
@@ -1485,11 +1465,6 @@ if (isMobile()) {
     opacity: 0,
     xPercent: -100,
     top: "30%",
-  });
-  mainTimeline.to("#portfolio", {
-    filter: "blur(100px)",
-    duration: 10,
-    delay: -8,
   });
 }
 
@@ -1829,26 +1804,6 @@ mainTimeline.fromTo(
   }
 );
 
-/* mainTimeline.fromTo("svg#TEXT", {
-  opacity: 0,
-  duration: 0
-}, {
-  opacity: 1,
-  duration: 0
-}); */
-
-// mainTimeline.to("#video-tiempo", {
-//   scrollTrigger: {
-//     trigger: "#video-tiempo",
-//     onEnter: () => {
-//       startCountdown();
-//     },
-//     onLeave: () => {
-//       stopCountdown();
-//     }
-//   }
-// });
-
 mainTimeline.fromTo(
   "#video-tiempo",
   {
@@ -2006,13 +1961,6 @@ mainTimeline.fromTo(
 
 /* **************** SECCION FINAL ***************** */
 
-/* const carouselCtn = document.getElementById("carousel-container");
-const carousel = document.getElementById("carouselFig");
-
-if (carouselCtn.style.transform === "scale(1)") {
-  carousel.style.animation = "rotateAnim 30s infinite forwards";
-} */
-
 mainTimeline.fromTo(
   "#txt-container-2",
   {
@@ -2067,7 +2015,6 @@ if (isMobile()) {
     delay: -30,
     duration: 20,
     y: -50,
-    // scrollTrigger: '#mobileBrandsCtn'
   });
 
   mainTimeline.fromTo(
@@ -2108,7 +2055,6 @@ if (isMobile()) {
       y: 0,
       x: 0,
       duration: 5,
-      // scrollTrigger: '#p2'
     }
   );
 } else {
