@@ -1449,7 +1449,14 @@ div#textAllCtn .letter-container .spacerSpan {
   visibility: hidden;
 }
 
+/* =================== media queries =================== */
+
 @media (max-width: 900px) {
+
+  #intro #init {
+    background-size: 100px;
+    background-repeat: space;
+  }
 
   #progressbar-ctn {
     width: 100%;
