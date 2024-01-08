@@ -1695,11 +1695,10 @@ div#textAllCtn .letter-container .spacerSpan {
     z-index: 50000;
     bottom: 18% !important;
     right: 11.5%;
-    top: none;
+    top: unset;
     width: 60px;
-    cursor: pointer;
     filter: invert(1);
-    cursor: url(assets/cursor-mano.svg),pointer;
+    cursor: url(assets/cursor-mano.svg), pointer;
   }
 
   #modalVideo {
@@ -1835,11 +1834,11 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #middle #video-tiempo #text-container-2 .text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   /* carousel*/
