@@ -1590,7 +1590,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   nav section#menu ul #logo-menu {
     position: fixed;
-    top: 0;
+    top: 35px;
     left: 0;
     margin: 1rem 1.5rem;
   }
