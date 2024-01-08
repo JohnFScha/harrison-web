@@ -103,7 +103,7 @@ const mainTimeline = gsap.timeline({
     scrub: true,
     pin: true,
     inertia: true,
-  }
+  },
 });
 
 /* ************* DOM elements ************ */
@@ -335,6 +335,7 @@ const middleVideo = document.getElementById("middleVidCtn");
 const tiempoVideo = document.getElementById("tiempoVidCtn");
 const progressBar = document.getElementById("progressbar-ctn");
 const nav = document.querySelector("nav");
+const intro = document.getElementById('intro')
 
 /* ****************** end intro dom ****************** */
 
@@ -976,20 +977,11 @@ mainTimeline.to("#texto", {
   y: -800,
   duration: 30,
   delay: -1,
-  onComplete: () => {
-    console.log("complete");
-    if (mainTimeline.totalProgress() <= 0.27366214498594194 && mainTimeline.totalProgress() >= 0.1097627728685822) {
-      gsap.to(window, {
-        scrollTo: mainTimeline.scrollTrigger.labelToScroll("initPortolio"),
-        duration: 4,
-      });
-    }
-  },
 });
 
 mainTimeline.to("#intro", {
   opacity: 0,
-  duration: 100,
+  duration: 20,
   delay: 20,
 });
 
@@ -1021,27 +1013,35 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.fromTo('#nav button', {
-  opacity: 0,
-  scale: 0,
-  duration: 5,
-}, {
-  opacity: 1,
-  scale: 1,
-  duration: 5,
-  scrollTrigger: '#nav .social-ctn .social-nav'
-})
+mainTimeline.fromTo(
+  "#nav button",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav .social-ctn .social-nav",
+  }
+);
 
-mainTimeline.fromTo('#nav .social-ctn .social-nav', {
-  opacity: 0,
-  scale: 0,
-  duration: 5,
-}, {
-  opacity: 1,
-  scale: 1,
-  duration: 5,
-  scrollTrigger: '#nav button'
-})
+mainTimeline.fromTo(
+  "#nav .social-ctn .social-nav",
+  {
+    opacity: 0,
+    scale: 0,
+    duration: 5,
+  },
+  {
+    opacity: 1,
+    scale: 1,
+    duration: 5,
+    scrollTrigger: "#nav button",
+  }
+);
 
 mainTimeline.fromTo(
   ".portfolio",
@@ -2254,9 +2254,9 @@ mainTimeline.fromTo(
   }
 );
 
-mainTimeline.to('#progressbar-ctn', {
-  display: 'none'
-})
+mainTimeline.to("#progressbar-ctn", {
+  display: "none",
+});
 
 mainTimeline.fromTo(
   ".bg-video",
