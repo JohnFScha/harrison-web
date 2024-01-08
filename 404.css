@@ -198,6 +198,10 @@ button {
         margin: auto;
     }
 
+    main .subCtn .social {
+        position: inherit;
+    }
+
     main .subCtn .social a img {
         width: 50px;
         margin: 0 10px;
