@@ -271,9 +271,6 @@ body #intro {
   background-color: #000;
   background-size: 300px;
   background-repeat: space;
-  backdrop-filter: opacity(10%);
-  animation: fadeOutAnimation 1s;
-  animation-delay: 2.5s;
   z-index: 100;
 }
 

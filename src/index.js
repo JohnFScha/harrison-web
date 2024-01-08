@@ -91,7 +91,10 @@ requestAnimationFrame(raf);
 
 window.onload = () => {
   const init = document.getElementById("init");
-  init.style.display = "none";
+  init.style.animation = 'fadeOutAnimation 1s'
+  setTimeout(() => {
+    init.style.display = "none";
+  }, 1000);
 };
 
 const timeout = setTimeout(() => {
