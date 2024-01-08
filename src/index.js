@@ -1363,13 +1363,17 @@ if (isMobile()) {
     },
     {
       delay: 4,
-      duration: 10,
+      duration: 5,
       scale: 30,
       y: 1300,
       transformOrigin: "50% 100%",
       scrollTrigger: ".box-ctn",
     }
   );
+  mainTimeline.to('#portfolio', {
+    filter: 'blur(100px)',
+    duration: 10
+  })
 } else {
   mainTimeline.to(".sup-rodaje", {
     delay: 4,
@@ -1410,15 +1414,21 @@ if (isMobile()) {
     transform: "scale(4.1)",
     top: "50%",
   });
+ 
+
 } else {
   mainTimeline.to(".box-ctn", {
     delay: 4,
-    duration: 7.5,
+    duration: 1,
     transform: "scale(4)",
     opacity: 0,
     xPercent: -100,
     top: "30%",
   });
+  mainTimeline.to('#portfolio', {
+    filter: 'blur(100px)',
+    duration: 10
+  })
 }
 
 mainTimeline.fromTo(
