@@ -1522,7 +1522,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   nav {
     position: fixed;
-    top: 40px;
+    top: 25px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
