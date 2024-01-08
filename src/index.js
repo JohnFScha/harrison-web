@@ -84,14 +84,33 @@ window.onload = () => {
   }, 1000);
 };
 
-// const timeout = setTimeout(() => {
-//   window.location.href = "/error"; // Adjust the path as needed
-// }, 10000); // 5 seconds in milliseconds
-
-// // Clear the timeout if the content loads before the timeout triggers
-// window.addEventListener("load", () => {
-//   clearTimeout(timeout);
-// });
+if (isMobile()) {
+  Swal.fire({
+    title: '¡HOLA!',
+    text: 'Para una mejor experiencia, te invitamos a visitar nuestra web desde una computadora',
+    showConfirmButton: true,
+    showCancelButton: false,
+    confirmButtonColor: '#1D3E4E',
+    confirmButtonText: 'CONTINUAR',
+    position: 'bottom',
+    customClass: 'alert'
+  })  
+  const timeout = setTimeout(() => {
+    window.location.href = "/error"; // Adjust the path as needed
+  }, 20000); // 10 seconds in milliseconds  
+  // Clear the timeout if the content loads before the timeout triggers
+  window.addEventListener("load", () => {
+    clearTimeout(timeout);
+  });
+} else {
+  const timeout = setTimeout(() => {
+    window.location.href = "/error"; // Adjust the path as needed
+  }, 10000); // 10 seconds in milliseconds  
+  // Clear the timeout if the content loads before the timeout triggers
+  window.addEventListener("load", () => {
+    clearTimeout(timeout);
+  });
+}
 
 /* ********* Timeline ********* */
 
@@ -107,6 +126,7 @@ const mainTimeline = gsap.timeline({
 });
 
 /* ************* DOM elements ************ */
+
 const html = document.querySelector("html");
 const body = document.getElementById("body");
 const collapse = document.getElementById("collapse");
