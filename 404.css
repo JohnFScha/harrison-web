@@ -158,12 +158,12 @@ button {
     }
 
     main .titleCtn .error {
-        left: 21%;
-        top: 15%;
+        left: 16%;
+        top: -59%;
     }
 
     main .subCtn {
-        position: absolute;
+        position: absolute !important;
         bottom: 29%;
         color: white;
         width: 80%;
