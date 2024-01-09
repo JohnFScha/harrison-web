@@ -1493,10 +1493,18 @@ if (isMobile()) {
     top: "50%",
   });
 } else {
-  mainTimeline.to(".box-ctn", {
+  mainTimeline.fromTo(".box-ctn", 
+  {
     delay: 4,
     duration: 10,
-    transform: "scale(4)",
+    transform: "scale(1) skew(3.5deg, 7deg) translate(-5px, 40px)",
+    xPercent: -0,
+    top: "34.9998%",
+  },
+  {
+    delay: 4,
+    duration: 10,
+    transform: "scale(4) skew(3.5deg, 7deg) translate(-5px, 40px)",
     xPercent: -100,
     top: "30%",
   });
