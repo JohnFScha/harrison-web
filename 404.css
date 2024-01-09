@@ -152,15 +152,17 @@ button {
 
     main .titleCtn {
         font-size: 8rem;
-        margin: 1rem 0;
+        margin: 0rem 0;
     }
 
     main .titleCtn .error {
-        left: 22%;
-        top: 15%;
+        left: 16%;
+        top: -65%;
     }
 
     main .subCtn {
+        position: absolute;
+        bottom: 29%;
         color: white;
         width: 80%;
         position: inherit;
@@ -172,7 +174,7 @@ button {
 
 
     main .subCtn .sub1 {
-        margin-top: 13rem;
+        margin-top: 7rem;
         margin-bottom: 0;
         font-size: 45px;
     }
@@ -195,11 +197,13 @@ button {
         padding: 10px;
         font-size: 20px;
         width: 69%;
-        margin: auto;
+        margin: 0 auto;
     }
 
     main .subCtn .social {
-        position: inherit;
+        position: fixed;
+        bottom: 7%;
+        right: 11%;
     }
 
     main .subCtn .social a img {
