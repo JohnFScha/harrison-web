@@ -1646,12 +1646,18 @@ div#textAllCtn .letter-container .spacerSpan {
   body #intro #video #texto .spanIntroCtn {
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
 
   body #intro #video #texto .spanIntroCtn p {
     font-size: 2.2rem;
     margin-right: 5px;
     display: inline-block;
+  }
+
+  body #intro #video #texto .spanIntroCtn .spanCtn {
+    display: flex;
+    justify-content: center;
   }
 
   body #intro #video #texto .spanIntroCtn span {
