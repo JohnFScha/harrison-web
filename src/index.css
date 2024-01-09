@@ -499,6 +499,7 @@ section.portfolio .txt-row {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 2rem;
 }
 
 section.portfolio .dup-ctn {
@@ -1681,6 +1682,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   section.portfolio .txt-ctn-2 .txt-row {
     height: 450px;
+    margin: 0;
   }
 
   body #intro #video #texto p,
