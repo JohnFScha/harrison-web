@@ -151,13 +151,15 @@ button {
     }
 
     main .titleCtn {
+        position: absolute;
+        top: 31%;
         font-size: 8rem;
         margin: 0rem 0;
     }
 
     main .titleCtn .error {
-        left: 16%;
-        top: -65%;
+        left: 21%;
+        top: 15%;
     }
 
     main .subCtn {
