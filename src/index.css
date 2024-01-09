@@ -1584,6 +1584,10 @@ div#textAllCtn .letter-container .spacerSpan {
     left: 0;
   }
 
+  nav section#menu .social-ctn-2 a:hover {
+    color: transparent;
+  }
+
   nav section#menu .social-ctn-2 a img {
     width: 2.5rem;
   }
