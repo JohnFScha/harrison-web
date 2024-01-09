@@ -2117,6 +2117,7 @@ if (isMobile()) {
       y: 0,
       x: 0,
       duration: 5,
+      scrollTrigger: '#progressbar-ctn'
     }
   ).addLabel('clientes');
 } else {

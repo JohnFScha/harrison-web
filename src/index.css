@@ -372,7 +372,28 @@ body #intro {
   width: 100%;
 }
 
-#intro #video #texto p,
+#intro #video #texto p {
+  font-size: 5rem;
+  margin-right: 0;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+  font-family: "Montserraty", sans-serif;
+}
+
+#intro #video #texto .spanIntroCtn {
+  display: flex;
+}
+
+#intro #video #texto .spanIntroCtn p {
+  font-size: 5rem;
+  margin-right: 1rem;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(203, 219, 67);
+  font-family: "Montserraty", sans-serif;
+}
+
 #intro #video #texto .spanIntroCtn span {
   font-size: 5rem;
   margin: 0;
@@ -1613,7 +1634,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   body #intro #video #texto p:nth-child(1) {
-    width: 300px;
+    width: 245px;
     text-align: center;
   }
 
@@ -1625,6 +1646,12 @@ div#textAllCtn .letter-container .spacerSpan {
   body #intro #video #texto .spanIntroCtn {
     display: flex;
     justify-content: center;
+  }
+
+  body #intro #video #texto .spanIntroCtn p {
+    font-size: 2.2rem;
+    margin-right: 5px;
+    display: inline-block;
   }
 
   body #intro #video #texto .spanIntroCtn span {
@@ -1914,11 +1941,11 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #middle #video-tiempo #text-container-2 .text {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span.spacer {
