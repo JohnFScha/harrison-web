@@ -612,7 +612,7 @@ section.portfolio .box-ctn {
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 28%;
+  height: 29%;
   background-color: transparent;
   transform: skew(3.5deg, 7deg) translate(-5px, 40px);
 }

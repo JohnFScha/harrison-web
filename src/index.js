@@ -1497,7 +1497,7 @@ if (isMobile()) {
   {
     delay: 4,
     duration: 10,
-    transform: "scale(1) skew(3.5deg, 7deg) translate(-5px, 40px)",
+    transform: "translate(-3.5535px, 50.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851)",
     xPercent: -0,
     top: "34.9998%",
   },
