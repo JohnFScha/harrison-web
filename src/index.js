@@ -823,6 +823,7 @@ liElements.forEach((liElement, index) =>
     newVideo.id = "modalVideo";
     let swapSrc = document.createElement("source");
     swapSrc.src = videos[index];
+    newVideo.controls = true
     newVideo.appendChild(swapSrc);
     modalContent.appendChild(newVideo);
     modal.classList.remove("hidden");
