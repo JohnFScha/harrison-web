@@ -326,6 +326,10 @@ body #intro {
   margin: auto;
 }
 
+#intro #scrollea svg .st0 {
+  stroke: none;
+}
+
 #intro #scrollea svg path.st1 {
   fill: white;
   animation: scroll 0.8s infinite;
@@ -347,7 +351,7 @@ body #intro {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: url("assets/camara-frames/introframes\(1\).webp");
+  background-image: url("assets/camara-frames/introframes%20\(1\).webp");
   background-position: center;
   background-size: cover;
 }
@@ -357,8 +361,6 @@ body #intro {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* opacity: 0; */
-  /* display: none; */
 }
 
 #intro #video #texto {
@@ -373,7 +375,7 @@ body #intro {
 }
 
 #intro #video #texto p {
-  font-size: 5rem;
+  font-size: calc(5rem + 10%);
   margin-right: 0;
   text-align: center;
   color: transparent;
@@ -386,7 +388,7 @@ body #intro {
 }
 
 #intro #video #texto .spanIntroCtn p {
-  font-size: 5rem;
+  font-size: calc(5rem + 10%);
   margin-right: 1rem;
   text-align: center;
   color: transparent;
@@ -499,7 +501,7 @@ section.portfolio .txt-row {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 section.portfolio .dup-ctn {
@@ -791,6 +793,7 @@ section.portfolio .logo-box {
   margin-top: -70px;
   font-size: 6.8rem;
   color: transparent;
+  /* color:rgb(203, 219, 67); */
   -webkit-text-stroke: 2px rgb(203, 219, 67);
 }
 
@@ -871,6 +874,10 @@ section.portfolio .logo-box {
   left: 50%;
 }
 
+.title-ctn h1 {
+  color: rgb(203, 219, 67);
+}
+
 .text-ctn {
   position: absolute;
   left: 0;
@@ -914,6 +921,10 @@ section.portfolio .logo-box {
   width: object-fit;
   transition: 0.8s ease clip-path;
   clip-path: inset(0 100% 0 0);
+}
+
+.child:nth-child(1) .text-ctn ol {
+  clip-path: inset(0 0% 0 0);
 }
 
 .child:hover .text-ctn p,
@@ -1006,7 +1017,6 @@ section.portfolio .logo-box {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  animation: pulse 1.5s infinite;
 }
 
 #middle #video-tiempo #elementos-mob {
@@ -1153,15 +1163,6 @@ section.portfolio .logo-box {
   }
 }
 
-@keyframes pulse {
-  from {
-    z-index: -2;
-  }
-
-  to {
-    z-index: 2;
-  }
-}
 
 /* seccion final */
 
@@ -1502,7 +1503,9 @@ div#textAllCtn .letter-container .spacerSpan {
 
 /* =================== media queries =================== */
 
-@media (max-width: 900px) {
+/* * MOBILE */
+
+@media only screen and (max-width: 500px) {
 
   #intro #init {
     background-size: 100px;
@@ -1667,6 +1670,7 @@ div#textAllCtn .letter-container .spacerSpan {
 
   body #intro #video #texto .spanIntroCtn span {
     font-size: 2.2rem;
+    color: #d1d821;
   }
 
   /* ============= portfolio ============ */
@@ -1689,13 +1693,14 @@ div#textAllCtn .letter-container .spacerSpan {
   section.portfolio h2,
   section.portfolio .dup-ctn span {
     line-height: 2.6rem;
-    font-size: 2.2rem;
+    font-size: 2rem;
     text-align: center;
   }
 
   section.portfolio .dup-ctn span {
     letter-spacing: -5px;
     line-height: 2.2rem;
+    color: #d1d821;
   }
 
   section.portfolio .bg-rodaje,
@@ -1714,10 +1719,14 @@ div#textAllCtn .letter-container .spacerSpan {
 
   section.portfolio .txt-ctn-1 .dup-ctn,
   section.portfolio .txt-ctn-2 .dup-ctn {
-    width: 246px;
+    width: 64%;
     margin-top: 5px;
     text-align: center;
     display: block;
+  }
+
+  section.portfolio .txt-ctn-1 .dup-ctn #first-letter {
+    margin-left: 15px;
   }
 
   section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
@@ -1743,9 +1752,13 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   section.portfolio ol {
-    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
     padding-left: 0;
-    margin-top: -65%;
+    margin-top: -40%;
   }
 
   section.portfolio ol li {
@@ -1761,7 +1774,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   section.portfolio ol li:nth-child(1) h2 {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
 
   section.portfolio ol li .desc-ctn p,
@@ -1794,10 +1807,11 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   section.portfolio .box-ctn {
-    width: 7.8rem;
-    height: 4.6rem;
+    width: 7.5rem;
+    height: 4rem;
     bottom: 15%;
     background-color: transparent;
+    transform: translate(-4.5535px, 32.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851) !important;
   }
 
   section.portfolio .vid-overlay {
@@ -1809,7 +1823,7 @@ div#textAllCtn .letter-container .spacerSpan {
     height: 50px;
   }
 
-  .modal .close { 
+  .modal .close {
     position: absolute;
     z-index: 50000;
     bottom: 18% !important;
@@ -1841,9 +1855,13 @@ div#textAllCtn .letter-container .spacerSpan {
     width: 250px;
   }
 
-  #middle #text-container p,
+  #middle #text-container p {
+    font-size: 2rem;
+  }
+
   #middle #text-container #letter-ctn span {
     font-size: 2rem;
+    color: #d1d821;
   }
 
   #middle #text-container p:nth-child(1) {
@@ -1897,6 +1915,10 @@ div#textAllCtn .letter-container .spacerSpan {
     padding: 250px 10% 50px 15%;
     overflow: visible;
     border: 0;
+  }
+
+  #middle #parent .child .title-ctn h1 {
+    transition: color 0.5s ease;
   }
 
   #middle #parent .child .text-ctn {
@@ -1957,6 +1979,7 @@ div#textAllCtn .letter-container .spacerSpan {
   }
 
   #middle #video-tiempo #text-container-2 #letter-ctn span {
+    color: #d1d821;
     font-size: 1.6rem;
   }
 
@@ -2019,9 +2042,13 @@ div#textAllCtn .letter-container .spacerSpan {
     font-size: 0;
   }
 
-  #textAllCtn>p.letter-container {
+  #textAllCtn p.letter-container {
     display: block;
     width: 350px;
+  }
+
+  #textAllCtn p.letter-container .charSpan {
+    color: #d1d821;
   }
 
   #textAllCtn>p.letter-container .spacerSpan {
@@ -2082,6 +2109,681 @@ div#textAllCtn .letter-container .spacerSpan {
 
   #middle #subir button svg .swipe {
     animation: scroll2 1s infinite;
+  }
+}
+
+/* * Tablet */
+
+@media only screen and (min-width: 501px) and (max-width: 850px) {
+
+  #intro #init {
+    background-size: 100px;
+    background-repeat: space;
+  }
+
+  #intro #scrollea {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #intro #scrollea svg {
+    width: 30vw;
+    margin: 0;
+  }
+
+  #intro #scrollea img {
+    width: 40vw;
+    display: block;
+  }
+
+  #progressbar-ctn {
+    width: 100%;
+    left: 0;
+    height: 130px;
+  }
+
+  #progressbar-ctn svg {
+    width: 45%;
+  }
+
+  /* ============= nav ============ */
+
+  nav {
+    position: fixed;
+    top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    height: 125px;
+    z-index: 10;
+  }
+
+  nav .menu-btn-ctn button {
+    margin: 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 25px;
+    margin-top: 50px;
+  }
+
+  nav .menu-btn-ctn button img {
+    width: 100%;
+    height: 100%;
+  }
+
+  nav .social-ctn {
+    display: none;
+  }
+
+  nav section#menu {
+    padding: 0;
+  }
+
+  nav section#menu .social-ctn-2 {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+    margin: 2rem 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  nav section#menu .social-ctn-2 a:hover {
+    color: transparent;
+  }
+
+  nav section#menu .social-ctn-2 a img {
+    width: 3.5rem;
+  }
+
+  nav section#menu ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    height: 10%;
+    margin: 17rem 0;
+  }
+
+  nav section#menu ul li a {
+    display: block;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    -webkit-text-stroke: 2px rgb(29, 62, 78);
+  }
+
+  nav section#menu ul hr {
+    width: 30%;
+  }
+
+  nav section#menu ul li#logo-menu {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    margin: 1rem 1.5rem;
+  }
+
+  nav section#menu ul li#logo-menu svg {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  /* ============= intro ============ */
+
+  body #intro #video #video-camara img {
+    object-fit: cover;
+    transform: rotate(-90deg);
+    width: 100vh;
+    height: 100%;
+  }
+
+  body #intro #video #video-camara {
+    background-image: none;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  body #intro #video #texto {
+    gap: 1.5rem;
+  }
+
+  body #intro #video #texto p:nth-child(1) {
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  body #intro #video #texto p:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body #intro #video #texto .spanIntroCtn {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  body #intro #video #texto .spanIntroCtn p {
+    font-size: 4rem;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  body #intro #video #texto .spanIntroCtn .spanCtn {
+    display: flex;
+    justify-content: center;
+  }
+
+  body #intro #video #texto .spanIntroCtn span {
+    font-size: 4rem;
+    color: #d1d821;
+  }
+
+  /* ============= portfolio ============ */
+
+  section.portfolio {
+    background-color: #010206;
+  }
+
+  section.portfolio .txt-row {
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+  }
+
+  section.portfolio .txt-ctn-2 .txt-row {
+    height: 80%;
+    margin: 0;
+  }
+
+  body #intro #video #texto p,
+  section.portfolio h2,
+  section.portfolio .dup-ctn span {
+    line-height: 3.5rem;
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  section.portfolio .dup-ctn span {
+    letter-spacing: -5px;
+    line-height: 2.2rem;
+    color: #d1d821;
+  }
+
+  section.portfolio .bg-rodaje,
+  section.portfolio .sup-rodaje {
+    height: 100vh;
+    object-fit: cover;
+  }
+
+  section.portfolio .txt-ctn-1 .dup-ctn {
+    left: -5px;
+  }
+
+  section.portfolio .txt-ctn-2 .dup-ctn {
+    left: 1px;
+  }
+
+  section.portfolio .txt-ctn-1 .dup-ctn,
+  section.portfolio .txt-ctn-2 .dup-ctn {
+    width: 100%;
+    margin-top: 15px;
+    text-align: center;
+    display: block;
+  }
+
+  section.portfolio .txt-ctn-1 .dup-ctn #first-letter {
+    margin-left: 15px;
+  }
+
+  section.portfolio .txt-ctn-1 .dup-ctn span.spacer,
+  section.portfolio .txt-ctn-2 .dup-ctn span.spacer {
+    width: 9px;
+    font-size: 1.3rem;
+  }
+
+  section.portfolio div.txt-ctn-1 .dup-ctn span.spacer:nth-child(2) {
+    display: none;
+  }
+
+  section.portfolio div.txt-ctn-2 .spaced-txt {
+    position: absolute;
+    width: 100%;
+    display: block;
+  }
+
+  section.portfolio .pf-accordion-outer {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  section.portfolio ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding-left: 0;
+    margin-top: -40%;
+  }
+
+  section.portfolio ol li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px;
+  }
+
+  section.portfolio ol li h2 {
+    font-size: 3rem;
+    z-index: -1;
+  }
+
+  section.portfolio ol li:nth-child(1) h2 {
+    margin-bottom: 5px;
+  }
+
+  section.portfolio ol li .desc-ctn bold {
+    margin-top: 10px;
+  }
+
+  section.portfolio ol li .desc-ctn p,
+  section.portfolio ol li .desc-ctn bold {
+    font-size: 20px;
+  }
+
+  section.portfolio ol #delsud {
+    margin: auto -40px;
+  }
+
+  section.portfolio ol li hr.ctn-line {
+    width: 100%;
+  }
+
+  section.portfolio .desc-ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  section.portfolio .desc-ctn hr.desc-line {
+    display: none;
+  }
+
+  section.portfolio div.video-ctn {
+    position: absolute;
+  }
+
+  section.portfolio .box-ctn {
+    width: 11.5rem;
+    height: 6rem;
+    bottom: 15%;
+    background-color: transparent;
+    transform: translate(-4.5535px, 38.3861px) rotate(7.0003deg) skew(10.5002deg, 0deg) scale(1.0075, 0.9851) !important;
+  }
+
+  section.portfolio .vid-overlay {
+    background-color: transparent;
+  }
+
+  section.portfolio .logo-box {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal .close {
+    position: absolute;
+    z-index: 50000;
+    bottom: 18% !important;
+    right: 11.5%;
+    top: unset;
+    width: 60px;
+    filter: invert(1);
+    cursor: url(assets/cursor-mano.svg), pointer;
+  }
+
+  #modalVideo {
+    transform: rotate(90deg);
+    width: 160vw;
+  }
+
+  /* ============= servicios ============ */
+
+  /* #middle {
+    background-color: #1d3e4e9e;
+  } */
+
+  #middle #text-container {
+    clip-path: inset(120px 0 90px 0);
+    overflow: hidden;
+  }
+
+  #middle #text-container #letter-ctn {
+    display: block;
+    width: 100%;
+  }
+
+  #middle #text-container p {
+    font-size: 3rem;
+  }
+
+  #middle #text-container #letter-ctn span {
+    font-size: 3rem;
+    color: #d1d821;
+  }
+
+  #middle #text-container p:nth-child(1) {
+    padding: 0 20px;
+  }
+
+  #middle #text-container #letter-ctn .spacer {
+    font-size: 0.9rem;
+  }
+
+  /* accordion */
+
+  #middle .acc-borders {
+    height: 72%;
+  }
+
+  #middle section.accordion {
+    clip-path: inset(14% 0 14% 0);
+    overflow: hidden;
+  }
+
+  #middle .accordion .expand {
+    display: block;
+    background: none;
+    border: none;
+    align-self: flex-start;
+    margin-top: 25px;
+    z-index: 100;
+  }
+
+  #middle .accordion .expand img {
+    width: 4rem;
+  }
+
+  #middle #parent {
+    height: 100%;
+    padding-bottom: 50%;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: none;
+  }
+
+  #middle #parent::-webkit-scrollbar {
+    display: none;
+  }
+
+  #middle #parent .child {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25%;
+    overflow: visible;
+    border: 0;
+  }
+
+  #middle #parent .child .title-ctn h1 {
+    transition: color 0.5s ease;
+    font-size: 9rem;
+  }
+
+  #middle #parent .child .title-ctn h2 {
+    font-size: 2.5rem;
+  }
+
+  #middle #parent .child .text-ctn {
+    margin: 0;
+    width: 100%;  
+    height: 100%;
+    margin-left: 26%;
+  }
+
+  #middle #parent .child .text-ctn ol {
+    position: absolute;
+    display: block;
+    clip-path: inset(100% 0 100% 0);
+    top: 9rem;
+    transition: all ease-in-out 300ms;
+  }
+
+  #middle #parent .child .text-ctn ol li {
+    width: 400px;
+    font-size: 1.1rem;
+  }
+
+  #middle #parent .child:nth-of-type(2) .text-ctn ol:nth-of-type(2) {
+    top: 15rem;
+  }
+
+  #middle #parent .child .text-ctn ol.reveal {
+    clip-path: inset(0 0 0 0);
+    transition: all ease-in-out 500ms;
+    top: 14rem;
+  }
+
+  #middle #parent .child:nth-of-type(2) .text-ctn ol.reveal:nth-of-type(2) {
+    top: 26.7rem;
+  }
+
+  #middle #video-tiempo {
+    justify-content: center;
+    align-items: center;
+  }
+
+  #middle #video-tiempo #countdown-timer {
+    left: 28%;
+    bottom: -45px;
+    font-size: 1.2rem;
+  }
+
+  #middle #video-tiempo #elementos-desk {
+    display: none;
+  }
+
+  #middle #video-tiempo #elementos-mob {
+    display: block;
+    opacity: 1;
+    width: 95vw;
+    height: 95vh;
+    padding: 0rem;
+    z-index: 100;
+  }
+
+  #middle #video-tiempo #text-container-2 .text {
+    font-size: 2.5rem;
+  }
+
+  #middle #video-tiempo #text-container-2 #letter-ctn span {
+    color: #d1d821;
+    font-size: 2.5rem;
+  }
+
+  #middle #video-tiempo #text-container-2 #letter-ctn span.spacer {
+    font-size: 1rem;
+  }
+
+  /* carousel*/
+  #text-container-2 {
+    max-width: 100% !important;
+  }
+
+  p#p1,
+  p#p2 {
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+
+  #p2 {
+    margin-bottom: 3rem;
+  }
+
+  #carousel-container {
+    display: none !important;
+  }
+
+  #mobileBrandsCtn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 50%;
+    gap: 1rem;
+  }
+
+  #mobileBrandsCtn img.mobileBrands {
+    height: 100px; 
+    width: 100px;
+    margin: 0.2rem;
+  }
+
+  /* end section */
+
+  #textAllCtn {
+    margin: 0 2rem !important;
+    letter-spacing: 1px;
+    font-weight: 400;
+    right: -4%;
+  }
+
+  #p1_postC,
+  div#textAllCtn .letter-container .charSpan {
+    font-size: 60px;
+  }
+
+  #firstSpacer {
+    display: none;
+    font-size: 0;
+  }
+
+  #textAllCtn p.letter-container {
+    display: block;
+    width: 100%;
+  }
+
+  #textAllCtn p.letter-container .charSpan {
+    color: #d1d821;
+  }
+
+  #textAllCtn>p.letter-container .spacerSpan {
+    font-size: 1rem;
+  }
+
+  .subTextContainer {
+    justify-content: flex-start;
+    top: 25%;
+  }
+
+  .socialContainer {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .svgSocial {
+    width: 4rem !important;
+    height: 4rem !important;
+  }
+
+  a.svgInner {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #textEndCtn {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 2.5rem;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+
+  .charSpan2 {
+    font-size: 1.5rem !important;
+  }
+
+  #middle #subir {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1000000000;
+  }
+
+  #middle #subir button {
+    width: 20vw;
+    height: 20vh;
+    background-color: transparent;
+    border: none;
+  }
+
+  #middle #subir button svg {
+    width: 20vw;
+    height: 20vh;
+  }
+
+  #middle #subir button svg .swipe {
+    animation: scroll2 1s infinite;
+  }
+}
+
+/* * Laptop */
+
+@media only screen and (min-width: 851px) and (max-width: 1366px) {
+  nav section#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    background: rgb(203, 219, 67);
+    opacity: 0;
+  }
+
+  nav section#menu ul li a {
+    font-size: 3.5rem;
+  }
+
+  .modal .close {
+    position: absolute;
+    z-index: 50000;
+    top: 11%;
+    right: 11.5%;
+    width: 60px;
+    cursor: pointer;
+    filter: invert(1);
+    cursor: url("assets/cursor-mano.svg"), pointer;
+  }
+
+  #middle #video-tiempo #elementos-desk {
+    width: 100%;
+    height: 95%;
+    top: 5%;
   }
 }
 
